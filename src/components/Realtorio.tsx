@@ -4,8 +4,7 @@ import { Button } from "./ui/button";
 import axios from "axios";
 
 type Props = {
-  type: string;
-  message: string;
+ 
 };
 
 interface ChatLogItem {
