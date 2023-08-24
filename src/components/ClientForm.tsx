@@ -14,50 +14,32 @@ import {
 } from "@/components/ui/form";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Client } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { ClientCreation } from "@/lib/type";
 import axios from "axios";
 
+type Props = {};
 
-
-type Props = {
-  client?: Pick<
-    Client,
-    "firstName" | "lastName" | "email" | "id" | "phoneNumber"
-  >;
-};
-
-type Input = z.infer<typeof clientCreationSchema>;
-
-const ClientForm = ({ client }: Props) => {
+const ClientForm = (props: Props) => {
   const router = useRouter();
   const {
     reset,
     formState: { errors, isLoading },
   } = useForm();
 
-  const form = useForm<Input>({
+  const form = useForm<ClientCreation>({
     resolver: zodResolver(clientCreationSchema),
     defaultValues: {
-      id: client?.id ? client?.id : "",
-      firstName: client?.firstName ? client?.firstName : "",
-      lastName: client?.lastName ? client?.lastName : "",
-      email: client?.email ? client?.email : "",
-      phoneNumber: client?.phoneNumber ? client?.phoneNumber : "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
     },
   });
 
-  const onSubmit = async (data: Input) => {
-    try {
-      const response = await axios.post("/api/client", data);
-      console.log("Response:", response.data);
-    } catch (error) {
-      console.error("Error creating client:", error);
-    }
-
-    router.push("/");
+  const onSubmit = async (data: ClientCreation) => {
+    console.log(data);
     reset();
-    router.refresh();
   };
 
   return (
@@ -69,61 +51,53 @@ const ClientForm = ({ client }: Props) => {
             name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>first name</FormLabel>
+                <FormLabel>First Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter first name" {...field} />
+                  <Input placeholder="enter first name..." {...field} />
                 </FormControl>
-                <FormDescription>
-                  this is the first name
-                </FormDescription>
+                <FormDescription>this is the first name</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-             <FormField
+          <FormField
             control={form.control}
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>first name</FormLabel>
+                <FormLabel>Last Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter first name" {...field} />
+                  <Input placeholder="enter your last name..." {...field} />
                 </FormControl>
-                <FormDescription>
-                  this is the first name
-                </FormDescription>
+                <FormDescription>this is the first name</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-             <FormField
+          <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>first name</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter first name" {...field} />
+                  <Input placeholder="enter your email..." {...field} />
                 </FormControl>
-                <FormDescription>
-                  this is the first name
-                </FormDescription>
+                <FormDescription>this is the first name</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-             <FormField
+          <FormField
             control={form.control}
             name="phoneNumber"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>first name</FormLabel>
+                <FormLabel>Phone Number</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter first name" {...field} />
+                  <Input placeholder="enter your phone number..." {...field} />
                 </FormControl>
-                <FormDescription>
-                  this is the first name
-                </FormDescription>
+                <FormDescription>this is the first name</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
