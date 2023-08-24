@@ -26,6 +26,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import ClientCard from "@/components/dashboard/components/ClientCard";
+import ClientsSection from "@/components/dashboard/sections/ClientsSection";
 
 type Props = {
   user: string;
@@ -61,92 +63,7 @@ const DashboardPage = async (props: Props) => {
         </div>
       </div>
       {/* New Clients */}
-      <div className="flex  items-center rounded-xl w-fit top-20 -ml-[26px]  relative lg:ml-[200px]  ">
-        <div className=" flex flex-col justify-start items-start gap-5 p-10 overflow-y-auto">
-          <div className="flex justify-between w-full">
-            <h2 className="light:text-black text-3xl font-semibold  ">
-              New Clients
-            </h2>
-            <Link href="/add-client">
-              <Button>Add Client</Button>
-            </Link>
-          </div>
-          <div className=" w-fit flex gap-4 items-start flex-wrap   ">
-            <Card className=" ">
-              <CardHeader className="flex  items-center flex-row gap-3">
-                <CgProfile className="text-2xl light:text-gray-900 group:hover:text-white" />
-                <h3>Client Name</h3>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  <h4>Buying</h4>
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex  items-center flex-row gap-3">
-                <CgProfile className="text-2xl light:text-gray-900 group:hover:text-white" />
-                <h3>Client Name</h3>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  <h4>Buying</h4>
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex  items-center flex-row gap-3">
-                <CgProfile className="text-2xl light:text-gray-900 group:hover:text-white" />
-                <h3>Client Name</h3>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  <h4>Buying</h4>
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex  items-center flex-row gap-3">
-                <CgProfile className="text-2xl light:text-gray-900 group:hover:text-white" />
-                <h3>Client Name</h3>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  <h4>Buying</h4>
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex  items-center flex-row gap-3">
-                <CgProfile className="text-2xl light:text-gray-900 group:hover:text-white" />
-                <h3>Client Name</h3>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  <h4>Buying</h4>
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex  items-center flex-row gap-3">
-                <CgProfile className="text-2xl light:text-gray-900 group:hover:text-white" />
-                <h3>Client Name</h3>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  <h4>Buying</h4>
-                </CardDescription>
-              </CardContent>
-            </Card>
-          </div>
-          <Link href="/view-more-clients">
-            <div className="flex ml-2 flex-row-reverse items-center  gap-2 cursor-pointer">
-              <TfiArrowRight size={20} className="hover:text-gray-700" />
-              <p className="hover:text-gray-700">View More</p>
-            </div>
-          </Link>
-        </div>
-      </div>
+      <ClientsSection />
       {/* Graphs/Data */}
       <div className="flex lg:ml-10 ml-5 gap-5  -mt-5  flex-col xl:flex-row      ">
         <div className="  w-fit">
