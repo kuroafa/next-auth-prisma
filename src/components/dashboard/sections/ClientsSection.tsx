@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import React from "react";
 import ClientCard from "../components/ClientCard";
 import { ArrowUpRight, MoveRight } from "lucide-react";
@@ -7,13 +7,13 @@ import { ArrowUpRight, MoveRight } from "lucide-react";
 type Props = {};
 
 const ClientsSection = (props: Props) => {
-  const clients = [1, 2, 3, 4];
+  const clients = [1, 2, 3, 4, 5, 6];
   return (
-    <div className="flex  items-center rounded-xl w-fit top-20 -ml-[26px]  relative lg:ml-[200px]  ">
-      <div className=" flex flex-col justify-start items-start gap-5 p-10 overflow-y-auto">
-        <div className="flex justify-between w-full">
+    <div className="flex items-center rounded-xl w-fit ">
+      <div className=" flex flex-col justify-start items-start gap-5 overflow-y-auto">
+        <div className="flex justify-between gap-4 w-fit">
           <h2 className="light:text-black text-3xl font-semibold flex items-center gap-1">
-            New Clients{" "}
+            Recent Clients{" "}
             <Link href="/view-more-clients">
               <ArrowUpRight size={35} strokeWidth={1} />
             </Link>
@@ -23,9 +23,10 @@ const ClientsSection = (props: Props) => {
           </Link>
         </div>
         <div className=" w-fit flex gap-4 items-start flex-wrap">
-          {clients.map((clients, idx) => (
-            <ClientCard key={idx} />
-          ))}
+          {clients.map(
+            (clients, idx) =>
+              idx < 4 && <ClientCard key={idx} name={clients.toString()} />
+          )}
         </div>
         <Link href="/view-more-clients">
           <div className="flex ml-2 flex-row-reverse items-center  gap-2 cursor-pointer">

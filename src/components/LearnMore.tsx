@@ -4,7 +4,7 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import Image from "next/image";
 import { AiOutlineCheck } from "react-icons/ai";
 import { Card, CardContent, CardDescription, CardTitle } from "./ui/card";
-import SignInButton from "./SignInButton";
+import SignInButton from "./navbar/SignInButton";
 
 type Props = {};
 

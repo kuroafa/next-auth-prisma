@@ -4,11 +4,11 @@ import { TfiArrowRight } from "react-icons/tfi";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getAuthSession } from "@/lib/next-auth";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ThemeToggle } from "@/components/navbar/ThemeToggle";
 import DashboardHeader from "@/components/DashboardHeader";
-import Sidebar from "@/components/Sidebar";
-import SignInButton from "@/components/SignInButton";
-import UserAccountNav from "@/components/UserAccountNav";
+import Sidebar from "@/components/navbar/Sidebar";
+import SignInButton from "@/components/navbar/SignInButton";
+import UserAccountNav from "@/components/navbar/UserAccountNav";
 import {
   Card,
   CardContent,
@@ -28,6 +28,7 @@ import {
 import { Button } from "@/components/ui/button";
 import ClientCard from "@/components/dashboard/components/ClientCard";
 import ClientsSection from "@/components/dashboard/sections/ClientsSection";
+import AnalyticsSection from "@/components/dashboard/sections/AnalyticsSection";
 
 type Props = {
   user: string;
@@ -45,34 +46,11 @@ const DashboardPage = async (props: Props) => {
   }
 
   return (
-    <div className="  ">
-      {/* Page header */}
-      <div className="flex items-center justify-between w-full gap-4 absolute xl:right-5 lg:right-5 md:right-20 right-20 top-7 ">
-        <div className="lg:ml-[230px] ml-[100px] ">
-          <h2 className="font-semibold text-[15px]">
-            Welcome, {session?.user.name}
-          </h2>
-        </div>
-        <div className="flex items-center gap-3">
-          <ThemeToggle className="relative" />
-          {session?.user ? (
-            <UserAccountNav user={session.user} />
-          ) : (
-            <SignInButton text="Sign In" />
-          )}
-        </div>
-      </div>
+    <div className="grid grid-cols-2 gap-8 pr-10 pt-8">
+      {/* Graphs/Data */}
+      <AnalyticsSection />
       {/* New Clients */}
       <ClientsSection />
-      {/* Graphs/Data */}
-      <div className="flex lg:ml-10 ml-5 gap-5  -mt-5  flex-col xl:flex-row      ">
-        <div className="  w-fit">
-          <div className=" bg-gray-500 xl:w-[600px] mt-20 lg:w-[600px] md:w-[600px] lg:ml-[200px] md:ml-[0] w-[365px] h-[400px]   rounded-xl"></div>
-        </div>
-        <div className="  w-fit">
-          <div className=" bg-gray-600 xl:w-[500px] xl:mt-20 lg:w-[600px] md:w-[600px]  w-[365px] h-[400px] xl:ml-0 lg:ml-[200px] md:ml-[0]  rounded-xl"></div>
-        </div>
-      </div>
       {/* current Leads & Appointments Container */}
       <div className="flex flex-wrap bg-gray-500 items-center justify-start  -ml-4  xl:pt-0 lg:pt-7 md:ml-0 pt-1 md:pt-7 sm:pt-7">
         {/* Current Leads List 1 */}

@@ -5,11 +5,11 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { ThemeToggle } from "./ThemeToggle";
-import UserAccountNav from "./UserAccountNav";
-import SignInButton from "./SignInButton";
+import { ThemeToggle } from "./navbar/ThemeToggle";
+import UserAccountNav from "./navbar/UserAccountNav";
+import SignInButton from "./navbar/SignInButton";
 import { getAuthSession } from "@/lib/next-auth";
-import Navbar from "./Navbar";
+import Navbar from "./navbar/Navbar";
 import Link from "next/link";
 
 type Props = {};
@@ -38,7 +38,7 @@ const Hero = (props: Props) => {
                 Learn More
               </Button>
             </Link>
-            
+
             <button
               type="button"
               onClick={() => {

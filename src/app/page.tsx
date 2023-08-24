@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <div className="flex h-full flex-col ">
       <Hero />
-      <Footer/>
+      <Footer />
     </div>
   );
 }
