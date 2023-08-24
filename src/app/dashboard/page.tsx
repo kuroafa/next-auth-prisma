@@ -52,8 +52,8 @@ const DashboardPage = async (props: Props) => {
       {/* New Clients */}
       <ClientsSection />
       {/* current Leads & Appointments Container */}
-      <div className="flex flex-wrap bg-gray-500 items-center justify-start  -ml-4  xl:pt-0 lg:pt-7 md:ml-0 pt-1 md:pt-7 sm:pt-7">
-        {/* Current Leads List 1 */}
+      {/* <div className="flex flex-wrap bg-gray-500 items-center justify-start  -ml-4  xl:pt-0 lg:pt-7 md:ml-0 pt-1 md:pt-7 sm:pt-7">
+        
         <div className="flex  items-center rounded-xl w-fit sm:-mt-8 xl:mt-5  relative lg:ml-[200px] md:ml-[0]  ">
           <div className="flex flex-col justify-start items-start  p-10">
             <h3 className="light:text-black text-3xl pb-3 font-semibold  ">
@@ -110,7 +110,7 @@ const DashboardPage = async (props: Props) => {
             </div>
           </div>
         </div>
-        {/* Current Leads List 2 */}
+        
         <div className="flex  items-center rounded-xl w-fit sm:-mt-8 xl:mt-5  relative  ml-0   ">
           <div className="flex flex-col justify-start items-start  p-10">
             <h3 className="light:text-black text-3xl pb-3 font-semibold  ">
@@ -167,7 +167,7 @@ const DashboardPage = async (props: Props) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Appointments */}
       <div className="flex items-center rounded-xl w-fit   lg:ml-[200px] md:ml-[0]  relative  ">
         <div className="flex flex-col justify-start items-start  p-10">
