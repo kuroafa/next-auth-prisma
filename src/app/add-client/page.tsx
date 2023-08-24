@@ -1,11 +1,12 @@
 import Modal from "@/components/Modal";
 import React from "react";
 import ClientForm from "@/components/ClientForm";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import UserAccountNav from "@/components/UserAccountNav";
-import SignInButton from "@/components/SignInButton";
+
 import { getAuthSession } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
+import { ThemeToggle } from "@/components/navbar/ThemeToggle";
+import UserAccountNav from "@/components/navbar/UserAccountNav";
+import SignInButton from "@/components/navbar/SignInButton";
 
 type Props = {
   user: string;

@@ -16,9 +16,7 @@ const pages = async (props: Props) => {
     <div>
       <div className="flex items-center justify-between w-full gap-4 absolute xl:right-5 lg:right-5 md:right-20 right-20 top-7 ">
         <div className="lg:ml-[230px] ml-[100px] ">
-          <h2 className="font-semibold text-[15px]">
-            Welcome, {session?.user.name}
-          </h2>
+          
         </div>
         <div className="flex items-center gap-3">
           <ThemeToggle className="relative" />

@@ -1,7 +1,7 @@
 import Realtorio from "@/components/Realtorio";
-import SignInButton from "@/components/SignInButton";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import UserAccountNav from "@/components/UserAccountNav";
+import SignInButton from "@/components/navbar/SignInButton";
+import { ThemeToggle } from "@/components/navbar/ThemeToggle";
+import UserAccountNav from "@/components/navbar/UserAccountNav";
 import { getAuthSession } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
 import React from "react";

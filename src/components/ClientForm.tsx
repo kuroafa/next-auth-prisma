@@ -204,7 +204,7 @@ const ClientForm = (props: Props) => {
                   <FormItem>
                     <FormLabel>Pre-Approved?</FormLabel>
                     <FormControl>
-                      <Checkbox placeholder="enter your approval..." {...field} />
+                      {/* <Checkbox placeholder="enter your approval..." {...field} /> */}
                     </FormControl>
                     <FormDescription>this is the approval</FormDescription>
                     <FormMessage />

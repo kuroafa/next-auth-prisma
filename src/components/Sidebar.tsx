@@ -15,10 +15,6 @@ import {
 import { CgProfile } from "react-icons/cg";
 import { FaRegComments } from "react-icons/fa";
 import { BiMessageSquareDots } from "react-icons/bi";
-import { ThemeToggle } from "./ThemeToggle";
-import UserAccountNav from "./UserAccountNav";
-import SignInButton from "./SignInButton";
-import { getAuthSession } from "@/lib/next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 
