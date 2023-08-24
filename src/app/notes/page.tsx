@@ -29,6 +29,36 @@ const pages = async (props: Props) => {
           )}
         </div>
       </div>
+      <div className="lg:ml-[210px] mt-20">
+        <h1 className="text-7xl">Notes</h1>
+        <div className="flex flex-col gap-5 pt-10">
+          <h2 className="text-3xl font-semibold">Important</h2>
+          <div className="flex gap-2 flex-wrap">
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-5 pt-10">
+          <h2 className="text-3xl font-semibold">Not as important</h2>
+          <div className="flex gap-2 flex-wrap">
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-5 pt-10">
+          <h2 className="text-3xl font-semibold">basic info</h2>
+          <div className="flex gap-2 flex-wrap">
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
