@@ -22,9 +22,9 @@ type Props = {
   completed: boolean;
   date: number;
   type: string;
-};
+}
 
-const AppointmentCard = async ({
+const page = async ({
   name,
   address,
   time,
@@ -45,10 +45,9 @@ const AppointmentCard = async ({
     },
   });
    
-
   return (
-    <div className="flex gap-2 mt-4 ">
-      {fetchAppointment.map((appointments) => {
+    <div>
+       {fetchAppointment.map((appointments) => {
         return (
           <Card className="w-[300px]" key={appointments.id}>
             <CardHeader>
@@ -56,22 +55,14 @@ const AppointmentCard = async ({
               <CardDescription>{appointments.name}</CardDescription>
             </CardHeader>
             <CardContent>
-              <div>
-                <div>
-                  <h2>{appointments.time} - {appointments.date}</h2>
-                  <h3>{appointments.completed}</h3>
-                </div>
-                <Link href='/Appointment-Page'>
-                   View Appointment
-                </Link>
-              </div>
+             
             </CardContent>
-            
+           
           </Card>
         );
       })}
     </div>
-  );
-};
+  )
+}
 
-export default AppointmentCard;
+export default page

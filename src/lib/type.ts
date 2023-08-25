@@ -23,7 +23,9 @@ export const appointmentCreationSchema = z.object({
   name: z.string(),
   address: z.string(),
   time: z.number(),
-  completed: z.boolean()
+  completed: z.boolean(),
+  date: z.number(),
+  type: z.string()
 })
 
 export const DeletionSchema = z.object({

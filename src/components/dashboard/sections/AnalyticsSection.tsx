@@ -87,7 +87,7 @@ const AnalyticsSection = (props: Props) => {
         <div className="w-full">
           {/* <ClosingsChart /> */}
           <Card>
-            <CardHeader>
+            <CardHeader className="h-[300px]">
               Closings each month Chart // Line Chart from Chartjs
             </CardHeader>
           </Card>

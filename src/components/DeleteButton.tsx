@@ -9,13 +9,17 @@ type Props = {
     id: string
 }
 const DeleteButton = async ({id}: Props) => {
-    const deleteAppointment = async (id:string) => {
-        const response = await axios.delete('/api/appointments', {
-         data: {
-           id: id
-         }
-        })
-     }
+  const deleteAppointment = async (AppointmentId: string) => {
+    fetch('/api/appointment', {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: AppointmentId
+      }),
+    });
+};
   return (
     <Button onClick={()=> deleteAppointment(id)}>
         Delete

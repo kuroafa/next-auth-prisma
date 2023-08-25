@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
 import { DeletionSchema, appointmentCreationSchema, clientCreationSchema } from "@/lib/type";
 import { NextResponse } from "next/server";
+import { type } from "os";
 import { z } from "zod";
 
 export async function POST(req: Request, res: Response) {
@@ -17,7 +18,7 @@ export async function POST(req: Request, res: Response) {
       );
     }
     const body = await req.json();
-    const { name, address, time, completed } =
+    const { name, address, time, completed, type, date } =
       appointmentCreationSchema.parse(body);
       
 
@@ -27,7 +28,10 @@ export async function POST(req: Request, res: Response) {
        name: name,
        address: address,
        time: time,
-       completed: completed
+       completed: completed,
+       date: date,
+       type: type
+
       },
     });
 

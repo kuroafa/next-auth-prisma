@@ -41,6 +41,8 @@ const AppointmentForm = (props: Props) => {
       address: "",
       time: 10,
       completed: true,
+      date: 10,
+      type: 'Property Showing'
     },
   });
 
@@ -101,6 +103,34 @@ const AppointmentForm = (props: Props) => {
                     <Input placeholder="time..." {...field} />
                   </FormControl>
                   <FormDescription>this is the time</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+                <FormField
+              control={form.control}
+              name="type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Type</FormLabel>
+                  <FormControl>
+                    <Input placeholder="type..." {...field} />
+                  </FormControl>
+                  <FormDescription>this is the type</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+                <FormField
+              control={form.control}
+              name="date"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Date</FormLabel>
+                  <FormControl>
+                    <Input placeholder="date..." {...field} />
+                  </FormControl>
+                  <FormDescription>this is the date</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

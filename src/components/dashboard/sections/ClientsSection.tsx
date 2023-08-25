@@ -25,7 +25,7 @@ const ClientsSection = async ({ firstName, lastName, email, phoneNumber, id }: P
     take: 6
   });
   return (
-    <div className="flex items-center rounded-xl w-fit ">
+    <div className="flex  rounded-xl w-fit h-full   ">
       <div className=" flex flex-col justify-start items-start gap-5 overflow-y-auto">
         <div className="flex justify-between gap-4 w-fit">
           <h2 className="light:text-black text-3xl font-semibold flex items-center gap-1">
@@ -35,13 +35,13 @@ const ClientsSection = async ({ firstName, lastName, email, phoneNumber, id }: P
             </Link>
           </h2>
           <Link href="/add-client">
-            <Button>Add Client</Button>
+            <Button>Add</Button>
           </Link>
         </div>
         <div className=" w-fit flex gap-4 items-start flex-wrap">
           {fetchClients.map(
             (clients, idx) =>
-              idx < 4 && <ClientCard key={clients.id} clientData={clients}  />
+              idx < 2 && <ClientCard key={clients.id} clientData={clients}  />
           )}
         </div>
         <Link href="/Clients">
