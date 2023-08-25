@@ -12,18 +12,7 @@ const page = async (props: Props) => {
   if (!session?.user) {
     return redirect("/");
   }
-  return (
-    <div className="">
-      <div className="flex items-center gap-4 absolute right-5 top-7 ">
-        <ThemeToggle className="" />
-        {session?.user ? (
-          <UserAccountNav user={session.user} />
-        ) : (
-          <SignInButton text="Sign In" />
-        )}
-      </div>
-    </div>
-  );
+  return <div className=""></div>;
 };
 
 export default page;
