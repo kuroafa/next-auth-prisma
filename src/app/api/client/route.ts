@@ -17,7 +17,7 @@ export async function POST(req: Request, res: Response) {
       );
     }
     const body = await req.json();
-    const { firstName, lastName, email, phoneNumber } =
+    const { firstName, lastName, email, phoneNumber, address,city, state ,zipCode, budget, preApproved, maritalStatus, notes, children,occupation } =
       clientCreationSchema.parse(body);
 
     const client = await prisma.client.create({
@@ -26,6 +26,14 @@ export async function POST(req: Request, res: Response) {
         lastName: lastName,
         email: email,
         phoneNumber: phoneNumber,
+        address: address,
+        city:city,
+        state: state,
+        zipCode: zipCode,
+        preApproved: preApproved,
+        maritalStatus: maritalStatus,
+        notes: notes,
+        occupation: occupation,
         userId: session.user.id,
       },
     });
