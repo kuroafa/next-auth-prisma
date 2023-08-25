@@ -10,7 +10,7 @@ export async function POST(req: Request, res: Response) {
     if (!session?.user) {
       console.log("User is not authenticated");
       return NextResponse.json(
-        { error: "You must be logged in to create a task." },
+        { error: "You must be logged in to create a Client." },
         {
           status: 401,
         }

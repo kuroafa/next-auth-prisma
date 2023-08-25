@@ -62,11 +62,11 @@ const Sidebar: React.FC = () => {
                       </h3>
                     </div>
                   </Link>
-                  <Link href="/Leads">
+                  <Link href="/Clients">
                     <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
                       <CgProfile className="text-2xl light:text-gray-900 group:hover:text-white" />
                       <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
-                        Profile
+                        Clients
                       </h3>
                     </div>
                   </Link>

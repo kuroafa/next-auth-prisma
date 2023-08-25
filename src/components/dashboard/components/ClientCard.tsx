@@ -15,20 +15,21 @@ import {
   HoverCardTrigger,
 } from "../../ui/hover-card";
 import { Button } from "../../ui/button";
+import { Client } from "@prisma/client";
 
 type Props = {
-  name: string;
-  email: string;
-  phone: number;
+  clientData: Pick<Client, 'firstName' | 'lastName' | 'email' | 'phoneNumber' >
 };
 
-const ClientCard = ({ name, email, phone }: Props) => {
+
+
+const ClientCard = ({ clientData }: Props) => {
   return (
     <Card className="flex">
       <CardHeader>
         <CardTitle className="flex gap-2 items-center">
           <UserCircle size={30} />
-          {name}
+          {clientData.firstName} {clientData.lastName}
         </CardTitle>
         <CardDescription className="flex gap-2">
           Recent Client
@@ -40,7 +41,7 @@ const ClientCard = ({ name, email, phone }: Props) => {
               />
             </HoverCardTrigger>
             <HoverCardContent>
-              {email ? email : "No Email Found"}
+              {clientData.email ? clientData.email : "No Email Found"}
             </HoverCardContent>
           </HoverCard>
           <HoverCard>
@@ -51,7 +52,7 @@ const ClientCard = ({ name, email, phone }: Props) => {
               />
             </HoverCardTrigger>
             <HoverCardContent>
-              {phone ? phone : "No Phone Number Found"}
+              {clientData.phoneNumber ? clientData.phoneNumber : "No Phone Number Found"}
             </HoverCardContent>
           </HoverCard>
         </CardDescription>

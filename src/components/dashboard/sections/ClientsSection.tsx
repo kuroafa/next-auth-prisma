@@ -3,11 +3,27 @@ import Link, { LinkProps } from "next/link";
 import React from "react";
 import ClientCard from "../components/ClientCard";
 import { ArrowUpRight, MoveRight } from "lucide-react";
+import { prisma } from "@/lib/db";
 
-type Props = {};
+type Props = {
+  firstName: string
+  lastName: string
+  email: string
+  phoneNumber: string
+  id: string;
+};
 
-const ClientsSection = (props: Props) => {
-  const clients = [1, 2, 3, 4, 5, 6];
+const ClientsSection = async ({ firstName, lastName, email, phoneNumber, id }: Props) => {
+  const fetchClients = await prisma.client.findMany({
+    where: {
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phoneNumber: phoneNumber,
+    },
+    take: 6
+  });
   return (
     <div className="flex items-center rounded-xl w-fit ">
       <div className=" flex flex-col justify-start items-start gap-5 overflow-y-auto">
@@ -23,12 +39,12 @@ const ClientsSection = (props: Props) => {
           </Link>
         </div>
         <div className=" w-fit flex gap-4 items-start flex-wrap">
-          {clients.map(
+          {fetchClients.map(
             (clients, idx) =>
-              idx < 4 && <ClientCard key={idx} name={clients.toString()} />
+              idx < 4 && <ClientCard key={clients.id} clientData={clients}  />
           )}
         </div>
-        <Link href="/view-more-clients">
+        <Link href="/Clients">
           <div className="flex ml-2 flex-row-reverse items-center  gap-2 cursor-pointer">
             <MoveRight
               size={30}
