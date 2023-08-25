@@ -28,7 +28,7 @@ export default async function RootLayout({
         <div>
           <body className={cn(inter.className, "antialiased flex gap-2")}>
             <div className="flex-[.1]">{!!session?.user && <Sidebar />}</div>
-            <div className="flex-[.9]">{children}</div>
+            <div className="flex-[.9] mt-12">{children}</div>
           </body>
         </div>
       </Providers>
