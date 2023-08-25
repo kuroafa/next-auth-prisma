@@ -16,7 +16,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useRouter } from "next/navigation";
 import { ClientCreation } from "@/lib/type";
@@ -24,10 +23,24 @@ import axios from "axios";
 import { Checkbox } from "@/components/ui/checkbox";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+ 
+import * as React from "react"
+import { CalendarIcon } from "@radix-ui/react-icons"
+import { format } from "date-fns"
+ 
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 type Props = {};
 
 const AppointmentForm = (props: Props) => {
+  const [date, setDate] = React.useState<Date>()
   const router = useRouter();
   const {
     reset,
@@ -63,8 +76,8 @@ const AppointmentForm = (props: Props) => {
 
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="flex gap-[20px] flex-wrap">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="z-[-1] space-y-8">
+          <div className="flex gap-[10px] flex-wrap">
             <FormField
               control={form.control}
               name="name"
@@ -128,7 +141,38 @@ const AppointmentForm = (props: Props) => {
                 <FormItem>
                   <FormLabel>Date</FormLabel>
                   <FormControl>
-                    <Input placeholder="date..." {...field} />
+                  <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        " pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground"
+                      )}
+                    >
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50 " />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0 z-[500000]" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    disabled={(date) =>
+                      date > new Date() || date < new Date("1900-01-01")
+                    }
+                    initialFocus
+                    className=""
+                  />
+                </PopoverContent>
+              </Popover>
                   </FormControl>
                   <FormDescription>this is the date</FormDescription>
                   <FormMessage />

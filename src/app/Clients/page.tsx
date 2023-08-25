@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
 import Link from "next/link";
@@ -26,12 +27,11 @@ const page = async ({ firstName, lastName, email, phoneNumber, id }: Props) => {
       <div className="flex flex-wrap gap-5 mt-20">
         {fetchClients.map((client, index) => {
           return (
-            <div key={client.id} className=" bg-slate-400 p-4 rounded-lg ">
+            <div key={client.id} className=" bg-slate-400 flex gap-2 justify-center items-center p-4 rounded-lg ">
               <h2>
                 {client.firstName} {client.lastName}
               </h2>
-              <h3>{client.email}</h3>
-              <h4>{client.phoneNumber}</h4>
+              
               <Link href={`/Client-Profile/${client.id}`}>
                <Button>
                 Client Profile

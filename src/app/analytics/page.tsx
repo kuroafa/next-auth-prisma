@@ -12,7 +12,7 @@ const AnalyticsPage = async (props: Props) => {
   if (!session?.user) {
     return redirect("/");
   }
-  return <div>hi</div>;
+  return <div></div>;
 };
 
 export default AnalyticsPage;

@@ -64,17 +64,18 @@ const ClientForm = (props: Props) => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="flex gap-[20px] flex-wrap">
-            <div>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-fit  flex flex-col items-start p-5 rounded-xl mt-3 bg-slate-200">
+          <div className="flex  flex-wrap gap-[20px] ">
+            <div className="border p-5 w-[250px]   rounded-xl">
+              <h2 className="text-2xl mb-2 font-semibold ">Basic Info</h2>
               <FormField
                 control={form.control}
                 name="firstName"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>First Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="enter first name..." {...field} />
+                  <FormItem >
+                    <FormLabel className="">First Name</FormLabel>
+                    <FormControl className="border">
+                      <Input   placeholder="enter first name..." {...field} />
                     </FormControl>
                     <FormDescription>this is the first name</FormDescription>
                     <FormMessage />
@@ -124,7 +125,8 @@ const ClientForm = (props: Props) => {
                 )}
               />
             </div>
-             <div>
+             <div className="border p-5 w-[250px]  rounded-xl">
+             <h2 className="text-2xl mb-2 font-semibold ">Current address</h2>
                <FormField
                 control={form.control}
                 name="address"
@@ -182,7 +184,8 @@ const ClientForm = (props: Props) => {
                 )}
                          />
              </div>
-             <div>
+             <div className="border p-5 w-[250px]   rounded-xl">
+             <h2 className="text-2xl mb-2 font-semibold ">Qualification</h2>
                {/* <FormField
                 control={form.control}
                 name="budget"
@@ -204,7 +207,7 @@ const ClientForm = (props: Props) => {
                   <FormItem>
                     <FormLabel>Pre-Approved?</FormLabel>
                     <FormControl>
-                      {/* <Checkbox placeholder="enter your approval..." {...field} /> */}
+                      <Checkbox placeholder="enter your approval..." {...field} />
                     </FormControl>
                     <FormDescription>this is the approval</FormDescription>
                     <FormMessage />
@@ -269,7 +272,7 @@ const ClientForm = (props: Props) => {
                          />
              </div>
           </div>
-          <Button type="submit">Submit</Button>
+          <Button className="p-5 text-1xl" type="submit">Submit</Button>
         </form>
       </Form>
     </div>

@@ -19,10 +19,13 @@ const page = async (props: Props) => {
   }
 
   return (
-    <div className="w-full lg:ml-[250px] ml-[0]">
-      <div className="absolute top-[100px] lg:left-[210px] left-[20px]">
+    <div className="w-full -ml-10 xl:ml-0 ">
+      <div className=" mt-5 ">
         <h1 className="text-5xl font-semibold">Add New Client</h1>
         <ClientForm />
+      </div>
+      <div>
+        
       </div>
     </div>
   );

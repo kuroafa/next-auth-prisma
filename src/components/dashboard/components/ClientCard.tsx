@@ -16,9 +16,10 @@ import {
 } from "../../ui/hover-card";
 import { Button } from "../../ui/button";
 import { Client } from "@prisma/client";
+import Link from "next/link";
 
 type Props = {
-  clientData: Pick<Client, 'firstName' | 'lastName' | 'email' | 'phoneNumber' >
+  clientData: Pick<Client, 'firstName' | 'lastName' | 'email' | 'phoneNumber' | 'id' >
 };
 
 
@@ -27,10 +28,12 @@ const ClientCard = ({ clientData }: Props) => {
   return (
     <Card className="flex">
       <CardHeader>
-        <CardTitle className="flex gap-2 items-center">
-          <UserCircle size={30} />
-          {clientData.firstName} {clientData.lastName}
-        </CardTitle>
+        <Link href={`/Client-Profile/${clientData.id}`}>
+          <CardTitle className="flex gap-2 items-center">
+            <UserCircle size={30} />
+            {clientData.firstName} {clientData.lastName}
+          </CardTitle>
+        </Link>
         <CardDescription className="flex gap-2">
           Recent Client
           <HoverCard>

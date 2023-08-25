@@ -59,6 +59,7 @@ const AppointmentCard = async ({
               <div>
                 <div>
                   <h2>{appointments.time} - {appointments.date}</h2>
+                  <h2>{appointments.date}</h2>
                   <h3>{appointments.completed}</h3>
                 </div>
                 <Link href='/Appointment-Page'>
