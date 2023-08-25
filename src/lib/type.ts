@@ -19,4 +19,19 @@ export const clientCreationSchema = z.object({
   notes: z.string(),
 });
 
+export const appointmentCreationSchema = z.object({
+  name: z.string(),
+  address: z.string(),
+  time: z.number(),
+  completed: z.boolean()
+})
+
+export const DeletionSchema = z.object({
+  id: z.string()
+})
+
+export type DeleteSchema = z.infer<typeof DeletionSchema>;
+
+export type AppointmentCreation = z.infer<typeof appointmentCreationSchema>;
+
 export type ClientCreation = z.infer<typeof clientCreationSchema>;

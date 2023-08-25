@@ -14,22 +14,6 @@ const pages = async (props: Props) => {
   }
   return (
     <div>
-<<<<<<< HEAD
-=======
-      <div className="flex items-center justify-between w-full gap-4 absolute xl:right-5 lg:right-5 md:right-20 right-20 top-7 ">
-        <div className="lg:ml-[230px] ml-[100px] ">
-          
-        </div>
-        <div className="flex items-center gap-3">
-          <ThemeToggle className="relative" />
-          {session?.user ? (
-            <UserAccountNav user={session.user} />
-          ) : (
-            <SignInButton text="Sign In" />
-          )}
-        </div>
-      </div>
->>>>>>> be4c6b3fa3c2b3bad8a87bec1fb44d44800f441d
       <div className="lg:ml-[210px] mt-20">
         <h1 className="text-7xl">Notes</h1>
         <div className="flex flex-col gap-5 pt-10">

@@ -43,6 +43,7 @@ model User {
   accounts Account[]
   sessions Session[]
   clients   Client[]
+  appointments Appointment[]
 }
 
 model Client {
@@ -64,4 +65,14 @@ model Client {
   children     Int?
   notes        String?
   user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Appointment {
+   id           String    @id @default(cuid())
+   userId       String
+   name         String
+   address      String
+   time         Int
+   completed    Boolean
+    user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
