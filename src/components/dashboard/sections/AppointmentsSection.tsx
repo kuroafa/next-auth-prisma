@@ -3,6 +3,7 @@ import AppointmentCard from "../components/AppointmentCard";
 import AppointmentForm from "@/components/AppointmentForm";
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
+import { type } from "os";
 
 type Props = {};
 
@@ -17,6 +18,8 @@ const AppointmentsSection = async (props: Props) => {
 
   console.log(appointmentData);
 
+  console.log(appointmentData);
+
   return (
     <div className="flex  rounded-xl w-full    relative  ">
       <div className="flex flex-col justify-start items-start  ">
@@ -27,9 +30,9 @@ const AppointmentsSection = async (props: Props) => {
           <AppointmentForm />
         </div>
         <div className="flex gap-3 flex-wrap">
-          {appointmentData.map((appointmentData, idx) => {
-            <AppointmentCard appointmentData={appointmentData} key={idx} />;
-          })}
+          {appointmentData.map((data, idx) => (
+            <AppointmentCard appointmentData={data} key={data.id} />
+          ))}
         </div>
       </div>
     </div>

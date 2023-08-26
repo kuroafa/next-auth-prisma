@@ -34,6 +34,7 @@ export async function POST(req: Request, res: Response) {
         completed: completed,
         date: date,
         type: type,
+        clientId: "cllrd172y0001er3oefjbqcvv",
       },
     });
 
