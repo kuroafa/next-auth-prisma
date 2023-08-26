@@ -73,7 +73,6 @@ model Appointment {
   date      Int
   completed Boolean
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  Client   Client? @relation(fields: [clientId], references: [id])
-  clientId String?
+  Client    Client? @relation(fields: [clientId], references: [id])
+  clientId  String?
 }

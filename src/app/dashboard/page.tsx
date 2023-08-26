@@ -35,6 +35,7 @@ import { DeleteSchema } from "@/lib/type";
 import { prisma } from "@/lib/db";
 import AppointmentForm from "@/components/AppointmentForm";
 import AppointmentsSection from "@/components/dashboard/sections/AppointmentsSection";
+import ClosingsChart from "@/components/dashboard/components/ClosingsChart";
 
 type Props = {
   id: string;
@@ -73,6 +74,7 @@ const DashboardPage = async ({ name, address, time, completed, id }: Props) => {
         <ClientsSection />
         {/* Appointments */}
         <AppointmentsSection />
+        {/* <ClosingsChart /> */}
       </div>
     </div>
   );

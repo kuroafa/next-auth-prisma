@@ -17,7 +17,14 @@ import { Appointment } from "@prisma/client";
 type AppointmentCardProps = {
   appointmentData: Pick<
     Appointment,
-    "name" | "address" | "time" | "completed" | "date" | "type" | "clientId" | 'id'
+    | "name"
+    | "address"
+    | "time"
+    | "completed"
+    | "date"
+    | "type"
+    | "clientId"
+    | "id"
   >;
 };
 
@@ -31,9 +38,11 @@ const AppointmentCard = async ({ appointmentData }: AppointmentCardProps) => {
         </CardHeader>
         <CardContent>
           <div>
-          
-            <Link href={`/Appointment-Profile/${appointmentData?.id}`}>View Appointment</Link>
+            <Link href={`/Appointment-Profile/${appointmentData?.id}`}>
+              View Appointment
+            </Link>
           </div>
+          <DeleteButton id={appointmentData.id} />
         </CardContent>
       </Card>
     </div>
