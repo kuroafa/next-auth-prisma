@@ -23,6 +23,8 @@ const AppointmentsSection = async (props: Props) => {
 
   console.log(appointmentData);
 
+  console.log(appointmentData);
+
   return (
     <div className="flex  rounded-xl w-full    relative  ">
       <div className="flex flex-col justify-start items-start  ">

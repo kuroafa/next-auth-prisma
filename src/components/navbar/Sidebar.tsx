@@ -43,7 +43,7 @@ const Sidebar: React.FC = () => {
               </div>
             </Disclosure.Button>
             <div
-              className={`p-6 w-[100px] h-screen z-20 lg:relative absolute top-0  ${
+              className={`p-6 w-[200px] h-screen z-20 lg:relative absolute top-0  ${
                 isSidebarOpen
                   ? "absolute left-0 peer-focus:left-0 peer:transition lg:transparent  dark:bg-slate-900 bg-gray-200 bg-opacity-95 ease-out delay-150 duration-200 w-60 lg:w-60 md:w-60  lg:left-0"
                   : "-left-96 lg:w-60 lg:left-0"
