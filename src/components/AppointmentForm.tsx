@@ -36,6 +36,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {};
 
@@ -66,9 +68,9 @@ const AppointmentForm = (props: Props) => {
     } catch (error) {
       console.log("could not create appointment");
     }
-    router.push("/");
-    reset();
-    router.refresh();
+    toast.success("Appointment Made Successfully");
+    router.push('/')
+    router.refresh()
   };
 
   const parseTimeInput = (value: string) => {
@@ -213,6 +215,7 @@ const AppointmentForm = (props: Props) => {
               />
             </div>
             <Button type="submit">Submit</Button>
+            <ToastContainer />
           </form>
         </Form>
       </div>

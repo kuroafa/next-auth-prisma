@@ -1,4 +1,5 @@
 
+import ClientCard from "@/components/dashboard/components/ClientCard";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
 import Link from "next/link";
@@ -16,7 +17,7 @@ const page = async ({ firstName, lastName, email, phoneNumber, id }: Props) => {
   const fetchClients = await prisma.client.findMany({
     where: {
         id: id,
-      firstName: firstName,
+      firstName:firstName,
       lastName: lastName,
       email: email,
       phoneNumber: phoneNumber,
@@ -24,18 +25,14 @@ const page = async ({ firstName, lastName, email, phoneNumber, id }: Props) => {
   });
   return (
     <div>
-      <div className="flex flex-wrap gap-5 mt-20">
+      <div className="flex flex-wrap  mt-[30px]">
         {fetchClients.map((client, index) => {
           return (
-            <div key={client.id} className=" bg-slate-400 flex gap-2 justify-center items-center p-4 rounded-lg ">
-              <h2>
-                {client.firstName} {client.lastName}
-              </h2>
+            <div key={client.id} className="  flex  justify-center items-center p-4 rounded-lg ">
+            <ClientCard key={client.id} clientData={client} />
               
               <Link href={`/Client-Profile/${client.id}`}>
-               <Button>
-                Client Profile
-               </Button>
+           
               </Link>
             </div>
           );

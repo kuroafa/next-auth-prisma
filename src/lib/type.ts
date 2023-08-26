@@ -26,6 +26,7 @@ export const DeletionSchema = z.object({
   id: z.string(),
 });
 
+
 export type DeleteSchema = z.infer<typeof DeletionSchema>;
 
 export type AppointmentCreation = z.infer<typeof appointmentCreationSchema>;

@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "../../ui/card";
 import { TfiArrowRight } from "react-icons/tfi";
-import { UserCircle } from "lucide-react";
+import { ArrowUpRight, UserCircle } from "lucide-react";
 import { Phone, Mail } from "lucide-react";
 import {
   HoverCard,
@@ -17,6 +17,7 @@ import {
 import { Button } from "../../ui/button";
 import { Client } from "@prisma/client";
 import Link from "next/link";
+import DeleteClient from "@/components/DeleteClient";
 
 type Props = {
   clientData: Pick<Client, "name" | "email" | "phoneNumber" | "id">;
@@ -24,52 +25,94 @@ type Props = {
 
 const ClientCard = ({ clientData }: Props) => {
   return (
-    <Card className="flex">
-      <CardHeader>
+    <Card className=" flex flex-col gap-1 p-4 w-[350px]">
+      <div className="flex items-center justify-between mb-3">
+        <UserCircle size={35} />
         <Link href={`/Client-Profile/${clientData.id}`}>
-          <CardTitle className="flex gap-2 items-center">
-            <UserCircle size={30} />
-            {clientData.name}
-          </CardTitle>
+          <ArrowUpRight size={35} strokeWidth={1} />
         </Link>
-        <CardDescription className="flex gap-2">
-          Recent Client
-          <HoverCard>
-            <HoverCardTrigger>
-              <Mail
-                size={20}
-                className="hover:cursor-pointer hover:text-black transition-text duration-200"
-              />
-            </HoverCardTrigger>
-            <HoverCardContent>
-              {clientData.email ? clientData.email : "No Email Found"}
-            </HoverCardContent>
-          </HoverCard>
-          <HoverCard>
-            <HoverCardTrigger>
-              <Phone
-                size={20}
-                className="hover:cursor-pointer hover:text-black transition-text duration-200"
-              />
-            </HoverCardTrigger>
-            <HoverCardContent>
-              {clientData.phoneNumber
-                ? clientData.phoneNumber
-                : "No Phone Number Found"}
-            </HoverCardContent>
-          </HoverCard>
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="self-end">
-        <Button
-          variant="secondary"
-          className="hover:bg-slate-500 hover:text-white transition-all duration-200"
-        >
-          Contact
-        </Button>
-      </CardContent>
+      </div>
+      <h2 className="font-semibold">New Client</h2>
+
+      <CardTitle>
+        <h2 className="flex text-xl font-bold gap-2 items-center">
+          {clientData.name}
+        </h2>
+      </CardTitle>
+
+      {/* <CardDescription className="flex gap-2">
+        <HoverCard>
+          <HoverCardTrigger>
+            <Mail
+              size={20}
+              className="hover:cursor-pointer hover:text-black transition-text duration-200"
+            />
+          </HoverCardTrigger>
+          <HoverCardContent>
+            {clientData.email ? clientData.email : "No Email Found"}
+          </HoverCardContent>
+        </HoverCard>
+        <HoverCard>
+          <HoverCardTrigger>
+            <Phone
+              size={20}
+              className="hover:cursor-pointer hover:text-black transition-text duration-200"
+            />
+          </HoverCardTrigger>
+          <HoverCardContent>
+            {clientData.phoneNumber
+              ? clientData.phoneNumber
+              : "No Phone Number Found"}
+          </HoverCardContent>
+        </HoverCard>
+      </CardDescription> */}
     </Card>
   );
 };
 
 export default ClientCard;
+
+{
+  /* <CardHeader className=" font-semibold">
+<div className=" flex justify-end  ">
+  <DeleteClient id={clientData.id} />
+</div>
+  <div className="mb-10">
+    <UserCircle size={40} />
+  </div>
+  New Client
+  <Link href={`/Client-Profile/${clientData.id}`}>
+    <CardTitle>
+      <h2 className="flex text-xl gap-2 items-center">
+        {clientData.name}
+      </h2>
+    </CardTitle>
+  </Link>
+  <CardDescription className="flex gap-2">
+    <HoverCard>
+      <HoverCardTrigger>
+        <Mail
+          size={20}
+          className="hover:cursor-pointer hover:text-black transition-text duration-200"
+        />
+      </HoverCardTrigger>
+      <HoverCardContent>
+        {clientData.email ? clientData.email : "No Email Found"}
+      </HoverCardContent>
+    </HoverCard>
+    <HoverCard>
+      <HoverCardTrigger>
+        <Phone
+          size={20}
+          className="hover:cursor-pointer hover:text-black transition-text duration-200"
+        />
+      </HoverCardTrigger>
+      <HoverCardContent>
+        {clientData.phoneNumber
+          ? clientData.phoneNumber
+          : "No Phone Number Found"}
+      </HoverCardContent>
+    </HoverCard>
+  </CardDescription>
+</CardHeader> */
+}

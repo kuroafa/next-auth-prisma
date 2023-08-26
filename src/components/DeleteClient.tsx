@@ -4,35 +4,36 @@ import { Button } from './ui/button';
 import axios from 'axios';
 import { DeleteSchema } from '@/lib/type';
 import { useRouter } from 'next/navigation'; // Import the useRouter hook from the correct path
-import { GrClose } from 'react-icons/gr'
+import { GrClose } from 'react-icons/gr';
 import { toast } from 'react-toastify';
+
 type Props = {
     id: string;
 };
 
-const DeleteButton = ({ id }: Props) => {
+const DeleteClient = ({ id }: Props) => {
     const router = useRouter();
-    const deleteAppointment = (AppointmentId: string) => {
-        fetch('/api/appointment', {
+    const deleteClient = (ClientId: string) => {
+        fetch('/api/client', {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({
-                id: AppointmentId
+                id: ClientId
             }),
           
         })
         router.refresh()
-        toast.warning('Deleted Appointment')
+        toast.warning('Deleted Client')
           
     };
 
     return (
         <div>
-            <button onClick={() => deleteAppointment(id)}><GrClose size={20}/></button>
+            <button disabled={true} onClick={() => deleteClient(id)}><GrClose size={20}/></button>
         </div>
     );
 };
 
-export default DeleteButton;
+export default DeleteClient;
