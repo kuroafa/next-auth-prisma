@@ -69,9 +69,11 @@ const DashboardPage = async ({ name, address, time, completed, id }: Props) => {
       {/* Graphs/Data */}
       <AnalyticsSection />
       {/* New Clients */}
-      <ClientsSection />
-      {/* Appointments */}
-      <AppointmentsSection />
+      <div className="flex flex-col gap-10">
+        <ClientsSection />
+        {/* Appointments */}
+        <AppointmentsSection />
+      </div>
     </div>
   );
 };

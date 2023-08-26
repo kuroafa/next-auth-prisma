@@ -78,10 +78,7 @@ const AppointmentForm = (props: Props) => {
   };
 
   return (
-    <Popup
-      trigger={<Button>Create New Appointment</Button>}
-      position="right center"
-    >
+   
       <div>
         <Form {...form}>
           <form
@@ -219,7 +216,6 @@ const AppointmentForm = (props: Props) => {
           </form>
         </Form>
       </div>
-    </Popup>
   );
 };
 

@@ -17,13 +17,13 @@ import { Appointment } from "@prisma/client";
 type AppointmentCardProps = {
   appointmentData: Pick<
     Appointment,
-    "name" | "address" | "time" | "completed" | "date" | "type" | "clientId"
+    "name" | "address" | "time" | "completed" | "date" | "type" | "clientId" | 'id'
   >;
 };
 
 const AppointmentCard = async ({ appointmentData }: AppointmentCardProps) => {
   return (
-    <div className="flex gap-2 mt-4 ">
+    <div className="  mt-4 ">
       <Card className="w-[300px]">
         <CardHeader>
           <CardTitle>{appointmentData?.type}</CardTitle>
@@ -31,14 +31,8 @@ const AppointmentCard = async ({ appointmentData }: AppointmentCardProps) => {
         </CardHeader>
         <CardContent>
           <div>
-            <div>
-              <h2>
-                {appointmentData?.time} - {appointmentData?.date}
-              </h2>
-              <h2>{appointmentData?.date}</h2>
-              <h3>{appointmentData?.completed}</h3>
-            </div>
-            <Link href="/Appointment-Page">View Appointment</Link>
+          
+            <Link href={`/Appointment-Profile/${appointmentData?.id}`}>View Appointment</Link>
           </div>
         </CardContent>
       </Card>
