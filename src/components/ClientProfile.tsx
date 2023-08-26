@@ -15,23 +15,29 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
   const placeholderStyles = "placeholder:text-black disabled:text-black";
   return (
     <div>
-      <Input
-        disabled={edit}
-        placeholder={clientData.name ? clientData.name : "No Data on Record"}
-        className={placeholderStyles}
-      />
-      <Input
-        disabled={edit}
-        placeholder={
-          clientData.phoneNumber ? clientData.phoneNumber : "No Data on Record"
-        }
-        className={placeholderStyles}
-      />
-      <Input
-        disabled={edit}
-        placeholder={clientData.email ? clientData.email : "No Data on Record"}
-        className={placeholderStyles}
-      />
+      <div className="grid grid-col-1 md:grid-cols-3 gap-4">
+        <Input
+          disabled={edit}
+          placeholder={clientData.name ? clientData.name : "No Data on Record"}
+          className={placeholderStyles}
+        />
+        <Input
+          disabled={edit}
+          placeholder={
+            clientData.phoneNumber
+              ? clientData.phoneNumber
+              : "No Data on Record"
+          }
+          className={placeholderStyles}
+        />
+        <Input
+          disabled={edit}
+          placeholder={
+            clientData.email ? clientData.email : "No Data on Record"
+          }
+          className={placeholderStyles}
+        />
+      </div>
       <Input
         disabled={edit}
         placeholder={
@@ -72,7 +78,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
       <Textarea
         disabled={edit}
         placeholder={clientData.notes ? clientData.notes : "No Notes"}
-        className={placeholderStyles}
+        className="placeholder:text-black"
       />
       <Button onClick={() => setEdit(false)}>
         {edit ? "Edit" : "Save Changes"}

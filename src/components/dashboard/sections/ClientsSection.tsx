@@ -39,7 +39,7 @@ const ClientsSection = async ({ name, email, phoneNumber, id }: Props) => {
         <div className=" w-fit flex gap-4 items-start flex-wrap">
           {fetchClients.map(
             (clients, idx) =>
-              idx < 2 && <ClientCard key={clients.id} clientData={clients} />
+              idx < 3 && <ClientCard key={clients.id} clientData={clients} />
           )}
         </div>
         <Link href="/Clients">
