@@ -18,7 +18,7 @@ const AnalyticsSection = (props: Props) => {
   return (
     <>
       <div className="flex flex-col gap-4 col-span-2">
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <Card className="flex-1 h-fit pr-10 ">
             <CardHeader>
               <CardTitle className="text-xl font-light">In Pipeline</CardTitle>
@@ -95,14 +95,7 @@ const AnalyticsSection = (props: Props) => {
             </Card>
           </div>
           
-          <div className="w-full">
-            {/* <ClosingsChart /> */}
-            <Card>
-              <CardHeader className="h-[400px] w-full">
-                Closings each month Chart // Line Chart from Chartjs
-              </CardHeader>
-            </Card>
-          </div>
+      
         
       </div>
     </>

@@ -21,6 +21,7 @@ import SignInButton from "./SignInButton";
 import { getAuthSession } from "@/lib/next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Sidebar: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -49,10 +50,8 @@ const Sidebar: React.FC = () => {
                   : "-left-96 lg:w-60 lg:left-0"
               }`}
             >
-              <div className="flex flex-col justify-start items-center">
-                <h1 className="text-[25px] text-center cursor-pointer font-bold light:text-black border-b border-gray-400 pb-4 w-fit">
-                  Realtor.io
-                </h1>
+              <div className="flex flex-col justify-start items-center w-full">
+                <Link href='/dashboard'><img src="/logo.png" className="w-[100%] " alt="logo" /></Link>
                 <div className="my-4  border-gray-100 pb-4">
                   <Link href="/dashboard">
                     <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
@@ -86,7 +85,7 @@ const Sidebar: React.FC = () => {
                       </h3>
                     </div>
                   </Link>
-                  <Link href='/email'>
+                  <Link href="/email">
                     <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
                       <MdOutlineIntegrationInstructions className="text-2xl light:text-gray-900 group:hover:text-white" />
                       <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
@@ -94,7 +93,7 @@ const Sidebar: React.FC = () => {
                       </h3>
                     </div>
                   </Link>
-                  <Link href='/Ai-email'>
+                  <Link href="/Ai-email">
                     <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
                       <BiMessageSquareDots className="text-2xl light:text-gray-900 group:hover:text-white" />
                       <h3 className="text-base light:text-gray-800 pt-1  font-semibold">

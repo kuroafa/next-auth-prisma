@@ -12,6 +12,8 @@ const Notifications = (props: Props) => {
             <p className='text-lg flex gap-2 items-center '><MdNotificationsActive/>REMINDER appointment @4:30pm Today</p>
             <p className='text-lg flex gap-2 items-center '> <MdNotificationsActive/>Nader Confirmed Appointment</p>
             <p className='text-lg flex gap-2 items-center '> <MdNotificationsActive/>New Form Received</p>
+            <p className='text-lg flex gap-2 items-center '> <MdNotificationsActive/>Nader Confirmed Appointment</p>
+            <p className='text-lg flex gap-2 items-center '> <MdNotificationsActive/>New Form Received</p>
         </div>
     </div>
   )

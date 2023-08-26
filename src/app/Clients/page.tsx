@@ -1,3 +1,4 @@
+import ClientCard from "@/components/dashboard/components/ClientCard";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
@@ -35,15 +36,9 @@ const page = async ({ firstName, lastName, email, phoneNumber, id }: Props) => {
           return (
             <div
               key={client.id}
-              className=" bg-slate-400 flex gap-2 justify-center items-center p-4 rounded-lg "
+              className="  flex gap-2 justify-center items-center p-4 rounded-lg "
             >
-              <h2>
-                {client.firstName} {client.lastName}
-              </h2>
-
-              <Link href={`/Client-Profile/${client.id}`}>
-                <Button>Client Profile</Button>
-              </Link>
+              <ClientCard clientData={client} key={client.id}/>
             </div>
           );
         })}

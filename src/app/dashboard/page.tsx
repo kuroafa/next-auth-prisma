@@ -58,19 +58,22 @@ const DashboardPage = async (props: Props) => {
 
 
   return (
-    <div className="grid grid-col-1 xl:grid-cols-2 h-auto   pt-8">
+    <div className="grid grid-col-1 lg:grid-cols-4 h-auto place-content-center ml-10   pt-8">
       {/* Graphs/Data */}
-      <div>
+      <div className="col-start-1 col-span-3">
         <AnalyticsSection />
+         <div className=" flex flex-col xl:flex-row   gap-5 mt-5 p-5 rounded-xl">
+            <ClientsSection />
+            <AppointmentsSection />
+            
+            
+          </div>
       </div>
+      
       {/* New Clients */}
       <div>
-        <div className="flex   w-fit  ml-5  gap-5">
-          <div className="light:bg-slate-100 p-5 rounded-xl">
-            <ClientsSection />
-            {/* Appointments */}
-            <AppointmentsSection />
-          </div>
+        <div className="flex flex-wrap  w-fit  ml-5  gap-5">
+         
           <div className="light:bg-slate-100 p-5 flex flex-col gap-5 rounded-xl">
             <Notifications/>
             <ActitvitySection/>

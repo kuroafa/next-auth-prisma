@@ -33,7 +33,7 @@ const DeleteButton = ({ id }: Props) => {
 
     return (
         <div>
-            <button onClick={() => deleteAppointment(id)}><GrClose size={20}/></button>
+            <button   onClick={() => deleteAppointment(id)}><GrClose  size={20}/></button>
         </div>
     );
 };

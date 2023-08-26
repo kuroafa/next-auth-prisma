@@ -41,7 +41,7 @@ const ClientsSection = async ({ name, email, phoneNumber, id }: Props) => {
           )}
         </div>
         <Link href="/Clients">
-          <div className="flex ml-2 flex-row-reverse items-center  gap-2 cursor-pointer">
+          <div className="flex ml-2 -mt-3 flex-row-reverse items-center  gap-2 cursor-pointer">
             <MoveRight
               size={30}
               strokeWidth={1}
