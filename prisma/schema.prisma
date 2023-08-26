@@ -1,13 +1,13 @@
 generator client {
   provider = "prisma-client-js"
 }
- 
+
 datasource db {
   provider     = "mysql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
- 
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -21,11 +21,12 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@unique([provider, providerAccountId])
   @@index([userId], name: "userId")
 }
- 
+
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
@@ -33,48 +34,46 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
- 
+
 model User {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?       @unique
   emailVerified DateTime?
-  image    String?
-  accounts Account[]
-  sessions Session[]
-  clients   Client[]
-  appointments Appointment[]
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  clients       Client[]
+  appointments  Appointment[]
 }
 
 model Client {
-  id           String    @id @default(cuid())
-  userId       String    
-  firstName    String
-  lastName     String
-  phoneNumber  String
-  email        String?
-  dateOfBirth  DateTime?
-  address      String?
-  city         String?
-  state        String?
-  zipCode      String?
-  budget       Int?
-  preApproved  Boolean?
-  occupation   String?
+  id            String        @id @default(cuid())
+  userId        String
+  name          String
+  phoneNumber   String
+  email         String?
+  budget        Int?
+  preApproved   Boolean?
+  occupation    String?
   maritalStatus String?
-  children     Int?
-  notes        String?
-  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  children      Int?
+  notes         String?
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Appointment   Appointment[]
 }
 
 model Appointment {
-   id           String    @id @default(cuid())
-   userId       String
-   name         String
-   address      String
-   type         String
-   time         Int
-   date         Int 
-   completed    Boolean
-    user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String  @id @default(cuid())
+  userId    String
+  name      String
+  address   String
+  type      String
+  time      Int
+  date      Int
+  completed Boolean
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  Client   Client? @relation(fields: [clientId], references: [id])
+  clientId String?
 }

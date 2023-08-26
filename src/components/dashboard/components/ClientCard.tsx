@@ -19,10 +19,8 @@ import { Client } from "@prisma/client";
 import Link from "next/link";
 
 type Props = {
-  clientData: Pick<Client, 'firstName' | 'lastName' | 'email' | 'phoneNumber' | 'id' >
+  clientData: Pick<Client, "name" | "email" | "phoneNumber" | "id">;
 };
-
-
 
 const ClientCard = ({ clientData }: Props) => {
   return (
@@ -31,7 +29,7 @@ const ClientCard = ({ clientData }: Props) => {
         <Link href={`/Client-Profile/${clientData.id}`}>
           <CardTitle className="flex gap-2 items-center">
             <UserCircle size={30} />
-            {clientData.firstName} {clientData.lastName}
+            {clientData.name}
           </CardTitle>
         </Link>
         <CardDescription className="flex gap-2">
@@ -55,7 +53,9 @@ const ClientCard = ({ clientData }: Props) => {
               />
             </HoverCardTrigger>
             <HoverCardContent>
-              {clientData.phoneNumber ? clientData.phoneNumber : "No Phone Number Found"}
+              {clientData.phoneNumber
+                ? clientData.phoneNumber
+                : "No Phone Number Found"}
             </HoverCardContent>
           </HoverCard>
         </CardDescription>

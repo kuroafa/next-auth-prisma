@@ -17,22 +17,31 @@ export async function POST(req: Request, res: Response) {
       );
     }
     const body = await req.json();
-    const { firstName, lastName, email, phoneNumber, address,city, state ,zipCode, budget, preApproved, maritalStatus, notes, children,occupation } =
-      clientCreationSchema.parse(body);
+    const {
+      name,
+      email,
+      phoneNumber,
+      budget,
+      preApproved,
+      maritalStatus,
+      notes,
+      children,
+      occupation,
+    } = clientCreationSchema.parse(body);
+
+    const intBudget = parseInt(budget);
+    const intChildren = parseInt(children);
 
     const client = await prisma.client.create({
       data: {
-        firstName: firstName,
-        lastName: lastName,
+        name: name,
         email: email,
         phoneNumber: phoneNumber,
-        address: address,
-        city:city,
-        state: state,
-        zipCode: zipCode,
         preApproved: preApproved,
         maritalStatus: maritalStatus,
         notes: notes,
+        budget: intBudget,
+        children: intChildren,
         occupation: occupation,
         userId: session.user.id,
       },
@@ -51,4 +60,3 @@ export async function POST(req: Request, res: Response) {
     }
   }
 }
-

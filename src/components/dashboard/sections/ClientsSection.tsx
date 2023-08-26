@@ -4,32 +4,30 @@ import React from "react";
 import ClientCard from "../components/ClientCard";
 import { ArrowUpRight, MoveRight } from "lucide-react";
 import { prisma } from "@/lib/db";
+import { getAuthSession } from "@/lib/next-auth";
 
 type Props = {
-  firstName: string
-  lastName: string
-  email: string
-  phoneNumber: string
+  name: string;
+  email: string;
+  phoneNumber: string;
   id: string;
 };
 
-const ClientsSection = async ({ firstName, lastName, email, phoneNumber, id }: Props) => {
+const ClientsSection = async ({ name, email, phoneNumber, id }: Props) => {
+  const session = await getAuthSession();
+
   const fetchClients = await prisma.client.findMany({
     where: {
-      id: id,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phoneNumber: phoneNumber,
+      userId: session?.user.id,
     },
-    take: 6
+    take: 6,
   });
   return (
     <div className="flex  rounded-xl w-fit h-full   ">
       <div className=" flex flex-col justify-start items-start gap-5 overflow-y-auto">
         <div className="flex justify-between gap-4 w-fit">
           <h2 className="light:text-black text-3xl font-semibold flex items-center gap-1">
-            Recent Clients{" "}
+            Recent Clients
             <Link href="/view-more-clients">
               <ArrowUpRight size={35} strokeWidth={1} />
             </Link>
@@ -41,7 +39,7 @@ const ClientsSection = async ({ firstName, lastName, email, phoneNumber, id }: P
         <div className=" w-fit flex gap-4 items-start flex-wrap">
           {fetchClients.map(
             (clients, idx) =>
-              idx < 2 && <ClientCard key={clients.id} clientData={clients}  />
+              idx < 2 && <ClientCard key={clients.id} clientData={clients} />
           )}
         </div>
         <Link href="/Clients">

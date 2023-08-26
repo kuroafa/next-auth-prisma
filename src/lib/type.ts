@@ -1,16 +1,10 @@
-import { z } from "zod";
+import { number, z } from "zod";
 
 export const clientCreationSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
+  name: z.string(),
   phoneNumber: z.string(),
   email: z.string().email(),
   // id: z.string(),
-  // dateOfBirth: z.string(),
-  address: z.string(),
-  city: z.string(),
-  state: z.string(),
-  zipCode: z.string(),
   budget: z.string(),
   preApproved: z.boolean(),
   occupation: z.string(),
@@ -25,12 +19,12 @@ export const appointmentCreationSchema = z.object({
   time: z.number(),
   completed: z.boolean(),
   date: z.number(),
-  type: z.string()
-})
+  type: z.string(),
+});
 
 export const DeletionSchema = z.object({
-  id: z.string()
-})
+  id: z.string(),
+});
 
 export type DeleteSchema = z.infer<typeof DeletionSchema>;
 

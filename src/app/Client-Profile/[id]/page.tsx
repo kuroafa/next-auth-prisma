@@ -1,17 +1,33 @@
 import { prisma } from "@/lib/db";
 import React from "react";
-import { useParams } from "next/navigation";
+import { redirect } from "next/navigation";
+import ClientProfile from "@/components/ClientProfile";
+import { getAuthSession } from "@/lib/next-auth";
 
-type Props = {
-  id: string;
-}
+type ClientProfilePageProps = {
+  params: {
+    id: string;
+  };
+};
 
-const page = async ({id}: Props) => {
-  
- 
-  return <div>
-    
-  </div>;
+const page = async ({ params: { id } }: ClientProfilePageProps) => {
+  const session = await getAuthSession();
+
+  if (!session?.user) {
+    redirect("/");
+  }
+
+  const clientData = await prisma.client.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  return (
+    <div className="mt-10">
+      <ClientProfile clientData={clientData} />
+    </div>
+  );
 };
 
 export default page;

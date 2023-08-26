@@ -64,7 +64,6 @@ const DashboardPage = async ({ name, address, time, completed, id }: Props) => {
   //   },
   // });
 
-
   return (
     <div className="grid grid-col-1 lg:grid-cols-3 gap-8 pr-10 pt-8">
       {/* Graphs/Data */}
@@ -72,7 +71,7 @@ const DashboardPage = async ({ name, address, time, completed, id }: Props) => {
       {/* New Clients */}
       <ClientsSection />
       {/* Appointments */}
-      <AppointmentsSection/>
+      <AppointmentsSection />
     </div>
   );
 };

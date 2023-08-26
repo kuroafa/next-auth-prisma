@@ -1,4 +1,3 @@
-
 import { DELETE } from "@/app/api/appointment/route";
 import DeleteButton from "@/components/DeleteButton";
 import {
@@ -13,64 +12,36 @@ import { DeleteSchema } from "@/lib/type";
 import axios from "axios";
 import Link from "next/link";
 import React from "react";
+import { Appointment } from "@prisma/client";
 
-type Props = {
-  id: string;
-  name: string;
-  address: string;
-  time: number;
-  completed: boolean;
-  date: number;
-  type: string;
+type AppointmentCardProps = {
+  appointmentData: Pick<
+    Appointment,
+    "name" | "address" | "time" | "completed" | "date" | "type" | "clientId"
+  >;
 };
 
-const AppointmentCard = async ({
-  name,
-  address,
-  time,
-  completed,
-  id,
-  date,
-  type,
-}: Props) => {
-  const fetchAppointment = await prisma.appointment.findMany({
-    where: {
-      id: id,
-      name: name,
-      address: address,
-      time: time,
-      completed: completed,
-      date: date,
-      type: type,
-    },
-  });
-   
-
+const AppointmentCard = async ({ appointmentData }: AppointmentCardProps) => {
   return (
     <div className="flex gap-2 mt-4 ">
-      {fetchAppointment.map((appointments) => {
-        return (
-          <Card className="w-[300px]" key={appointments.id}>
-            <CardHeader>
-              <CardTitle>{appointments.type}</CardTitle>
-              <CardDescription>{appointments.name}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div>
-                <div>
-                  <h2>{appointments.time} - {appointments.date}</h2>
-                  <h2>{appointments.date}</h2>
-                  <h3>{appointments.completed}</h3>
-                </div>
-                <Link href='/Appointment-Page'>
-                   View Appointment
-                </Link>
-              </div>
-            </CardContent>
-            
-          </Card>
-        );
-      })}
+      <Card className="w-[300px]">
+        <CardHeader>
+          <CardTitle>{appointmentData?.type}</CardTitle>
+          <CardDescription>{appointmentData?.name}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div>
+            <div>
+              <h2>
+                {appointmentData?.time} - {appointmentData?.date}
+              </h2>
+              <h2>{appointmentData?.date}</h2>
+              <h3>{appointmentData?.completed}</h3>
+            </div>
+            <Link href="/Appointment-Page">View Appointment</Link>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

@@ -17,8 +17,7 @@ import { Input } from "./ui/input";
 import { useRouter } from "next/navigation";
 import { ClientCreation } from "@/lib/type";
 import axios from "axios";
-import { Checkbox } from "@/components/ui/checkbox"
-
+import { Checkbox } from "@/components/ui/checkbox";
 
 type Props = {};
 
@@ -32,29 +31,24 @@ const ClientForm = (props: Props) => {
   const form = useForm<ClientCreation>({
     resolver: zodResolver(clientCreationSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      name: "",
       email: "",
       phoneNumber: "",
-      address: "",
-      city: '',
-      state: '',
-      zipCode: '',
-      budget: '',
-      preApproved:  false,
-      occupation: '',
-      children: '',
-      maritalStatus: '',
-      notes: ''
+      budget: "100",
+      preApproved: false,
+      occupation: "",
+      children: "3",
+      maritalStatus: "",
+      notes: "",
     },
   });
 
   const onSubmit = async (data: ClientCreation) => {
     try {
-     const response = await axios.post("/api/client", data) 
-     console.log(response.data)
+      const response = await axios.post("/api/client", data);
+      console.log(response.data);
     } catch (error) {
-      console.log("could not create client")
+      console.log("could not create client");
     }
     router.push("/");
     reset();
@@ -64,34 +58,23 @@ const ClientForm = (props: Props) => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-fit  flex flex-col items-start p-5 rounded-xl mt-3 bg-slate-200">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 w-fit  flex flex-row items-start p-5 rounded-xl mt-3 bg-slate-200"
+        >
           <div className="flex  flex-wrap gap-[20px] ">
             <div className="border p-5 w-[250px]   rounded-xl">
               <h2 className="text-2xl mb-2 font-semibold ">Basic Info</h2>
               <FormField
                 control={form.control}
-                name="firstName"
-                render={({ field }) => (
-                  <FormItem >
-                    <FormLabel className="">First Name</FormLabel>
-                    <FormControl className="border">
-                      <Input   placeholder="enter first name..." {...field} />
-                    </FormControl>
-                    <FormDescription>this is the first name</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="lastName"
+                name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="enter your last name..." {...field} />
+                    <FormLabel className="">Name</FormLabel>
+                    <FormControl className="border">
+                      <Input placeholder="enter first name..." {...field} />
                     </FormControl>
-                    <FormDescription>this is the first name</FormDescription>
+                    <FormDescription>This is the name</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -117,7 +100,10 @@ const ClientForm = (props: Props) => {
                   <FormItem>
                     <FormLabel>Phone Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="enter your phone number..." {...field} />
+                      <Input
+                        placeholder="enter your phone number..."
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>this is the first name</FormDescription>
                     <FormMessage />
@@ -125,68 +111,11 @@ const ClientForm = (props: Props) => {
                 )}
               />
             </div>
-             <div className="border p-5 w-[250px]  rounded-xl">
-             <h2 className="text-2xl mb-2 font-semibold ">Current address</h2>
-               <FormField
-                control={form.control}
-                name="address"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Address</FormLabel>
-                    <FormControl>
-                      <Input placeholder="enter your address..." {...field} />
-                    </FormControl>
-                    <FormDescription>this is the address</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-                         />
-               <FormField
-                control={form.control}
-                name="city"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>City</FormLabel>
-                    <FormControl>
-                      <Input placeholder="enter your phone city..." {...field} />
-                    </FormControl>
-                    <FormDescription>this is the city</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-                         />
-               <FormField
-                control={form.control}
-                name="state"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>State</FormLabel>
-                    <FormControl>
-                      <Input placeholder="enter your state..." {...field} />
-                    </FormControl>
-                    <FormDescription>this is the state</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-                         />
-               <FormField
-                control={form.control}
-                name="zipCode"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Zip Code</FormLabel>
-                    <FormControl>
-                      <Input placeholder="enter your zip code..." {...field} />
-                    </FormControl>
-                    <FormDescription>this is the zip code</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-                         />
-             </div>
-             <div className="border p-5 w-[250px]   rounded-xl">
-             <h2 className="text-2xl mb-2 font-semibold ">Qualification</h2>
-               {/* <FormField
+          </div>
+          <div className="border p-5 w-[250px]  rounded-xl">
+            <div className="border p-5 w-[250px]   rounded-xl">
+              <h2 className="text-2xl mb-2 font-semibold ">Qualification</h2>
+              {/* <FormField
                 control={form.control}
                 name="budget"
                 render={({ field }) => (
@@ -200,49 +129,60 @@ const ClientForm = (props: Props) => {
                   </FormItem>
                 )}
                          /> */}
-               <FormField
+              <FormField
                 control={form.control}
                 name="preApproved"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Pre-Approved?</FormLabel>
                     <FormControl>
-                      <Checkbox placeholder="enter your approval..." {...field} />
+                      <Checkbox
+                        placeholder="enter your approval..."
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>this is the approval</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
-                         />
-               <FormField
+              />
+              <FormField
                 control={form.control}
                 name="occupation"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Occupation</FormLabel>
                     <FormControl>
-                      <Input placeholder="enter your occupation..." {...field} />
+                      <Input
+                        placeholder="enter your occupation..."
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>this is the occupation</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
-                         />
-               <FormField
+              />
+              <FormField
                 control={form.control}
                 name="maritalStatus"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Martial Status</FormLabel>
                     <FormControl>
-                      <Input placeholder="enter your Martial Status..." {...field} />
+                      <Input
+                        placeholder="enter your Martial Status..."
+                        {...field}
+                      />
                     </FormControl>
-                    <FormDescription>this is the martial status</FormDescription>
+                    <FormDescription>
+                      this is the martial status
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
-                         />
-               {/* <FormField
+              />
+              {/* <FormField
                 control={form.control}
                 name="children"
                 render={({ field }) => (
@@ -256,7 +196,7 @@ const ClientForm = (props: Props) => {
                   </FormItem>
                 )}
                          /> */}
-               <FormField
+              <FormField
                 control={form.control}
                 name="notes"
                 render={({ field }) => (
@@ -269,10 +209,12 @@ const ClientForm = (props: Props) => {
                     <FormMessage />
                   </FormItem>
                 )}
-                         />
-             </div>
+              />
+            </div>
           </div>
-          <Button className="p-5 text-1xl" type="submit">Submit</Button>
+          <Button className="p-5 text-1xl" type="submit">
+            Submit
+          </Button>
         </form>
       </Form>
     </div>

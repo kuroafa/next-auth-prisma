@@ -1,6 +1,10 @@
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
-import { DeletionSchema, appointmentCreationSchema, clientCreationSchema } from "@/lib/type";
+import {
+  DeletionSchema,
+  appointmentCreationSchema,
+  clientCreationSchema,
+} from "@/lib/type";
 import { NextResponse } from "next/server";
 import { type } from "os";
 import { z } from "zod";
@@ -20,18 +24,16 @@ export async function POST(req: Request, res: Response) {
     const body = await req.json();
     const { name, address, time, completed, type, date } =
       appointmentCreationSchema.parse(body);
-      
 
     const appointment = await prisma.appointment.create({
       data: {
-       userId: session.user.id,
-       name: name,
-       address: address,
-       time: time,
-       completed: completed,
-       date: date,
-       type: type
-
+        userId: session.user.id,
+        name: name,
+        address: address,
+        time: time,
+        completed: completed,
+        date: date,
+        type: type,
       },
     });
 
@@ -47,23 +49,18 @@ export async function POST(req: Request, res: Response) {
       );
     }
   }
- 
-  
 }
-export async function DELETE(req: Request, res: Response){
+export async function DELETE(req: Request, res: Response) {
   try {
     const body = await req.json();
-    const { id } =
-      DeletionSchema.parse(body);
-      const deleteAppointment = await prisma.appointment.delete({
-        where : {
-          id: id
-        }
-      })
-      console.log('appointment deleted: ', deleteAppointment)
-    
+    const { id } = DeletionSchema.parse(body);
+    const deleteAppointment = await prisma.appointment.delete({
+      where: {
+        id: id,
+      },
+    });
+    console.log("appointment deleted: ", deleteAppointment);
   } catch (error) {
-    console.log('error deleting appointment', error)
+    console.log("error deleting appointment", error);
   }
 }
-
