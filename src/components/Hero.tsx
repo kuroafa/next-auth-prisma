@@ -16,7 +16,7 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <div className="flex flex-col gap-10 xl:p-20 lg:p-20 p-10 ">
+    <div className="flex flex-col gap-10 xl:p-10 lg:p-10 p-5">
       <div className="pt-10 ">
         <h1 className="logo light:text-gray-950 text-[50px]  xl:text-[80px]  lg:text-[80px]  md:text-[60px]  ">
           Welcome To{" "}

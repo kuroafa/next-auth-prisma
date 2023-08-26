@@ -34,7 +34,7 @@ const Footer = (props: Props) => {
           />
         </div>
       </div>
-      <div className="p-10 -mt-20 ml-10">
+      <div className="p-10 -mt-20 ml-10 w-full">
         <p>&copy; 2023 Mustafa. All rights reserved.</p>
       </div>
     </div>
