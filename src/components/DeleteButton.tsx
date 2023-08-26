@@ -1,15 +1,13 @@
 'use client'
-import React from 'react';
-import { Button } from './ui/button';
-import axios from 'axios';
+
 import { DeleteSchema } from '@/lib/type';
-import { useRouter } from 'next/navigation'; // Import the useRouter hook from the correct path
+import { useRouter } from 'next/navigation'; 
 import { GrClose } from 'react-icons/gr'
 import { toast } from 'react-toastify';
 import React from "react";
 import { Button } from "./ui/button";
 import axios from "axios";
-import { DeleteSchema } from "@/lib/type";
+
 
 type Props = {
     id: string;
@@ -40,22 +38,4 @@ const DeleteButton = ({ id }: Props) => {
     );
 };
 
-export default DeleteButton;
-  id: string;
-};
-const DeleteButton = async ({ id }: Props) => {
-  const deleteAppointment = async (AppointmentId: string) => {
-    fetch("/api/appointment", {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        id: AppointmentId,
-      }),
-    });
-  };
-  return <Button onClick={() => deleteAppointment(id)}>Delete</Button>;
-};
-
-export default DeleteButton;
+export default DeleteButton

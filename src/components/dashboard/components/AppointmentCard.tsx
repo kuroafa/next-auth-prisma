@@ -34,7 +34,7 @@ type AppointmentCardProps = {
 const AppointmentCard = async ({ appointmentData }: AppointmentCardProps) => {
   return (
     <div className="  mt-4 ">
-      <Card className="w-[350px]">
+      <Card className="w-[300px]">
         <div className="flex flex-col">
           <CardHeader>
             <div className="flex justify-between">

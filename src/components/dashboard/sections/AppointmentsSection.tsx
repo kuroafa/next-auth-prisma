@@ -27,7 +27,7 @@ const AppointmentsSection = async (props: Props) => {
         <div>
           <div className="flex items-center mb-5 gap-1">
             <h3 className="light:text-black text-3xl font-semibold  ">
-              Upcoming Appointments
+               Appointments
             </h3>
             <Link href="/Appointments-Page">
                 <ArrowUpRight size={35} strokeWidth={1} />
@@ -38,7 +38,7 @@ const AppointmentsSection = async (props: Props) => {
           </Link>
   
         </div>
-        <div className=" mt-5 ">
+        <div className=" mt-3 ">
           {
             hasNewAppointments ? (
               <div className="flex gap-2">

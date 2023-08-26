@@ -38,43 +38,40 @@ import AppointmentsSection from "@/components/dashboard/sections/AppointmentsSec
 import ClosingsChart from "@/components/dashboard/components/ClosingsChart";
 
 type Props = {
-  id: string;
-  name: string;
-  address: string;
-  time: number;
-  completed: boolean;
+
 };
 
 export const metadata = {
   title: "Dashboard | Realtor.io",
 };
 
-const DashboardPage = async ({ name, address, time, completed, id }: Props) => {
+const DashboardPage = async (props: Props) => {
   const session = await getAuthSession();
 
   if (!session?.user) {
     return redirect("/");
   }
 
-  // const fetchAppointment = await prisma.appointment.findMany({
-  //   where: {
-  //     name: name,
-  //     address: address,
-  //     time: time,
-  //     completed: completed,
-  //   },
-  // });
+
 
   return (
-    <div className="grid grid-col-1 lg:grid-cols-3 gap-8 pr-10 pt-8">
+    <div className="grid grid-col-1 lg:grid-cols-2 h-screen   pt-8">
       {/* Graphs/Data */}
-      <AnalyticsSection />
+      <div>
+        <AnalyticsSection />
+      </div>
       {/* New Clients */}
-      <div className="flex flex-col gap-10">
-        <ClientsSection />
-        {/* Appointments */}
-        <AppointmentsSection />
-        {/* <ClosingsChart /> */}
+      <div className="flex     w-fit  ml-5  gap-5">
+        <div className="bg-slate-100 p-5 rounded-xl">
+          <ClientsSection />
+          {/* Appointments */}
+          <AppointmentsSection />
+        </div>
+        <div className="bg-slate-100 p-5 rounded-xl">
+          <ClientsSection />
+          
+          <AppointmentsSection />
+        </div>
       </div>
     </div>
   );

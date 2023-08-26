@@ -25,7 +25,7 @@ type Props = {
 
 const ClientCard = ({ clientData }: Props) => {
   return (
-    <Card className=" flex flex-col gap-1 p-4 w-[350px]">
+    <Card className=" flex flex-col gap-1 p-4 w-[300px]">
       <div className="flex items-center justify-between mb-3">
         <UserCircle size={35} />
         <Link href={`/Client-Profile/${clientData.id}`}>
