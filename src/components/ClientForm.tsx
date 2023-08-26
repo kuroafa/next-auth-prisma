@@ -18,6 +18,9 @@ import { useRouter } from "next/navigation";
 import { ClientCreation } from "@/lib/type";
 import axios from "axios";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 type Props = {};
 
@@ -53,6 +56,7 @@ const ClientForm = (props: Props) => {
     router.push("/");
     reset();
     router.refresh();
+    toast.success('Successfully Created Client')
   };
 
   return (

@@ -19,33 +19,40 @@ const AppointmentsSection = async (props: Props) => {
     },
   });
 
-  console.log(appointmentData);
-
-  console.log(appointmentData);
-
-  console.log(appointmentData);
+  const hasNewAppointments = appointmentData.length > 0;
 
   return (
     <div className="flex  rounded-xl w-full    relative  ">
       <div className="flex flex-col justify-start items-start  ">
         <div>
-          <h3 className="light:text-black text-3xl font-semibold mb-5 ">
-            Today&apos;s Appointments
-          </h3>
+          <div className="flex items-center mb-5 gap-1">
+            <h3 className="light:text-black text-3xl font-semibold  ">
+              Upcoming Appointments
+            </h3>
+            <Link href="/Appointments-Page">
+                <ArrowUpRight size={35} strokeWidth={1} />
+              </Link>
+          </div>
           <Link href="/Appointment-Creation">
             <Button>Create Appointment</Button>
           </Link>
+  
         </div>
-        <div className="  ">
+        <div className=" mt-5 ">
+          {
+            hasNewAppointments ? (
+              <div className="flex gap-2">
+                <h2 className="text-lg font-semibold">Upcoming Appointments -</h2> <h3 className="font-bold">{appointmentData.length}</h3> 
+              </div>
+            ) : (
+              <p>No appointments created today</p>
+            )
+          }
           {appointmentData.map((data, idx) => (
             <AppointmentCard appointmentData={data} key={data.id} />
           ))}
         </div>
-        <Link className="pt-5 flex gap-2 items-center pl-1" href="/Appointments-Page">View More Appointments  <MoveRight
-              size={30}
-              strokeWidth={1}
-              className="hover:text-gray-700"
-            /></Link>
+     
       </div>
     </div>
   );

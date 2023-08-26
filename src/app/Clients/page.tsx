@@ -30,7 +30,7 @@ const page = async ({ firstName, lastName, email, phoneNumber, id }: Props) => {
   });
   return (
     <div>
-      <div className="flex flex-wrap gap-5 mt-20">
+      <div className="flex flex-wrap  mt-[30px]">
         {fetchClients.map((client, index) => {
           return (
             <div

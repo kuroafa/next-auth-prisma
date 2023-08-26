@@ -86,18 +86,22 @@ const Sidebar: React.FC = () => {
                       </h3>
                     </div>
                   </Link>
-                  <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                    <MdOutlineIntegrationInstructions className="text-2xl light:text-gray-900 group:hover:text-white" />
-                    <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
-                      Email
-                    </h3>
-                  </div>
-                  <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                    <BiMessageSquareDots className="text-2xl light:text-gray-900 group:hover:text-white" />
-                    <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
-                      AI-Templates
-                    </h3>
-                  </div>
+                  <Link href='/email'>
+                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
+                      <MdOutlineIntegrationInstructions className="text-2xl light:text-gray-900 group:hover:text-white" />
+                      <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
+                        Email
+                      </h3>
+                    </div>
+                  </Link>
+                  <Link href='/Ai-email'>
+                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
+                      <BiMessageSquareDots className="text-2xl light:text-gray-900 group:hover:text-white" />
+                      <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
+                        AI-Email
+                      </h3>
+                    </div>
+                  </Link>
                 </div>
                 <div className="my-4 -ml-[40px]  border-gray-100 pb-4">
                   <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">

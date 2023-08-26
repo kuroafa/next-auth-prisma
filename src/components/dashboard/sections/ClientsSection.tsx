@@ -25,12 +25,10 @@ const ClientsSection = async ({ name, email, phoneNumber, id }: Props) => {
   return (
     <div className="flex  rounded-xl w-fit h-full   ">
       <div className=" flex flex-col justify-start items-start gap-5 overflow-y-auto">
-        <div className="flex justify-between gap-4 w-fit">
+        <div className="flex  justify-between gap-4 w-fit">
           <h2 className="light:text-black text-3xl font-semibold flex items-center gap-1">
             Recent Clients
-            <Link href="/view-more-clients">
-              <ArrowUpRight size={35} strokeWidth={1} />
-            </Link>
+            
           </h2>
           <Link href="/add-client">
             <Button>Add</Button>

@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
-import { clientCreationSchema } from "@/lib/type";
+import { DeletionSchema, clientCreationSchema } from "@/lib/type";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -58,5 +58,19 @@ export async function POST(req: Request, res: Response) {
         }
       );
     }
+  }
+}
+export async function DELETE(req: Request, res: Response) {
+  try {
+    const body = await req.json();
+    const { id } = DeletionSchema.parse(body);
+    const deleteClient = await prisma.client.delete({
+      where: {
+        id: id,
+      },
+    });
+    console.log("client deleted: ", deleteClient);
+  } catch (error) {
+    console.log("error deleting client", error);
   }
 }

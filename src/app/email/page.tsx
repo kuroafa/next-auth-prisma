@@ -12,7 +12,7 @@ const page = async (props: Props) => {
   if (!session?.user) {
     return redirect("/");
   }
-  return <div className=""></div>;
+  return <div className="">email</div>;
 };
 
 export default page;
