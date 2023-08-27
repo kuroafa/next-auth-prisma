@@ -4,46 +4,34 @@ import { redirect } from "next/navigation";
 import SignInButton from "@/components/navbar/SignInButton";
 import { ThemeToggle } from "@/components/navbar/ThemeToggle";
 import UserAccountNav from "@/components/navbar/UserAccountNav";
+import { prisma } from "@/lib/db";
+import NotesCard from "@/components/notesCard";
+import { Client } from "@prisma/client";
 
-type Props = {};
+type Props = {
+  notes: string;
+  name: string;
+};
 
-const pages = async (props: Props) => {
+const pages = async ({ notes, name, }: Props) => {
   const session = await getAuthSession();
   if (!session?.user) {
     return redirect("/");
   }
+
+  const fetchClientNotes = await prisma.client.findMany({
+    where: {
+      notes: notes,
+      name: name,
+    },
+  });
   return (
     <div>
-      <div className="lg:ml-[210px] mt-20">
-        <h1 className="text-7xl">Notes</h1>
-        <div className="flex flex-col gap-5 pt-10">
-          <h2 className="text-3xl font-semibold">Important</h2>
-          <div className="flex gap-2 flex-wrap">
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-5 pt-10">
-          <h2 className="text-3xl font-semibold">Not as important</h2>
-          <div className="flex gap-2 flex-wrap">
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-5 pt-10">
-          <h2 className="text-3xl font-semibold">basic info</h2>
-          <div className="flex gap-2 flex-wrap">
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-            <div className="bg-gray-400 w-[300px] h-[150px] rounded-xl"></div>
-          </div>
-        </div>
-      </div>
+      {fetchClientNotes.map((notes, idx) => {
+        return (
+          <NotesCard key={idx} clientData={notes}/>
+        );
+      })}
     </div>
   );
 };

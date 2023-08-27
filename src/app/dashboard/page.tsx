@@ -71,19 +71,3 @@ const DashboardPage = async (props: Props) => {
 
 export default DashboardPage;
 
-{
-  /*      <div>
-        <div className="flex flex-wrap  w-fit  ml-5  gap-5">
-                   
-          <div className="light:bg-slate-100 pt-5 flex flex-col gap-5 rounded-xl">
-            <Notifications/>
-            <ActitvitySection/>
-            <TodayTaskSection/>
-          </div>
-        </div>
-        <div className="w-full  ml-10 mt-5 h-fit">
-          <h1 className="text-3xl font-bold ">Try Out Realtor AI</h1>
-          <p className="text-xl font-semibold">AI made for Realtors. Copywrite, Ask questions, Ask for suggestions, Email templates.</p>
-        </div>
-      </div>*/
-}
