@@ -3,8 +3,7 @@ import { getAuthSession } from "@/lib/next-auth";
 import { DeletionSchema, clientCreationSchema } from "@/lib/type";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { NextApiRequest, NextApiResponse } from "next";
-import openai from "@/utils/openAi";
+
 
 type Data = {
   input: string;
@@ -35,6 +34,7 @@ export async function POST(req: Request, res: Response) {
       notes,
       children,
       occupation,
+      notesPriority
     } = clientCreationSchema.parse(body);
 
     const intBudget = parseInt(budget);
@@ -52,6 +52,7 @@ export async function POST(req: Request, res: Response) {
         children: intChildren,
         occupation: occupation,
         userId: session.user.id,
+        notesPriority: notesPriority
       },
     });
 
@@ -83,21 +84,4 @@ export async function DELETE(req: Request, res: Response) {
   }
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-    const session = await getAuthSession();
-    if (!session?.user) {
-      console.log("User is not authenticated");
-      return NextResponse.json(
-        { error: "You must be logged in to create a Client." },
-        {
-          status: 401,
-        }
-      );
-    }
-  const { input } = req.body;
 
-  res.status(200).json({ input, name: "mustafa" });
-}

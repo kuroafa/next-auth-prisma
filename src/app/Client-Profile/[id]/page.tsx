@@ -7,6 +7,7 @@ import AppointmentsSection from "@/components/dashboard/sections/AppointmentsSec
 import AppointmentCard from "@/components/dashboard/components/AppointmentCard";
 import { da } from "date-fns/locale";
 
+
 type ClientProfilePageProps = {
   params: {
     id: string;
@@ -49,6 +50,7 @@ const page = async ({ params: { id } }: ClientProfilePageProps) => {
           )}
         </div>
       </div>
+      
     </div>
   );
 };

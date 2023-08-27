@@ -59,6 +59,7 @@ model Client {
   maritalStatus String?
   children      Int?
   notes         String?
+  notesPriority Boolean?
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   Appointment   Appointment[]
 }

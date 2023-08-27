@@ -31,7 +31,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <Disclosure className="" as="nav">
         {({ open }) => (
           <>
@@ -44,14 +44,19 @@ const Sidebar: React.FC = () => {
               </div>
             </Disclosure.Button>
             <div
-              className={`p-6 w-[200px] h-screen z-20 lg:relative absolute top-0  ${
+              className={`pt-6 w-[200px] h-screen z-20 lg:relative absolute top-0 overflow-x-hidden ${
                 isSidebarOpen
-                  ? "absolute left-0 peer-focus:left-0 peer:transition lg:transparent  dark:bg-black bg-gray-200 bg-opacity-95 ease-out delay-150 duration-200 w-60 lg:w-60 md:w-60  lg:left-0"
+                  ? "absolute left-0 peer-focus:left-0 peer:transition lg:transparent  dark:bg-black bg-gray-600 bg-opacity-95 ease-out delay-150 duration-200 w-60 lg:w-60 md:w-60  lg:left-0"
                   : "-left-96 lg:w-60 lg:left-0"
               }`}
             >
               <div className="flex flex-col justify-start items-center w-full">
-                <Link href='/dashboard'><img src="/logo.png" className="  " alt="logo" /></Link>
+                <Link href='/dashboard' className="flex flex-col gap-1 items-center justify-center">
+                  <p className="text-lg">Clients & Appointments</p>
+                  <h1 className="text-5xl font-bold italic ">
+                    Meetly
+                  </h1>
+                </Link>
                 <div className="my-4  border-gray-100 pb-4">
                   <Link href="/dashboard">
                     <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
@@ -93,22 +98,9 @@ const Sidebar: React.FC = () => {
                       </h3>
                     </div>
                   </Link>
-                  <Link href="/Ai-email">
-                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                      <BiMessageSquareDots className="text-2xl light:text-gray-900 group:hover:text-white" />
-                      <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
-                        AI-Email
-                      </h3>
-                    </div>
-                  </Link>
+                
                 </div>
                 <div className="my-4 -ml-[40px]  border-gray-100 pb-4">
-                  <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                    <MdOutlineSettings className="text-2xl light:text-gray-900 group:hover:text-white" />
-                    <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
-                      Settings
-                    </h3>
-                  </div>
                   <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
                     <MdOutlineMoreHoriz className="text-2xl light:text-gray-900 group:hover:text-white" />
                     <h3 className="text-base light:text-gray-800 pt-1  font-semibold">

@@ -11,6 +11,7 @@ export const clientCreationSchema = z.object({
   maritalStatus: z.string(),
   children: z.string(),
   notes: z.string(),
+  notesPriority: z.boolean()
 });
 
 export const appointmentCreationSchema = z.object({

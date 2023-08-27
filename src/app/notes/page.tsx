@@ -5,34 +5,31 @@ import SignInButton from "@/components/navbar/SignInButton";
 import { ThemeToggle } from "@/components/navbar/ThemeToggle";
 import UserAccountNav from "@/components/navbar/UserAccountNav";
 import { prisma } from "@/lib/db";
-import NotesCard from "@/components/notesCard";
+import NotesCard from "@/components/NotesCard";
 import { Client } from "@prisma/client";
+import Image from "next/image";
+import SearchedNotes from "@/components/SearchedNotes";
 
 type Props = {
   notes: string;
   name: string;
 };
 
-const pages = async ({ notes, name, }: Props) => {
+const pages = async ({ notes, name }: Props) => {
   const session = await getAuthSession();
   if (!session?.user) {
     return redirect("/");
   }
 
   const fetchClientNotes = await prisma.client.findMany({
-    where: {
-      notes: notes,
-      name: name,
-    },
+    where: {},
   });
   return (
-    <div>
-      {fetchClientNotes.map((notes, idx) => {
-        return (
-          <NotesCard key={idx} clientData={notes}/>
-        );
-      })}
-    </div>
+    <>
+      <div>
+        <SearchedNotes clientData={fetchClientNotes} />
+      </div>
+    </>
   );
 };
 

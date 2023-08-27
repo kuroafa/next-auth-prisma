@@ -15,7 +15,7 @@ const ClientsSection = async (props: Props) => {
     where: {
       userId: session?.user.id,
     },
-    take: 6,
+    take: 3,
   });
   return (
     <div className="flex rounded-xl">
