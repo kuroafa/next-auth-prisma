@@ -70,4 +70,3 @@ const DashboardPage = async (props: Props) => {
 };
 
 export default DashboardPage;
-
