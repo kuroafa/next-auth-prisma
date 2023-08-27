@@ -31,7 +31,7 @@ const page = async ({ firstName, lastName, email, phoneNumber, id }: Props) => {
   });
   return (
     <div>
-      <div className="flex flex-wrap  mt-[30px]">
+      <div className="flex flex-wrap md:items-center  mt-[30px]">
         {fetchClients.map((client, index) => {
           return (
             <div

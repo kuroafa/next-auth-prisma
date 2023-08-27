@@ -6,7 +6,19 @@ type Props = {};
 
 const page = (props: Props) => {
     const [input, setInput] = useState('')
-    console.log(input)
+    const submit = async () => {
+      const submit = async () => {
+        const res = await fetch('/api/client', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({input})
+        })
+        const data = await res.json()
+        console.log(data)
+      }
+    }
   return (
     <div className="w-[90%] h-[90%] m-5 bg-slate-200 dark:bg-slate-600 rounded-2xl">
       <h1 className="p-5 text-left text-4xl font-bold">Realtor AI</h1>
@@ -33,7 +45,7 @@ const page = (props: Props) => {
                 </div>
                 </div>
                 
-                <button className="bg-gray-800 w-full hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg">
+                <button type="button" onClick={() => submit} className="bg-gray-800 w-full hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg">
                   generate
                 </button>
               </div>
