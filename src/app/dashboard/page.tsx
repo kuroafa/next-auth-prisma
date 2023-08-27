@@ -40,9 +40,7 @@ import Notifications from "@/components/dashboard/sections/Notifications";
 import ActitvitySection from "@/components/dashboard/sections/ActitvitySection";
 import TodayTaskSection from "@/components/dashboard/sections/TodayTaskSection";
 
-type Props = {
-
-};
+type Props = {};
 
 export const metadata = {
   title: "Dashboard | Realtor.io",
@@ -55,30 +53,26 @@ const DashboardPage = async (props: Props) => {
     return redirect("/");
   }
 
-
-
   return (
     <div className="grid grid-col-1 lg:grid-cols-4 h-auto place-content-center m-[15px]   pt-8">
       {/* Graphs/Data */}
       <div className="col-start-1 col-span-3">
         <AnalyticsSection />
-         <div className=" flex flex-col xl:flex-row   gap-5 mt-5  rounded-xl">
-            <ClientsSection />
-            <AppointmentsSection />
-            
-            
-          </div>
+        <div className=" flex flex-col xl:flex-row   gap-5 mt-5  rounded-xl">
+          <ClientsSection />
+          <AppointmentsSection />
+        </div>
       </div>
-      
+
       {/* New Clients */}
       <div>
         <div className="flex flex-wrap  w-fit  ml-5  gap-5">
-         
+          {/*          
           <div className="light:bg-slate-100 pt-5 flex flex-col gap-5 rounded-xl">
             <Notifications/>
             <ActitvitySection/>
             <TodayTaskSection/>
-          </div>
+          </div> */}
         </div>
         {/* <div className="w-full  ml-10 mt-5 h-fit">
           <h1 className="text-3xl font-bold ">Try Out Realtor AI</h1>
