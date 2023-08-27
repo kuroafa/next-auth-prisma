@@ -25,14 +25,14 @@ const AppointmentsSection = async (props: Props) => {
     <div className="flex rounded-xl overflow-hidden">
       <div className="flex flex-col justify-start items-start  overflow-hidden">
         <div>
-          <div className="flex items-center mb-5 gap-1">
+          <div className="flex items-center mb-5 gap-3">
             <h3 className="light:text-black text-3xl font-semibold  ">
               Appointments
             </h3>
             <span
-              className={`w-8 h-8 ${
+              className={` w-7 h-7 ${
                 appointmentData.length === 0 ? "hidden" : null
-              } flex rounded-full -top-4 -right-4 bg-red-600 text-white text-lg items-center font-bold justify-center`}
+              } flex rounded-full -top-4 -right-4 bg-red-600 text-white text-[16px] items-center font-bold justify-center`}
             >
               {appointmentData.length}
             </span>

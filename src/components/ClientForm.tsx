@@ -43,6 +43,7 @@ const ClientForm = (props: Props) => {
       children: "3",
       maritalStatus: "",
       notes: "",
+      notesPriority: true
     },
   });
 
@@ -210,6 +211,23 @@ const ClientForm = (props: Props) => {
                       <Input placeholder="enter your Notes..." {...field} />
                     </FormControl>
                     <FormDescription>this is the Notes</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+                 <FormField
+                control={form.control}
+                name="notesPriority"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Urgent</FormLabel>
+                    <FormControl>
+                      <Checkbox
+                        placeholder="enter your approval..."
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormDescription>Set note urgency</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
