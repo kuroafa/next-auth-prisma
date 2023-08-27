@@ -11,13 +11,21 @@ import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import ClosingsChart from "../components/ClosingsChart";
+import { MdOutlineAnalytics } from "react-icons/md";
 
 type Props = {};
 
 const AnalyticsSection = (props: Props) => {
   return (
     <>
-      <div className="flex flex-col gap-4 col-span-2">
+      <h2 className="light:text-black text-3xl font-semibold flex items-center gap-1">
+        Analytics
+        <MdOutlineAnalytics
+          size={35}
+          className="text-2xl light:text-gray-900 group:hover:text-white"
+        />
+      </h2>
+      <div className="flex flex-col gap-4 col-span-2 mt-5">
         <div className="flex gap-4 flex-wrap">
           <Card className="flex-1 h-fit pr-10 ">
             <CardHeader>
@@ -84,19 +92,15 @@ const AnalyticsSection = (props: Props) => {
             </div>
           </Card>
         </div>
-        
-        
-          <div className="w-full">
-            {/* <ClosingsChart /> */}
-            <Card>
-              <CardHeader className="h-[300px] w-full">
-                Closings each month Chart // Line Chart from Chartjs
-              </CardHeader>
-            </Card>
-          </div>
-          
-      
-        
+
+        <div className="w-full">
+          <ClosingsChart />
+          <Card>
+            <CardHeader className="h-[300px] w-full">
+              Closings each month Chart // Line Chart from Chartjs
+            </CardHeader>
+          </Card>
+        </div>
       </div>
     </>
   );

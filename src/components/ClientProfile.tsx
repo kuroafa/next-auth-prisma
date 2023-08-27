@@ -19,6 +19,10 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
 
   const inputLabelStyles = "font-light";
 
+  const formattedPhone = `+1 (${clientData?.phoneNumber.slice(0, 3)})-
+  ${clientData?.phoneNumber.slice(3, 6)}-
+  ${clientData?.phoneNumber.slice(6, 10)}`;
+
   return (
     <div className="flex flex-col gap-8 md:grid-4 mt-8">
       <div className="flex flex-col gap-4 items-center md:flex-row">
@@ -26,18 +30,19 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
           <UserCircle size={130} />
         </div>
         <div className="flex flex-col gap-2 items-center md:items-start">
-          <h2 className="text-4xl font-semibold">{clientData.name}</h2>
+          <h2 className="text-4xl font-semibold">
+            {clientData?.name ? clientData?.name : "No Name Found"}
+          </h2>
           <div className="flex flex-col gap-1 items-center md:items-start">
             <h2 className="uppercase font-medium">Contact Info:</h2>
             <div>
               <h3 className="flex gap-2">
-                <Mail size={20} /> {clientData.email}
+                <Mail size={20} />{" "}
+                {clientData?.email ? clientData?.email : "No Email Found"}
               </h3>
               <h3 className="flex gap-2">
                 <Phone size={20} />
-                {`+1 (${clientData.phoneNumber.slice(0, 3)})-
-                ${clientData.phoneNumber.slice(3, 6)}-
-                ${clientData.phoneNumber.slice(6, 10)}`}
+                {formattedPhone ? formattedPhone : "No Phone Number"}
               </h3>
             </div>
           </div>
@@ -50,7 +55,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
             disabled={edit}
             type="currency"
             placeholder={
-              clientData.budget ? `$${clientData.budget}` : "No Budget"
+              clientData?.budget ? `$${clientData.budget}` : "No Budget"
             }
             className={cn(placeholderStyles, "")}
           />
@@ -60,7 +65,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
           <Input
             disabled={edit}
             placeholder={
-              clientData.preApproved ? "Pre-Approved " : "Not Pre-Approved"
+              clientData?.preApproved ? "Pre-Approved " : "Not Pre-Approved"
             }
             className={placeholderStyles}
           />
@@ -70,7 +75,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
           <Input
             disabled={edit}
             placeholder={
-              clientData.occupation
+              clientData?.occupation
                 ? clientData.occupation
                 : "No Data on Record"
             }
@@ -84,7 +89,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
           <Input
             disabled={edit}
             placeholder={
-              clientData.maritalStatus
+              clientData?.maritalStatus
                 ? clientData.maritalStatus
                 : "No Data on Record"
             }
@@ -96,7 +101,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
           <Input
             disabled={edit}
             placeholder={
-              clientData.children ? clientData.children : "No Data on Record"
+              clientData?.children ? clientData.children : "No Data on Record"
             }
             className={placeholderStyles}
           />
@@ -107,7 +112,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
           <h2 className={inputLabelStyles}>Notes:</h2>
           <Textarea
             disabled={edit}
-            placeholder={clientData.notes ? clientData.notes : "No Notes"}
+            placeholder={clientData?.notes ? clientData.notes : "No Notes"}
             className="placeholder:text-black h-[125px]"
           />
         </div>

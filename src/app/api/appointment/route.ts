@@ -25,8 +25,6 @@ export async function POST(req: Request, res: Response) {
     const { name, address, time, completed, type, date } =
       appointmentCreationSchema.parse(body);
 
-
-
     const appointment = await prisma.appointment.create({
       data: {
         userId: session.user.id,
@@ -36,9 +34,10 @@ export async function POST(req: Request, res: Response) {
         completed: completed,
         date: date,
         type: type,
-        clientId: "cllrd172y0001er3oefjbqcvv",
+        clientId: "cllssb6zw0001erbojm7lqlxc",
       },
     });
+
 
     console.log("appointment record created:", appointment);
   } catch (error) {

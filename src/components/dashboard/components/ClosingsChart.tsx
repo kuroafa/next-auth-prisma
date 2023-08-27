@@ -2,15 +2,9 @@
 
 import React from "react";
 import { Line } from "react-chartjs-2";
-import {
-  CategoryScale,
-  Chart as ChartJS,
-  LinearScale,
-  registerables,
-} from "chart.js"; // Import the necessary components
+import Chart from "chart.js/auto";
 
 // Register the required elements from the Chart namespace
-ChartJS.register(CategoryScale, LinearScale, ...registerables);
 
 type Props = {};
 
@@ -41,31 +35,10 @@ const ClosingsChart = (props: Props) => {
       },
     ],
   };
-  const options = {
-    responsive: true,
-    scales: {
-      x: {
-        type: "category",
-        labels: ["January", "February", "March", "April", "May", "June"],
-      },
-      y: {
-        type: "linear", // Use LinearScale for y-axis
-      },
-    },
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Chart.js Line Chart",
-      },
-    },
-  };
 
   return (
     <div>
-      <Line data={data} options={options} />
+      <Line data={data} />
     </div>
   );
 };

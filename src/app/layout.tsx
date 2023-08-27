@@ -7,8 +7,8 @@ import Providers from "@/components/Providers";
 import { getAuthSession } from "@/lib/next-auth";
 import Sidebar from "@/components/navbar/Sidebar";
 import Footer from "@/components/Footer";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,9 +28,16 @@ export default async function RootLayout({
       <Providers>
         <Navbar />
         <div>
-          <body className={cn(inter.className, "antialiased flex gap-2")}>
-            <div className="lg:flex-[.1]">{!!session?.user && <Sidebar />}</div>
-            <div className="flex-[.9] mt-12">
+          <body
+            className={cn(
+              inter.className,
+              "antialiased flex flex-col gap-2 px-4 lg:px-0 lg:flex-row"
+            )}
+          >
+            <div className="lg:flex-[0.1]">
+              {!!session?.user && <Sidebar />}
+            </div>
+            <div className="flex-[.9] mt-16 lg:pr-8">
               {children}
               <ToastContainer
                 position="top-right"

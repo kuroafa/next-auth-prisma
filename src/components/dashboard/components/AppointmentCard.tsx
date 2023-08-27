@@ -14,7 +14,7 @@ import Link from "next/link";
 import React from "react";
 import { Appointment } from "@prisma/client";
 import { ArrowUpRight } from "lucide-react";
-import { GrClose } from 'react-icons/gr'
+import { GrClose } from "react-icons/gr";
 
 type AppointmentCardProps = {
   id: string;
@@ -33,8 +33,8 @@ type AppointmentCardProps = {
 
 const AppointmentCard = async ({ appointmentData }: AppointmentCardProps) => {
   return (
-    <div className="  mt-4 ">
-      <Card className="w-[300px]">
+    <div className="mt-4">
+      <Card className="w-full min-w-[290px]">
         <div className="flex flex-col">
           <CardHeader>
             <div className="flex justify-between">

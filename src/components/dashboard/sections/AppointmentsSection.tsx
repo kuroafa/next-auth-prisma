@@ -22,37 +22,37 @@ const AppointmentsSection = async (props: Props) => {
   const hasNewAppointments = appointmentData.length > 0;
 
   return (
-    <div className="flex  rounded-xl w-full    relative  ">
-      <div className="flex flex-col justify-start items-start  ">
+    <div className="flex rounded-xl overflow-hidden">
+      <div className="flex flex-col justify-start items-start  overflow-hidden">
         <div>
           <div className="flex items-center mb-5 gap-1">
             <h3 className="light:text-black text-3xl font-semibold  ">
-               Appointments
+              Appointments
             </h3>
+            <span
+              className={`w-8 h-8 ${
+                appointmentData.length === 0 ? "hidden" : null
+              } flex rounded-full -top-4 -right-4 bg-red-600 text-white text-lg items-center font-bold justify-center`}
+            >
+              {appointmentData.length}
+            </span>
             <Link href="/Appointments-Page">
-                <ArrowUpRight size={35} strokeWidth={1} />
-              </Link>
+              <ArrowUpRight size={35} strokeWidth={1} />
+            </Link>
           </div>
           <Link href="/Appointment-Creation">
             <Button>Create Appointment</Button>
           </Link>
-  
         </div>
-        <div className=" mt-3 ">
-          {
-            hasNewAppointments ? (
-              <div className="flex gap-2">
-                <h2 className="text-lg font-semibold">Upcoming Appointments -</h2> <h3 className="font-bold">{appointmentData.length}</h3> 
-              </div>
-            ) : (
-              <p>No appointments created today</p>
-            )
-          }
-          {appointmentData.map((data, idx) => (
-            <AppointmentCard appointmentData={data} key={data.id} />
-          ))}
+        <div className="flex flex-wrap gap-4 mt-3">
+          {hasNewAppointments ? (
+            appointmentData.map((data, idx) => (
+              <AppointmentCard appointmentData={data} key={data.id} />
+            ))
+          ) : (
+            <h2>No Appointments Found</h2>
+          )}
         </div>
-     
       </div>
     </div>
   );
