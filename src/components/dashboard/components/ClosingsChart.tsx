@@ -1,44 +1,64 @@
-"use client";
-
 import React from "react";
 import { Line } from "react-chartjs-2";
-import Chart from "chart.js/auto";
-
-// Register the required elements from the Chart namespace
+import "chart.js/auto";
+import "chartjs-plugin-style";
 
 type Props = {};
 
 const ClosingsChart = (props: Props) => {
   const data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: [1, 2, 3, 4, 5, 6],
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
+        label: "Closings each month",
+        data: [1, 5, 6, 5, 1, 6],
+        backgroundColor: "green",
+        borderColor: "black",
+        tension: 0.4,
+        borderWidth: 2,
+        outerGlowColor: "yellow",
+        outerGlowWidth: 20,
       },
     ],
   };
 
+  const options = {
+    maintainAspectRatio: false,
+    responsive: true,
+
+    backgroundColor: "#fff",
+
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          display: true,
+          color: "#dbdbdb",
+        },
+        border: {},
+        ticks: {
+          display: false,
+          maxTicksLimit: 5,
+        },
+      },
+    },
+  };
+
   return (
-    <div>
-      <Line data={data} />
+    <div className="h-[210px] overflow-hidden ">
+      <Line data={data} options={options} />
     </div>
   );
 };
