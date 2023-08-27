@@ -29,7 +29,8 @@ const ClientCard = ({ clientData }: Props) => {
         <CardHeader className="flex-1">
           <CardTitle className="flex gap-2 items-center whitespace-nowrap">
             <UserCircle size={50} />
-            {clientData?.name.slice(0, 12)}
+            {clientData?.name.slice(0, 15)}
+            {clientData.name.length > 15 ? "..." : null}
           </CardTitle>
           <CardDescription className="flex gap-2 whitespace-nowrap">
             Recent Client
