@@ -16,7 +16,7 @@ export const clientCreationSchema = z.object({
 export const appointmentCreationSchema = z.object({
   name: z.string(),
   address: z.string(),
-  time: z.number(),
+  time: z.date(),
   completed: z.boolean(),
   date: z.number(),
   type: z.string(),
@@ -25,7 +25,6 @@ export const appointmentCreationSchema = z.object({
 export const DeletionSchema = z.object({
   id: z.string(),
 });
-
 
 export type DeleteSchema = z.infer<typeof DeletionSchema>;
 

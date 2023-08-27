@@ -34,10 +34,9 @@ export async function POST(req: Request, res: Response) {
         completed: completed,
         date: date,
         type: type,
-        clientId: "cllssb6zw0001erbojm7lqlxc",
+        clientId: "cllu1hexu0001er1gopajz2ln",
       },
     });
-
 
     console.log("appointment record created:", appointment);
   } catch (error) {
