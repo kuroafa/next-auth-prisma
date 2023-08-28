@@ -70,8 +70,8 @@ model Appointment {
   name      String
   address   String
   type      String
-  time      Int
-  date      Int
+  time      String
+  date      String
   completed Boolean
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   Client    Client? @relation(fields: [clientId], references: [id])

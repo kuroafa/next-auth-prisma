@@ -1,10 +1,6 @@
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
-import {
-  DeletionSchema,
-  appointmentCreationSchema,
-  clientCreationSchema,
-} from "@/lib/type";
+import { DeletionSchema, appointmentCreationSchema } from "@/lib/type";
 import { NextResponse } from "next/server";
 import { type } from "os";
 import { z } from "zod";
@@ -22,7 +18,7 @@ export async function POST(req: Request, res: Response) {
       );
     }
     const body = await req.json();
-    const { name, address, time, completed, type, date } =
+    const { name, address, time, completed, type, date, clientId } =
       appointmentCreationSchema.parse(body);
 
     const appointment = await prisma.appointment.create({
@@ -32,12 +28,11 @@ export async function POST(req: Request, res: Response) {
         address: address,
         time: time,
         completed: completed,
-        date: date,
+        date: date.toString(),
         type: type,
-        clientId: "cllssb6zw0001erbojm7lqlxc",
+        clientId: clientId,
       },
     });
-
 
     console.log("appointment record created:", appointment);
   } catch (error) {

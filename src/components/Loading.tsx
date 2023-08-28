@@ -1,11 +1,11 @@
 import React from "react";
-import { SpinnerDotted } from "spinners-react";
-import "spinners-react/lib/SpinnerDotted.css";
+import { SpinnerCircular } from "spinners-react";
+import "spinners-react/lib/SpinnerCircular.css";
 
 type Props = {};
 
 const Loading = (props: Props) => {
-  return <SpinnerDotted enabled color="black" size="100px" speed={100} />;
+  return <SpinnerCircular enabled color="black" size="100px" speed={200} />;
 };
 
 export default Loading;

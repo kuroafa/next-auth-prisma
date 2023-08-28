@@ -1,14 +1,29 @@
-import AppointmentForm from '@/components/AppointmentForm'
-import React from 'react'
+import AppointmentForm from "@/components/AppointmentForm";
+import { prisma } from "@/lib/db";
+import { getAuthSession } from "@/lib/next-auth";
+import { redirect } from "next/navigation";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
-const page = (props: Props) => {
+const page = async (props: Props) => {
+  const session = await getAuthSession();
+
+  if (!session?.user) {
+    redirect("/");
+  }
+
+  const getClients = await prisma.client.findMany({
+    where: {
+      userId: session.user.id
+    }
+  });
+
   return (
     <div>
-        <AppointmentForm/>
+      <AppointmentForm clientData={getClients} />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
