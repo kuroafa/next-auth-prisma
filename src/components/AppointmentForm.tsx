@@ -25,7 +25,7 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 import * as React from "react";
-import { CalendarIcon } from "@radix-ui/react-icons";
+import { CalendarIcon, CaretSortIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 
 import { cn } from "@/lib/utils";
@@ -41,12 +41,23 @@ import "react-toastify/dist/ReactToastify.css";
 import { TimePicker } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "./ui/command";
+import { CheckIcon } from "lucide-react";
+import { Client } from "@prisma/client";
 
-type Props = {};
+type Props = {
+  clientData: Client;
+};
 
-const AppointmentForm = (props: Props) => {
-  const [date, setDate] = React.useState<Date>();
-  const [time, setTime] = React.useState("10:00");
+const AppointmentForm = ({ clientData }: Props) => {
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
   const router = useRouter();
   const {
     reset,
@@ -58,29 +69,33 @@ const AppointmentForm = (props: Props) => {
     defaultValues: {
       name: "",
       address: "",
-      time: new Date(),
+      time: "",
       completed: true,
-      date: 10,
-      type: "Property Showing",
+      date: "",
+      type: "",
+      clientId: "",
     },
   });
-
   const onSubmit = async (data: AppointmentCreation) => {
     try {
-      const response = await axios.post("/api/appointment", data);
-      console.log(response.data);
-    } catch (error) {
-      console.log("could not create appointment");
-    }
-    toast.success("Appointment Made Successfully");
-    router.push("/");
-    router.refresh();
-  };
+      const response = await fetch("/api/appointment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-  const parseTimeInput = (value: string) => {
-    // Parse the input value and convert it to a number
-    const parsedValue = parseInt(value, 10);
-    return isNaN(parsedValue) ? null : parsedValue; // Return null for non-numeric inputs
+      if (!response.ok) {
+        throw new Error("Failed to make appointment");
+      }
+
+      toast.success("Appointment Made Successfully");
+    } catch (error) {
+      console.error("Could not create appointment:", error);
+    }
+
+    router.push("/");
   };
 
   dayjs.extend(customParseFormat);
@@ -128,15 +143,19 @@ const AppointmentForm = (props: Props) => {
                 <FormItem>
                   <FormLabel>Time</FormLabel>
                   <FormControl>
-                    {/* <Input
-                      placeholder="time..."
-                      {...field}
-                      onChange={(e) => {
-                        const parsedValue = parseTimeInput(e.target.value);
-                        field.onChange(parsedValue);
-                      }}
-                    /> */}
-                    {/* <TimePicker placeholder="Start Time" format="HH:mm a" /> */}
+                    <div {...field}>
+                      <TimePicker
+                        placeholder="Start Time"
+                        format="HH:mm"
+                        onOk={(date) => {
+                          if (date) {
+                            const formattedDate = date.valueOf(); // Convert the date to a localized string
+                            field.onChange(formattedDate.toString()); // Update the field value with the formatted date string
+                          }
+                        }}
+                        onChange={() => console.log(field.value)}
+                      />
+                    </div>
                   </FormControl>
                   <FormDescription>this is the time</FormDescription>
                   <FormMessage />
@@ -175,7 +194,7 @@ const AppointmentForm = (props: Props) => {
                             )}
                           >
                             {field.value ? (
-                              format(field.value, "PPP")
+                              format(parseInt(field.value), "PPP")
                             ) : (
                               <span>Pick a date</span>
                             )}
@@ -189,13 +208,17 @@ const AppointmentForm = (props: Props) => {
                       >
                         <Calendar
                           mode="single"
-                          selected={field.value}
-                          onSelect={field.onChange}
+                          onSelect={(date) => {
+                            if (date) {
+                              const formattedDate = date.valueOf(); // Convert the date to a localized string
+                              field.onChange(formattedDate.toString()); // Update the field value with the formatted date string
+                            }
+                          }}
+                          {...field}
                           disabled={(date) =>
                             date > new Date() || date < new Date("1900-01-01")
                           }
                           initialFocus
-                          className=""
                         />
                       </PopoverContent>
                     </Popover>
@@ -219,19 +242,67 @@ const AppointmentForm = (props: Props) => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="clientId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Popover open={open} onOpenChange={setOpen} {...field}>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          role="combobox"
+                          aria-expanded={open}
+                          className="w-[200px] justify-between"
+                        >
+                          {value ? value.toUpperCase() : "Choose a Client"}
+                          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-[200px] p-0">
+                        <Command>
+                          <CommandInput
+                            placeholder="Search framework..."
+                            className="h-9"
+                          />
+                          <CommandEmpty>No framework found.</CommandEmpty>
+                          <CommandGroup>
+                            {clientData.map((client) => (
+                              <CommandItem
+                                key={client.id}
+                                onSelect={(currentValue) => {
+                                  setValue(
+                                    currentValue === value ? "" : currentValue
+                                  );
+                                  setOpen(false);
+                                  field.onChange(client.id);
+                                }}
+                              >
+                                {client.name}
+                                <CheckIcon
+                                  className={cn(
+                                    "ml-auto h-4 w-4",
+                                    value === client.name
+                                      ? "opacity-100"
+                                      : "opacity-0"
+                                  )}
+                                />
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
+                  </FormControl>
+                </FormItem>
+              )}
+            />
           </div>
           <Button type="submit">Submit</Button>
           <ToastContainer />
         </form>
       </Form>
-      {/* 
-      <TimePicker
-        onOk={() => setTime(new Date())}
-        placeholder="End Time"
-        defaultValue={dayjs("13:30:56", "HH:mm:ss")}
-        format="HH:mm a"
-      />
-      {time} */}
     </div>
   );
 };

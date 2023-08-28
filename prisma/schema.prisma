@@ -65,15 +65,15 @@ model Client {
 }
 
 model Appointment {
-  id        String   @id @default(cuid())
+  id        String  @id @default(cuid())
   userId    String
   name      String
   address   String
   type      String
-  time      DateTime
-  date      Int
+  time      String
+  date      String
   completed Boolean
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Client    Client?  @relation(fields: [clientId], references: [id])
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Client    Client? @relation(fields: [clientId], references: [id])
   clientId  String?
 }

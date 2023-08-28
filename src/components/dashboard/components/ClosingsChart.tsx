@@ -2,10 +2,13 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import "chartjs-plugin-style";
+import { useTheme } from "next-themes";
 
 type Props = {};
 
 const ClosingsChart = (props: Props) => {
+  const theme = useTheme();
+
   const data = {
     labels: [1, 2, 3, 4, 5, 6],
     datasets: [
@@ -13,9 +16,9 @@ const ClosingsChart = (props: Props) => {
         label: "Closings each month",
         data: [1, 5, 6, 5, 1, 6],
         backgroundColor: "green",
-        borderColor: "black",
+        borderColor: theme.theme === "light" ? "black" : "white",
         tension: 0.4,
-        borderWidth: 2,
+        borderWidth: theme.theme === "light" ? 2 : 3,
         outerGlowColor: "yellow",
         outerGlowWidth: 20,
       },
