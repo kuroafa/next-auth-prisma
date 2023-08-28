@@ -2,23 +2,22 @@
 
 import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
-import { Client } from "@prisma/client"; // Make sure to import the correct type here
+import { Client } from "@prisma/client"; 
 import ClientCard from "./dashboard/components/ClientCard";
 import { Search } from "lucide-react";
 import NotesCard from "./NotesCard";
 
 interface Props {
-  clientData: Client[]; // Fix the type declaration here
+  clientData: Client[]; 
 }
 
 const SearchedNotes: React.FC<Props> = ({ clientData }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredClients, setFilteredClients] = useState<Client[]>([]); // Fix the type declaration here
+  const [filteredClients, setFilteredClients] = useState<Client[]>([]);
   const [priorities, setPriorities] = useState<boolean>(false);
 
   useEffect(() => {
     const filteredData = clientData.filter((client: Client) => {
-      // Fix the type declaration here
       const name = client.name;
 
       console.log(name);
@@ -31,14 +30,7 @@ const SearchedNotes: React.FC<Props> = ({ clientData }) => {
     return () => clearTimeout(timer);
   }, [searchQuery, clientData]);
 
-  useEffect(()=>{
-    const urgentData = clientData.filter((client: Client)=>{
-        const priority = client.notesPriority;
-        
-
-        return priority
-      })
-  }, [clientData])
+ 
 
   return (
     <div className="mt-4">

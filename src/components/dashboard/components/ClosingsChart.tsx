@@ -61,7 +61,7 @@ const ClosingsChart = (props: Props) => {
 
   return (
     <div className="h-[210px] overflow-hidden ">
-      <Line data={data} options={options} />
+      <Line  data={data} options={options} />
     </div>
   );
 };
