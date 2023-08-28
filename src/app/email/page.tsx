@@ -7,22 +7,24 @@ import UserAccountNav from "@/components/navbar/UserAccountNav";
 import SearchEmail from "@/components/SearchEmail";
 import { prisma } from "@/lib/db";
 
-type Props = {
-  email: string;
-  id: string;
-};
+type Props = {};
 
 const page = async (props: Props) => {
   const session = await getAuthSession();
   if (!session?.user) {
     return redirect("/");
   }
+
   const fetchClientEmails = await prisma.client.findMany({
-    where: {},
+    where: {
+      userId: session.user.id,
+    },
   });
-  return <>
-    <SearchEmail clientData={fetchClientEmails}  />
-  </>;
+  return (
+    <>
+      <SearchEmail clientData={fetchClientEmails} />
+    </>
+  );
 };
 
 export default page;
