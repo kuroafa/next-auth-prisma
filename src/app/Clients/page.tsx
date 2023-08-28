@@ -19,7 +19,7 @@ const page = async (props: Props) => {
 
   const fetchClients = await prisma.client.findMany({
     where: {
-      // userId: session.user.id,
+      userId: session.user.id,
     },
   });
 

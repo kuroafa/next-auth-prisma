@@ -18,9 +18,8 @@ import { useRouter } from "next/navigation";
 import { ClientCreation } from "@/lib/type";
 import axios from "axios";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Props = {};
 
@@ -43,7 +42,7 @@ const ClientForm = (props: Props) => {
       children: "3",
       maritalStatus: "",
       notes: "",
-      notesPriority: true
+      notesPriority: true,
     },
   });
 
@@ -57,7 +56,7 @@ const ClientForm = (props: Props) => {
     router.push("/");
     reset();
     router.refresh();
-    toast.success('Successfully Created Client')
+    toast.success("Successfully Created Client");
   };
 
   return (
@@ -143,7 +142,8 @@ const ClientForm = (props: Props) => {
                     <FormControl>
                       <Checkbox
                         placeholder="enter your approval..."
-                        {...field}
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
                       />
                     </FormControl>
                     <FormDescription>this is the approval</FormDescription>
@@ -215,7 +215,7 @@ const ClientForm = (props: Props) => {
                   </FormItem>
                 )}
               />
-                 <FormField
+              <FormField
                 control={form.control}
                 name="notesPriority"
                 render={({ field }) => (
