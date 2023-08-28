@@ -6,9 +6,11 @@ import { ArrowUpRight, MoveRight } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
 
-type Props = {};
+type Props = {
+  dashboardMode: boolean;
+};
 
-const ClientsSection = async (props: Props) => {
+const ClientsSection = async ({ dashboardMode }: Props) => {
   const session = await getAuthSession();
 
   const fetchClients = await prisma.client.findMany({
@@ -31,7 +33,13 @@ const ClientsSection = async (props: Props) => {
         <div className="flex flex-col gap-4 items-start w-full">
           {fetchClients.map(
             (clients, idx) =>
-              idx < 3 && <ClientCard key={clients.id} clientData={clients} />
+              idx < 3 && (
+                <ClientCard
+                  dashboardMode={dashboardMode}
+                  key={clients.id}
+                  clientData={clients}
+                />
+              )
           )}
         </div>
         <Link href="/Clients">

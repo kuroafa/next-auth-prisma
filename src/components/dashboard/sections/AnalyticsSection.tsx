@@ -13,9 +13,11 @@ import "react-circular-progressbar/dist/styles.css";
 import ClosingsChart from "../components/ClosingsChart";
 import { MdOutlineAnalytics } from "react-icons/md";
 
-type Props = {};
+type Props = {
+  clientCount: number;
+};
 
-const AnalyticsSection = (props: Props) => {
+const AnalyticsSection = ({ clientCount }: Props) => {
   return (
     <>
       <h2 className="light:text-black text-3xl font-semibold flex items-center gap-1">
@@ -71,12 +73,12 @@ const AnalyticsSection = (props: Props) => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-3xl -mt-2 font-semibold">
-                43
+                {clientCount}
               </CardContent>
             </div>
             <div className="w-14 h-14">
               <CircularProgressbar
-                value={73}
+                value={clientCount * 10}
                 strokeWidth={20}
                 className="fill-gray-100"
                 styles={buildStyles({

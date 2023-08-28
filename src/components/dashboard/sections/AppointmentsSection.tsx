@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowUpRight, MoveRight } from "lucide-react";
 
-type Props = {};
+type Props = {
+  dashboardMode: boolean;
+};
 
-const AppointmentsSection = async (props: Props) => {
+const AppointmentsSection = async ({ dashboardMode }: Props) => {
   const session = await getAuthSession();
 
   const appointmentData = await prisma.appointment.findMany({
@@ -47,7 +49,11 @@ const AppointmentsSection = async (props: Props) => {
         <div className="flex flex-wrap gap-4 mt-3">
           {hasNewAppointments ? (
             appointmentData.map((data, idx) => (
-              <AppointmentCard appointmentData={data} key={data.id} />
+              <AppointmentCard
+                dashboardMode={dashboardMode}
+                appointmentData={data}
+                key={data.id}
+              />
             ))
           ) : (
             <h2>No Appointments Found</h2>

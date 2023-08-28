@@ -7,6 +7,13 @@ import { toast } from "react-toastify";
 import React from "react";
 import { Button } from "./ui/button";
 import axios from "axios";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
 
 type Props = {
   id: string;
@@ -35,11 +42,26 @@ const DeleteButton = ({ id }: Props) => {
   };
 
   return (
-    <div>
-      <button onClick={() => deleteAppointment(id)}>
-        <GrClose size={20} />
-      </button>
-    </div>
+    <>
+      <Dialog>
+        <DialogTrigger>
+          <Button>Delete</Button>
+        </DialogTrigger>
+        <DialogContent className="flex flex-col items-start">
+          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogDescription>
+            You are deleting this user forever!
+          </DialogDescription>
+          <Button
+            onClick={() => deleteAppointment(id)}
+            variant="destructive"
+            className="self-end"
+          >
+            Delete
+          </Button>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 

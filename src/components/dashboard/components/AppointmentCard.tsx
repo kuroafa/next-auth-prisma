@@ -18,6 +18,7 @@ import { GrClose } from "react-icons/gr";
 
 type AppointmentCardProps = {
   id: string;
+  dashboardMode: boolean;
   appointmentData: Pick<
     Appointment,
     | "name"
@@ -31,7 +32,10 @@ type AppointmentCardProps = {
   >;
 };
 
-const AppointmentCard = async ({ appointmentData }: AppointmentCardProps) => {
+const AppointmentCard = async ({
+  appointmentData,
+  dashboardMode,
+}: AppointmentCardProps) => {
   return (
     <div className="mt-4">
       <Card className="w-full min-w-[290px]">
@@ -41,7 +45,7 @@ const AppointmentCard = async ({ appointmentData }: AppointmentCardProps) => {
               <CardTitle className="text-xl font-bold">
                 {appointmentData?.type}
               </CardTitle>
-              <DeleteButton id={appointmentData.id} />
+              {!dashboardMode ? <DeleteButton id={appointmentData.id} /> : null}
             </div>
 
             <CardDescription>
