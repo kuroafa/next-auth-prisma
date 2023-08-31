@@ -26,9 +26,6 @@ const ClientsSection = async ({ dashboardMode }: Props) => {
           <h2 className="light:text-black text-3xl font-semibold flex items-center gap-1">
             Recent Clients
           </h2>
-          <Link href="/add-client">
-            <Button>New Client</Button>
-          </Link>
         </div>
         <div className="flex flex-col gap-4 items-start w-full">
           {fetchClients.map(

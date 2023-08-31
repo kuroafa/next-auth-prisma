@@ -34,9 +34,11 @@ export default async function RootLayout({
               "antialiased flex flex-col gap-2 px-4 lg:px-0 lg:flex-row"
             )}
           >
-            <div className="lg:flex-[0.1]">
-              {!!session?.user && <Sidebar />}
-            </div>
+            {!!session?.user && (
+              <div className="lg:flex-[0.1]">
+                <Sidebar />
+              </div>
+            )}
             <div className="flex-[.9] mt-16 lg:pr-8">
               {children}
               <ToastContainer
