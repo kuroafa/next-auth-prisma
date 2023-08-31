@@ -27,7 +27,7 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
     <div className="flex rounded-xl overflow-hidden">
       <div className="flex flex-col justify-start items-start  overflow-hidden">
         <div>
-          <div className="flex items-center mb-5 gap-3">
+          <div className="flex items-center mb-2 gap-3">
             <h3 className="light:text-black text-3xl font-semibold  ">
               Appointments
             </h3>
@@ -42,11 +42,8 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
               <ArrowUpRight size={35} strokeWidth={1} />
             </Link>
           </div>
-          <Link href="/Appointment-Creation">
-            <Button>Create Appointment</Button>
-          </Link>
         </div>
-        <div className="flex flex-wrap gap-4 mt-3">
+        <div className="flex flex-wrap gap-4 ">
           {hasNewAppointments ? (
             appointmentData.map((data, idx) => (
               <AppointmentCard
