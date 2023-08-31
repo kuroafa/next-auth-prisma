@@ -15,9 +15,10 @@ import { MdOutlineAnalytics } from "react-icons/md";
 
 type Props = {
   clientCount: number;
+  appointmentCount: number;
 };
 
-const AnalyticsSection = ({ clientCount }: Props) => {
+const AnalyticsSection = ({ clientCount, appointmentCount }: Props) => {
   return (
     <>
       <h2 className="light:text-black text-3xl font-semibold flex items-center gap-1">
@@ -41,16 +42,16 @@ const AnalyticsSection = ({ clientCount }: Props) => {
             <div>
               <CardHeader>
                 <CardTitle className="text-xl whitespace-nowrap font-light">
-                  Active Listings
+                  Appointments
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-3xl -mt-2 font-semibold">
-                <h2>30</h2>
+                {appointmentCount}
               </CardContent>
             </div>
             <div className="w-14 h-14">
               <CircularProgressbar
-                value={40}
+                value={appointmentCount * 10}
                 strokeWidth={20}
                 className="fill-gray-100"
                 styles={buildStyles({

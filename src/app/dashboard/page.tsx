@@ -58,14 +58,20 @@ const DashboardPage = async (props: Props) => {
       userId: session.user.id,
     },
   });
+  const countAppointments = await prisma.appointment.count({
+    where: {
+      userId: session.user.id,
+    },
+  });
 
   console.log(countClients);
+  console.log(countAppointments)
 
   return (
     <div className="grid grid-col-1 xl:grid-cols-4 gap-8 pt-8 ">
       {/* Graphs/Data */}
       <div className="col-span-3">
-        <AnalyticsSection clientCount={countClients} />
+        <AnalyticsSection appointmentCount={countAppointments} clientCount={countClients} />
       </div>
       <div className="col-span-3 xl:col-span-1">
         <ClientsSection dashboardMode />
