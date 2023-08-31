@@ -8,6 +8,7 @@ import { FormLabel } from "./ui/form";
 import { Textarea } from "./ui/textarea";
 import { Mail, Phone, UserCircle, ThumbsDown, ThumbsUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 type ClientProfileProps = { clientData: Client };
 
@@ -27,7 +28,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
     <div className="flex flex-col gap-8 md:grid-4 mt-8">
       <div className="flex flex-col gap-4 items-center md:flex-row">
         <div>
-          <UserCircle size={130} />
+          <Image alt="profile image" src='/user.png' width={150} height={150} />
         </div>
         <div className="flex flex-col gap-2 items-center md:items-start">
           <h2 className="text-4xl font-semibold">
@@ -35,7 +36,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
           </h2>
           <div className="flex flex-col gap-1 items-center md:items-start">
             <h2 className="uppercase font-medium">Contact Info:</h2>
-            <div>
+            <div className="flex flex-col gap-2">
               <h3 className="flex gap-2">
                 <Mail size={20} />{" "}
                 {clientData?.email ? clientData?.email : "No Email Found"}

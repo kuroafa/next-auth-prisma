@@ -35,7 +35,7 @@ const page = async ({ params: { id } }: ClientProfilePageProps) => {
 
   return (
     <div className="mt-10 flex flex-col md:pr-8">
-      <h2 className="text-lg font-thin">Client Profile</h2>
+      <h2 className="text-2xl font-medium">Client Profile</h2>
       <div className="flex flex-col md:flex-row gap-8 w-full">
         <ClientProfile clientData={clientData} />
 
