@@ -17,7 +17,6 @@ import { ArrowUpRight } from "lucide-react";
 import { GrClose } from "react-icons/gr";
 
 type AppointmentCardProps = {
-  id: string;
   dashboardMode: boolean;
   appointmentData: Pick<
     Appointment,

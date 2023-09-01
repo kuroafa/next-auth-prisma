@@ -51,11 +51,12 @@ const Sidebar: React.FC = () => {
               }`}
             >
               <div className="flex flex-col justify-start items-center w-full">
-                <Link href='/dashboard' className="flex flex-col gap-1 items-center justify-center">
+                <Link
+                  href="/dashboard"
+                  className="flex flex-col gap-1 items-center justify-center"
+                >
                   <p className="text-lg">Clients & Appointments</p>
-                  <h1 className="text-5xl font-bold italic ">
-                    Meetly
-                  </h1>
+                  <h1 className="text-5xl font-bold italic ">Meetly</h1>
                 </Link>
                 <div className="my-4  border-gray-100 pb-4">
                   <Link href="/dashboard">
@@ -98,7 +99,6 @@ const Sidebar: React.FC = () => {
                       </h3>
                     </div>
                   </Link>
-                
                 </div>
                 <div className="my-4 -ml-[40px]  border-gray-100 pb-4">
                   <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">

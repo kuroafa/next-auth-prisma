@@ -33,12 +33,13 @@ import AnalyticsSection from "@/components/dashboard/sections/AnalyticsSection";
 import axios from "axios";
 import { DeleteSchema } from "@/lib/type";
 import { prisma } from "@/lib/db";
-import AppointmentForm from "@/components/AppointmentForm";
+import AppointmentForm from "@/components/forms/AppointmentForm";
 import AppointmentsSection from "@/components/dashboard/sections/AppointmentsSection";
 import ClosingsChart from "@/components/dashboard/components/ClosingsChart";
 import Notifications from "@/components/dashboard/sections/Notifications";
 import ActitvitySection from "@/components/dashboard/sections/ActitvitySection";
 import TodayTaskSection from "@/components/dashboard/sections/TodayTaskSection";
+import DashboardSkeleton from "@/components/skeletons/DashboardSkeleton";
 
 type Props = {};
 
@@ -64,14 +65,14 @@ const DashboardPage = async (props: Props) => {
     },
   });
 
-  console.log(countClients);
-  console.log(countAppointments)
-
   return (
     <div className="grid grid-col-1 xl:grid-cols-4 gap-8 pt-8 ">
       {/* Graphs/Data */}
       <div className="col-span-3">
-        <AnalyticsSection appointmentCount={countAppointments} clientCount={countClients} />
+        <AnalyticsSection
+          appointmentCount={countAppointments}
+          clientCount={countClients}
+        />
       </div>
       <div className="col-span-3 xl:col-span-1">
         <ClientsSection dashboardMode />

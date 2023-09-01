@@ -23,6 +23,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getAuthSession();
+
   return (
     <html lang="en">
       <Providers>
@@ -53,7 +54,6 @@ export default async function RootLayout({
                 pauseOnHover
                 theme="light"
               />
-              {/* Same as */}
               <ToastContainer />
             </div>
           </body>

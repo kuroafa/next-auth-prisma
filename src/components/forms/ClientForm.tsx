@@ -12,8 +12,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import { useRouter } from "next/navigation";
 import { ClientCreation } from "@/lib/type";
 import axios from "axios";

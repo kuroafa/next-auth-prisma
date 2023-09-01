@@ -3,10 +3,7 @@ import React from "react";
 import { redirect } from "next/navigation";
 import ClientProfile from "@/components/ClientProfile";
 import { getAuthSession } from "@/lib/next-auth";
-import AppointmentsSection from "@/components/dashboard/sections/AppointmentsSection";
 import AppointmentCard from "@/components/dashboard/components/AppointmentCard";
-import { da } from "date-fns/locale";
-
 
 type ClientProfilePageProps = {
   params: {
@@ -50,7 +47,6 @@ const page = async ({ params: { id } }: ClientProfilePageProps) => {
           )}
         </div>
       </div>
-      
     </div>
   );
 };

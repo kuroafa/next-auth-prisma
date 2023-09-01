@@ -1,4 +1,4 @@
-import AppointmentForm from "@/components/AppointmentForm";
+import AppointmentForm from "@/components/forms/AppointmentForm";
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
@@ -15,8 +15,8 @@ const page = async (props: Props) => {
 
   const getClients = await prisma.client.findMany({
     where: {
-      userId: session.user.id
-    }
+      userId: session.user.id,
+    },
   });
 
   return (

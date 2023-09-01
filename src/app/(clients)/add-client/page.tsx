@@ -1,6 +1,6 @@
 import Modal from "@/components/Modal";
 import React from "react";
-import ClientForm from "@/components/ClientForm";
+import ClientForm from "@/components/forms/ClientForm";
 
 import { getAuthSession } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
@@ -24,9 +24,7 @@ const page = async (props: Props) => {
         <h1 className="text-5xl font-semibold">Add New Client</h1>
         <ClientForm />
       </div>
-      <div>
-        
-      </div>
+      <div></div>
     </div>
   );
 };

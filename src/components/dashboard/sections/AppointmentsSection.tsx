@@ -1,6 +1,6 @@
 import React from "react";
 import AppointmentCard from "../components/AppointmentCard";
-import AppointmentForm from "@/components/AppointmentForm";
+import AppointmentForm from "@/components/forms/AppointmentForm";
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
 import { type } from "os";
