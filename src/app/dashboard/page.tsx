@@ -35,11 +35,7 @@ import { DeleteSchema } from "@/lib/type";
 import { prisma } from "@/lib/db";
 import AppointmentForm from "@/components/forms/AppointmentForm";
 import AppointmentsSection from "@/components/dashboard/sections/AppointmentsSection";
-import ClosingsChart from "@/components/dashboard/components/ClosingsChart";
-import Notifications from "@/components/dashboard/sections/Notifications";
-import ActitvitySection from "@/components/dashboard/sections/ActitvitySection";
-import TodayTaskSection from "@/components/dashboard/sections/TodayTaskSection";
-import DashboardSkeleton from "@/components/skeletons/DashboardSkeleton";
+
 
 type Props = {};
 

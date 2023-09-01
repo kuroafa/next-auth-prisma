@@ -36,11 +36,11 @@ const Sidebar: React.FC = () => {
         {({ open }) => (
           <>
             <Disclosure.Button
-              className="absolute top-2 right-5 inline-flex items-center peer justify-center rounded-md p-4 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group"
+              className="absolute top-5 right-5 inline-flex items-center peer justify-center rounded-md  text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group"
               onClick={toggleSidebar}
             >
-              <div className="block lg:hidden h-6 w-6" aria-hidden="true">
-                <Hamburger />
+              <div className="block lg:hidden " aria-hidden="true">
+                <Hamburger size={35} />
               </div>
             </Disclosure.Button>
             <div
@@ -83,11 +83,11 @@ const Sidebar: React.FC = () => {
                       </h3>
                     </div>
                   </Link>
-                  <Link href="/analytics">
+                  <Link href="/Appointments-Page">
                     <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
                       <MdOutlineAnalytics className="text-2xl light:text-gray-900 group:hover:text-white" />
                       <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
-                        Analytics
+                        Appointments
                       </h3>
                     </div>
                   </Link>
@@ -99,14 +99,6 @@ const Sidebar: React.FC = () => {
                       </h3>
                     </div>
                   </Link>
-                </div>
-                <div className="my-4 -ml-[40px]  border-gray-100 pb-4">
-                  <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                    <MdOutlineMoreHoriz className="text-2xl light:text-gray-900 group:hover:text-white" />
-                    <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
-                      Help
-                    </h3>
-                  </div>
                 </div>
                 <div className="my-4 -ml-[40px] border-gray-100 pb-4">
                   <button
