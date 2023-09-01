@@ -2,19 +2,20 @@
 
 import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
-import { Client } from "@prisma/client"; 
-import ClientCard from "./dashboard/components/ClientCard";
+import { Client } from "@prisma/client";
 import { Search } from "lucide-react";
 import NotesCard from "./NotesCard";
 
 interface Props {
-  clientData: Client[]; 
+  clientData: Pick<Client, "name" | "notes" | "id">;
 }
 
 const SearchedNotes: React.FC<Props> = ({ clientData }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredClients, setFilteredClients] = useState<Client[]>([]);
   const [priorities, setPriorities] = useState<boolean>(false);
+
+  console.log(clientData);
 
   useEffect(() => {
     const filteredData = clientData.filter((client: Client) => {
@@ -29,8 +30,6 @@ const SearchedNotes: React.FC<Props> = ({ clientData }) => {
     }, 300);
     return () => clearTimeout(timer);
   }, [searchQuery, clientData]);
-
- 
 
   return (
     <div className="mt-4">
@@ -50,7 +49,7 @@ const SearchedNotes: React.FC<Props> = ({ clientData }) => {
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-[30px]">
         {filteredClients.map((notes) => (
-          <NotesCard clientData={notes}  key={notes.id} />
+          <NotesCard clientData={notes} key={notes.id} />
         ))}
       </div>
     </div>

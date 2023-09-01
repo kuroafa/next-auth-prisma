@@ -15,6 +15,10 @@ type Props = {
   completed: boolean;
 };
 
+export const metadata = {
+  title: "Appointments",
+};
+
 const page = async ({ name, address, type, date, time, completed }: Props) => {
   const session = await getAuthSession();
 

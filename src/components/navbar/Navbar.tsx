@@ -6,6 +6,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { CalendarPlus, UserPlus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import QuickActions from "./QuickActions";
 
 type Props = {};
 
@@ -20,14 +21,7 @@ const Navbar = async (props: Props) => {
         </h2>
       </div>
       <div className="flex items-center gap-3">
-       
-          <Link href='/add-client' className="">
-            <UserPlus size={30}/>
-          </Link>
-          <Link href='/Appointment-Creation' className="">
-          <CalendarPlus size={30} />
-          </Link>
-       
+        {session?.user ? <QuickActions /> : null}
 
         <ThemeToggle className="relative" />
         {session?.user ? (

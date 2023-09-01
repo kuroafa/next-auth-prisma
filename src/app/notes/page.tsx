@@ -1,18 +1,16 @@
 import React from "react";
 import { getAuthSession } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
-import SignInButton from "@/components/navbar/SignInButton";
-import { ThemeToggle } from "@/components/navbar/ThemeToggle";
-import UserAccountNav from "@/components/navbar/UserAccountNav";
 import { prisma } from "@/lib/db";
-import NotesCard from "@/components/NotesCard";
-import { Client } from "@prisma/client";
-import Image from "next/image";
 import SearchedNotes from "@/components/SearchedNotes";
 
 type Props = {
   notes: string;
   name: string;
+};
+
+export const metadata = {
+  title: "Notes | Realtor.io",
 };
 
 const pages = async ({ notes, name }: Props) => {
@@ -22,8 +20,16 @@ const pages = async ({ notes, name }: Props) => {
   }
 
   const fetchClientNotes = await prisma.client.findMany({
-    where: {},
+    where: {
+      userId: session.user.id,
+    },
+    select: {
+      name: true,
+      notes: true,
+      id: true,
+    },
   });
+
   return (
     <>
       <div>

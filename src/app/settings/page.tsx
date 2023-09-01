@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
+
+export const metadata = {
+  title: "Settings | Realtor.io",
+};
 
 const page = (props: Props) => {
-  return (
-    <div></div>
-  )
-}
+  return <div></div>;
+};
 
-export default page
+export default page;

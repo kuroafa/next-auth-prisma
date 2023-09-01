@@ -11,6 +11,10 @@ type ClientProfilePageProps = {
   };
 };
 
+export const metadata = {
+  title: "Client Profile",
+};
+
 const page = async ({ params: { id } }: ClientProfilePageProps) => {
   const session = await getAuthSession();
 

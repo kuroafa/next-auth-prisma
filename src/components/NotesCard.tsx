@@ -1,6 +1,5 @@
 import { Client } from "@prisma/client";
 import { Card, CardContent, CardHeader } from "./ui/card";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Frown, StickyNote, Smile } from "lucide-react";
 import { Book } from "lucide-react";
@@ -27,7 +26,9 @@ const NotesCard = ({ clientData }: Props) => {
         href={`Client-Profile/${clientData.id}`}
       >
         <h2 className="text-[17px]  font-semibold">
-          <span className="font-light">{clientData.name}</span>
+          <span className="font-light">
+            {clientData.name ? clientData.name : "No Client Name"}
+          </span>
         </h2>
         <ArrowUpRight size={35} strokeWidth={1} />
       </Link>

@@ -5,6 +5,10 @@ import { redirect } from "next/navigation";
 
 type Props = {};
 
+export const metadata = {
+  title: "Clients | Realtor.io",
+};
+
 const page = async (props: Props) => {
   const session = await getAuthSession();
   if (!session?.user) {

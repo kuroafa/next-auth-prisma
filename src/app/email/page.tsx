@@ -9,6 +9,10 @@ import { prisma } from "@/lib/db";
 
 type Props = {};
 
+export const metadata = {
+  title: "Email | Realtor.io",
+};
+
 const page = async (props: Props) => {
   const session = await getAuthSession();
   if (!session?.user) {

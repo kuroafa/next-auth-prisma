@@ -10,6 +10,10 @@ type Props = {
   };
 };
 
+export const metadata = {
+  title: "Appointment",
+};
+
 const page = async ({ params: { id } }: Props) => {
   const session = await getAuthSession();
 

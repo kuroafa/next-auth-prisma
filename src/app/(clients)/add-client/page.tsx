@@ -8,6 +8,10 @@ type Props = {
   user: string;
 };
 
+export const metadata = {
+  title: "Add Client",
+};
+
 const page = async (props: Props) => {
   const session = await getAuthSession();
 

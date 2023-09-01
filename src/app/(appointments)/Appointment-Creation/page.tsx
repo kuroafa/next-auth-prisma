@@ -6,6 +6,10 @@ import React from "react";
 
 type Props = {};
 
+export const metadata = {
+  title: "Add Appointment",
+};
+
 const page = async (props: Props) => {
   const session = await getAuthSession();
 
