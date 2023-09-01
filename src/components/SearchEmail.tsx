@@ -61,7 +61,7 @@ const SearchEmail = ({ clientData }: Props) => {
         <Card className="col-span-3  w-full overflow-hidden h-[800px]">
           <form action="">
             <div className="flex items-center  flex-wrap">
-              <div className="flex items-center p-4 gap-1">
+              <div className="flex flex-col  p-4 gap-1">
                 <h1 className="text-2xl font-semibold ">To:</h1>
                 <Input
                   id="email"
@@ -70,7 +70,7 @@ const SearchEmail = ({ clientData }: Props) => {
                   placeholder="Choose client from right panel"
                 />
               </div>
-              <div className="flex items-center p-4 gap-1">
+              <div className="flex flex-col  p-4 gap-1">
                 <h1 className="text-2xl font-semibold ">Subject:</h1>
                 <Input
                   id="email"
@@ -78,7 +78,7 @@ const SearchEmail = ({ clientData }: Props) => {
                   placeholder="Subject of the email"
                 />
               </div>
-              <button type="submit" className="absolute right-[50px]">
+              <button type="submit" className=" pt-7">
                 <img alt="send email" src="/send.png" className="w-[40px]" />
               </button>
             </div>

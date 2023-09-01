@@ -29,7 +29,6 @@ const page = async ({ name, address, type, date, time, completed }: Props) => {
   });
   return (
     <div className="mt-[30px]">
-      <Link href="/Appointment-Creation">Add New Appointment</Link>
       <h1>
         {getAppointments.map((appointment) => {
           return (

@@ -18,15 +18,12 @@ const LearnMore = (props: Props) => {
       </div>
       <div className="flex flex-col gap-4 xl:p-20 lg:p-20 p-10">
         <h2 className="logo text-5xl font-semibold">
-          AI-Powered Dashboards: Elevating Insights and Experiences
+          Modern Dashboard: Elevating Insights and Experiences
         </h2>
         <p className="logo text-2xl font-light">
-          Unlocking Intelligence: Your Guide to AI-Enhanced Dashboards
+          Unlocking Intelligence: Your Guide to Client focused Dashboards
         </p>
         <ul className="flex flex-col gap-1 text-xl">
-          <li className="flex items-center gap-1">
-            <AiOutlineCheck /> AI Chat-bot
-          </li>
           <li className="flex items-center gap-1">
             <AiOutlineCheck />
             Modern Dashboard
@@ -45,14 +42,6 @@ const LearnMore = (props: Props) => {
         <div className="xl:p-20 lg:p-20 p-10">
           <h2 className="logo text-5xl font-light pb-1 ">Features</h2>
           <div className="flex flex-col gap-10 pt-2">
-            <div>
-              <h2 className="logo text-2xl font-semibold border-b w-fit pb-1 border-gray-400">
-                AI chat-bot
-              </h2>
-              <p className="text-xl pt-2">
-                Utilize the power of your own personal AI assistant.
-              </p>
-            </div>
             <div>
               <h2 className="logo text-2xl font-semibold border-b w-fit pb-1 border-gray-400">
                 Dashboard

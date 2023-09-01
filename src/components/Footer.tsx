@@ -12,7 +12,7 @@ const Footer = (props: Props) => {
       <div className=" flex flex-wrap flex-col-reverse xl:flex-row lg:flex-row md:flex-row sm:flex-row  ">
         <div className="logo flex flex-col xl:p-20 lg:p-20 p-10 text-[20px]">
           <h1 className="font-semibold text-[30px] pb-2">Discover</h1>
-          <Link href="/">What Is Realtor.io?</Link>
+          <Link href="/">What Is Meetly?</Link>
           <Link href="/">Developer</Link>
           <Link href="/">Sign In</Link>
           <Link href="/">Github</Link>

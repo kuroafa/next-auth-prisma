@@ -332,37 +332,20 @@ const AppointmentForm = ({ clientData }: Props) => {
       </div>
       <div className="relative p-5 bg-white rounded-lg shadow mt-4">
         <div className="absolute top-0 right-0 m-4 p-3 rounded-full bg-gray-100">
-          <svg
-            className="w-4 h-4"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10.9095 9.00028L16.6786 3.2311L17.8684 2.04138C18.0439 1.86587 18.0439 1.58067 17.8684 1.40517L16.5954 0.132192C16.4199 -0.0433137 16.1347 -0.0433137 15.9592 0.132192L9.00028 7.0911L2.04138 0.131629C1.86587 -0.0438764 1.58067 -0.0438764 1.40517 0.131629L0.131629 1.40461C-0.0438764 1.58011 -0.0438764 1.86531 0.131629 2.04081L7.0911 9.00028L0.131629 15.9592C-0.0438764 16.1347 -0.0438764 16.4199 0.131629 16.5954L1.40461 17.8684C1.58011 18.0439 1.86531 18.0439 2.04081 17.8684L9.00028 10.9095L14.7695 16.6786L15.9592 17.8684C16.1347 18.0439 16.4199 18.0439 16.5954 17.8684L17.8684 16.5954C18.0439 16.4199 18.0439 16.1347 17.8684 15.9592L10.9095 9.00028Z"
-              fill="#383838"
-            ></path>
-          </svg>
         </div>
 
         <div className="relative z-10">
           <div className="w-10/12">
             <h3 className="font-medium text-gray-800">
-              Do you have house that you want to sell or rent? Create a new
-              listing.
+              Create an appointment with your potential client with   <span className="text-3xl font-bold italic ">Meetly</span>
             </h3>
 
-            <div className="mt-6 md:mt-8">
-              <button className="w-full md:w-auto text-sm bg-gray-500 px-4 py-2 text-white rounded-3xl font-medium">
-                Create Property
-              </button>
-            </div>
+       
           </div>
 
           <div className="mt-8 w-full md:w-7/12">
             <p className="text-xs text-gray-600">
-              By clicking Create property, you agree to our Privacy Policy to
-              create a new property listing.
+            Made for realtors by realtors 
             </p>
           </div>
         </div>
