@@ -47,8 +47,16 @@ model User {
   appointments  Appointment[]
 }
 
+enum MartialStatus {
+  MARRIED
+  DIVORCED
+  SEPARATED
+  WIDOWED
+  SINGLE
+}
+
 model Client {
-  id            String        @id @default(cuid())
+  id            String         @id @default(cuid())
   userId        String
   name          String
   phoneNumber   String
@@ -56,11 +64,11 @@ model Client {
   budget        Int?
   preApproved   Boolean?
   occupation    String?
-  maritalStatus String?
+  maritalStatus MartialStatus?
   children      Int?
   notes         String?
   notesPriority Boolean?
-  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   Appointment   Appointment[]
 }
 

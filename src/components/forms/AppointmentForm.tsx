@@ -265,21 +265,6 @@ const AppointmentForm = ({ clientData }: Props) => {
                     </FormItem>
                   )}
                 />
-
-                {/* <FormField
-              control={form.control}
-              name="completed"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Checkbox placeholder="false..." {...field} />
-                  </FormControl>
-                  <FormDescription>this is the name</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
                 <FormField
                   control={form.control}
                   name="clientId"

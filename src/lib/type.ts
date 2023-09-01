@@ -1,15 +1,29 @@
 import { number, z } from "zod";
 
 export const clientCreationSchema = z.object({
-  name: z.string(),
-  phoneNumber: z.string(),
-  email: z.string().email(),
-  budget: z.string(),
-  preApproved: z.boolean(),
-  occupation: z.string(),
-  maritalStatus: z.string(),
-  children: z.string(),
-  notes: z.string(),
+  name: z
+    .string({
+      required_error: "Name is required!",
+    })
+    .nonempty()
+    .min(2, "Name too short")
+    .max(50, "Exceeded name length"),
+  phoneNumber: z
+    .string({ required_error: "Phone number is required!" })
+    .nonempty(),
+  email: z
+    .string({ required_error: "Email is required" })
+    .email("Not a valid email")
+    .nonempty(),
+  budget: z.string({ required_error: "Budget is required" }).nonempty(),
+  preApproved: z.boolean().default(false),
+  occupation: z.string({ required_error: "Occupation is required" }).nonempty(),
+  maritalStatus: z.enum(
+    ["MARRIED", "DIVORCED", "SEPARATED", "WIDOWED", "SINGLE"],
+    { errorMap: (issue, ctx) => ({ message: "You cannot leave this empty" }) }
+  ),
+  children: z.string().nonempty().default("0"),
+  notes: z.string().default("No notes"),
   notesPriority: z.boolean(),
 });
 
