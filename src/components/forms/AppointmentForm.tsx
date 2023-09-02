@@ -38,7 +38,7 @@ import {
 } from "@/components/ui/popover";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { TimePicker } from "antd";
+import { Card, TimePicker } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import {
@@ -123,7 +123,7 @@ const AppointmentForm = ({ clientData }: Props) => {
 
           <ul></ul>
         </div>
-        <div className=" ">
+        <Card className=" ">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -138,7 +138,7 @@ const AppointmentForm = ({ clientData }: Props) => {
                       <FormLabel>Name</FormLabel>
                       <FormControl>
                         <Input
-                          className="w-[350px] "
+                          className=" "
                           placeholder="name..."
                           {...field}
                         />
@@ -156,7 +156,7 @@ const AppointmentForm = ({ clientData }: Props) => {
                       <FormLabel>Address</FormLabel>
                       <FormControl>
                         <Input
-                          className="w-[350px] "
+                          className=" "
                           placeholder="Address..."
                           {...field}
                         />
@@ -212,9 +212,9 @@ const AppointmentForm = ({ clientData }: Props) => {
                                 {field.value ? (
                                   format(parseInt(field.value), "PPP")
                                 ) : (
-                                  <span>Pick a date</span>
+                                  <span className="">Pick a date</span>
                                 )}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50 " />
+                                <CalendarIcon className="ml-auto h-4 w-4 pl-1 opacity-50 " />
                               </Button>
                             </FormControl>
                           </PopoverTrigger>
@@ -253,7 +253,7 @@ const AppointmentForm = ({ clientData }: Props) => {
                       <FormLabel>Purpose of appointment</FormLabel>
                       <FormControl>
                         <Input
-                          className="w-[350px] "
+                          className=" "
                           placeholder="type..."
                           {...field}
                         />
@@ -328,7 +328,7 @@ const AppointmentForm = ({ clientData }: Props) => {
               <ToastContainer />
             </form>
           </Form>
-        </div>
+        </Card>
       </div>
       <div className="relative p-5 bg-white rounded-lg shadow mt-4">
         <div className="absolute top-0 right-0 m-4 p-3 rounded-full bg-gray-100">
