@@ -84,7 +84,7 @@ const ClientForm = (props: Props) => {
       name: "",
       email: "",
       phoneNumber: "",
-      budget: null,
+      budget: "",
       preApproved: false,
       occupation: "",
       children: "3",
@@ -351,7 +351,9 @@ const ClientForm = (props: Props) => {
           />
         </div>
         <div>
-          <h2 className="text-2xl py-2 font-bold">Benefits of adding clients to a dashboard</h2>
+          <h2 className="text-2xl py-2 font-bold">
+            Benefits of adding clients to a dashboard
+          </h2>
           <ul className="flex flex-col gap-3 ">
             {clientBenefits.map((benefit, idx) => {
               return (
@@ -363,7 +365,6 @@ const ClientForm = (props: Props) => {
             })}
           </ul>
         </div>
-     
       </div>
     </div>
   );

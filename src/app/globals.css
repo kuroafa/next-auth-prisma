@@ -89,3 +89,11 @@
 .modal-head-text {
   @apply md:text-5xl text-3xl font-extrabold  max-w-5xl w-full;
 }
+
+.ant-btn.ant-btn-sm {
+  background: black;
+}
+.ant-btn-primary:disabled {
+  background-color: rgb(216, 216, 216);
+  color: white;
+}
