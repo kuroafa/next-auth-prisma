@@ -37,9 +37,31 @@ export const appointmentCreationSchema = z.object({
   clientId: z.string(),
 });
 
+export const emailSendSchema = z.object({
+  name: z
+    .string({ required_error: "Cannot leave this empty" })
+    .nonempty("This field is required")
+    .min(2, "Name too short")
+    .max(50, "Name too long"),
+  email: z
+    .string({ required_error: "Cannot leave email empty" })
+    .email("Not valid email")
+    .nonempty("This field is required"),
+  subject: z
+    .string({ required_error: "Cannot leave this empty" })
+    .nonempty("Cannot be empty")
+    .min(2, "Subject too short"),
+  message: z
+    .string({ required_error: "Cannot send an email without a message" })
+    .nonempty()
+    .min(2),
+});
+
 export const DeletionSchema = z.object({
   id: z.string(),
 });
+
+export type EmailSchema = z.infer<typeof emailSendSchema>;
 
 export type DeleteSchema = z.infer<typeof DeletionSchema>;
 

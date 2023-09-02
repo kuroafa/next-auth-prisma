@@ -5,6 +5,9 @@ import { Input } from "./ui/input";
 import { Search } from "lucide-react";
 import EmailCard from "./EmailCard";
 import { Card, CardHeader } from "./ui/card";
+import sgMail from "@sendgrid/mail";
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
 type Props = {
   clientData: Client[];
@@ -14,6 +17,18 @@ const SearchEmail = ({ clientData }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredEmails, setFilteredEmails] = useState<Client[]>([]);
   const [selectedEmail, setSelectedEmail] = useState<string>("");
+
+  const onComplete = (fields) => {
+    const message = {
+      to: "nabdulrub16@gmail.com",
+      from: clientData.email,
+      subject: fields.subject,
+      html: `<p><strong>Name:</strong> ${fields.name}</p>
+      <p><strong>Name:</strong> ${fields.message}</p>`,
+    };
+
+    sgMail.send(message);
+  };
 
   useEffect(() => {
     const filteredData = clientData.filter((client: Client) => {
@@ -59,7 +74,7 @@ const SearchEmail = ({ clientData }: Props) => {
           ))}
         </Card>
         <Card className="col-span-3  w-full overflow-hidden h-[800px]">
-          <form action="">
+          <form onSubmit={onComplete}>
             <div className="flex items-center  flex-wrap">
               <div className="flex flex-col  p-4 gap-1">
                 <h1 className="text-2xl font-semibold ">To:</h1>
@@ -83,7 +98,7 @@ const SearchEmail = ({ clientData }: Props) => {
               </button>
             </div>
             <textarea
-            placeholder="Type message here"
+              placeholder="Type message here"
               name=""
               id=""
               cols="30"

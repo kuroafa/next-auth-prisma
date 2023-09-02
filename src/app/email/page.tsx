@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/navbar/ThemeToggle";
 import UserAccountNav from "@/components/navbar/UserAccountNav";
 import SearchEmail from "@/components/SearchEmail";
 import { prisma } from "@/lib/db";
+import SendEmail from "@/components/SendEmail";
 
 type Props = {};
 
@@ -26,7 +27,8 @@ const page = async (props: Props) => {
   });
   return (
     <>
-      <SearchEmail clientData={fetchClientEmails} />
+      <SendEmail />
+      {/* <SearchEmail clientData={fetchClientEmails} /> */}
     </>
   );
 };
