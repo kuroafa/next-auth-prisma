@@ -16,7 +16,7 @@ const QuickActions = (props: Props) => {
         <div className="flex flex-col gap-4">
           <Link href={"/add-client"}>
             <Button className="w-full gap-2" variant="secondary">
-              New User
+              New Client
               <UserPlus size={20} />
             </Button>
           </Link>
