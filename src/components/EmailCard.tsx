@@ -4,7 +4,7 @@ import Link from "next/link";
 
 type Props = {
   clientData: Pick<Client, "email" | "name" | "id">;
-  onEmailClick: (email: string) => void;
+  onEmailClick: (email: any) => void;
 };
 
 const EmailCard = ({ clientData, onEmailClick }: Props) => {
