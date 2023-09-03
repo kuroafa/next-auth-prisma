@@ -1,6 +1,7 @@
 import { emailSendSchema } from "@/lib/type";
 import sendgrid from "@sendgrid/mail";
 import { NextResponse } from "next/server";
+import { emailTemplate } from "@/app/emailTemplates/template";
 
 export async function POST(req: Request, res: Response) {
   try {
@@ -14,8 +15,7 @@ export async function POST(req: Request, res: Response) {
       to: email,
       from: "meetlyrealestate@gmail.com",
       subject: subject,
-      html: `<p><strong>Name:</strong> ${name}</p>
-    <p><strong>Message:</strong> ${message}</p>`,
+      html: emailTemplate.replace("{name}", name).replace("{message}", name),
     };
 
     sendgrid

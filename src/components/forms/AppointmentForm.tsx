@@ -33,8 +33,7 @@ import {
 } from "@/components/ui/popover";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Card, TimePicker } from "antd";
-import { Card, TimePicker } from "antd";
+import { TimePicker } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import {
@@ -48,6 +47,7 @@ import { CheckIcon } from "lucide-react";
 import { Client } from "@prisma/client";
 import Image from "next/image";
 import {
+  Card,
   CardContent,
   CardDescription,
   CardHeader,
@@ -55,7 +55,7 @@ import {
 } from "../ui/card";
 
 type Props = {
-  clientData: Client;
+  clientData: Client[];
 };
 
 const AppointmentForm = ({ clientData }: Props) => {
@@ -313,9 +313,9 @@ const AppointmentForm = ({ clientData }: Props) => {
                                   placeholder="Search client..."
                                   className="h-9 "
                                 />
-                                <CommandEmpty>No framework found.</CommandEmpty>
+                                <CommandEmpty>No client found.</CommandEmpty>
                                 <CommandGroup>
-                                  {clientData.map((client) => (
+                                  {clientData.map((client: Client) => (
                                     <CommandItem
                                       key={client.id}
                                       onSelect={(currentValue) => {
@@ -355,24 +355,6 @@ const AppointmentForm = ({ clientData }: Props) => {
           </CardContent>
         </Card>
       </div>
-      {/* <div className="relative p-5 bg-white rounded-lg shadow mt-4">
-        <div className="absolute top-0 right-0 m-4 p-3 rounded-full bg-gray-100"></div>
-
-        <div className="relative z-10">
-          <div className="w-10/12">
-            <h3 className="font-medium text-gray-800">
-              Create an appointment with your potential client with{" "}
-              <span className="text-3xl font-bold italic ">Meetly</span>
-            </h3>
-          </div>
-
-          <div className="mt-8 w-full md:w-7/12">
-            <p className="text-xs text-gray-600">
-              Made for realtors by realtors
-            </p>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

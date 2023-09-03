@@ -1,28 +1,49 @@
 import { Client } from "@prisma/client";
 import Link from "next/link";
-
+import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 
 type Props = {
-  clientData: Pick<Client, "email" | "name" | "id">;
-  onEmailClick: (email: any) => void;
+  clientData: Pick<Client, "email" | "name" | "id" | "notes">;
+  handleAutoFill: (email: any, name: string) => void;
 };
 
-const EmailCard = ({ clientData, onEmailClick }: Props) => {
+const EmailCard = ({ clientData, handleAutoFill }: Props) => {
   const handleEmailClick = () => {
-    onEmailClick(clientData.email); 
+    handleAutoFill(clientData.email, clientData.name);
   };
 
   return (
-    <div className="font p-4 flex flex-col gap-1">
-      <Link href={`Client-Profile/${clientData.id}`}>
-          <h1 className="font-medium text-xl">
-            Client name: {clientData?.name}
-          </h1>
-      </Link>
-      <button className="w-fit bg-gray-500 p-2 rounded text-white font-semibold " onClick={handleEmailClick}>Add Email</button>
-    </div>
+    <Card className="md:max-w-[400px]">
+      <CardHeader>
+        <CardTitle>{clientData?.name}</CardTitle>
+        <CardDescription title={clientData.notes as string}>
+          {clientData?.notes?.slice(0, 25)}...
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="flex gap-4 items-center justify-end">
+        <Button
+          className="w-fit p-2 rounded font-semibold "
+          onClick={handleEmailClick}
+        >
+          View Profile
+        </Button>
+        <Button
+          variant={"secondary"}
+          className="w-fit p-2 rounded font-semibold "
+          onClick={handleEmailClick}
+        >
+          Auto fill
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
 
 export default EmailCard;
-
