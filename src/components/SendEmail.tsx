@@ -95,9 +95,9 @@ const SendEmail = ({ clientData }: Props) => {
           </div>
         </div>
         <div className="flex gap-2 flex-col md:flex-row  ">
-          <Card className="p-4 bg-slate-100 w-full md:max-w-[430px] hidden md:block">
+          <Card className="p-4 light:bg-slate-100 w-full md:max-w-[430px] hidden md:block">
             <h1 className="text-2xl tracking-wide mb-2 ml-1">All Clients</h1>
-            <div className="overflow-auto max-h-[600px] flex flex-col gap-4 no-scrollbar">
+            <div className="overflow-auto max-h-[600px] flex flex-col gap-4 no-scrollbar rounded-xl">
               {filteredEmails.map((email) => (
                 <EmailCard
                   clientData={email}
@@ -128,12 +128,15 @@ const SendEmail = ({ clientData }: Props) => {
                         <FormLabel>Name</FormLabel>
                         <FormControl>
                           <Input
-                            className="min-w-[200px"
-                            placeholder="name..."
+                            className="min-w-[200px] px-2 py-6 dark:bg-slate-900"
+                            placeholder="ex. John Doe"
                             {...field}
+                            readOnly
                           />
                         </FormControl>
-                        <FormDescription>this is the name</FormDescription>
+                        <FormDescription>
+                          Client name (AUTO FILL)
+                        </FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -149,12 +152,14 @@ const SendEmail = ({ clientData }: Props) => {
                         <FormControl>
                           <Input
                             {...field}
-                            className="min-w-[200px] "
-                            placeholder="Email..."
+                            className="min-w-[200px] px-2 py-6 dark:bg-slate-900"
+                            placeholder="ex. example@mail.com"
                             readOnly
                           />
                         </FormControl>
-                        <FormDescription>this is the Address</FormDescription>
+                        <FormDescription>
+                          Client email (AUTO FILL)
+                        </FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -169,12 +174,12 @@ const SendEmail = ({ clientData }: Props) => {
                         <FormLabel>Subject</FormLabel>
                         <FormControl>
                           <Input
-                            className="min-w-[200px] "
-                            placeholder="Subject..."
+                            className="min-w-[200px] px-2 py-6 dark:bg-slate-900"
+                            placeholder="ex. Offer Accepted!"
                             {...field}
                           />
                         </FormControl>
-                        <FormDescription>this is the time</FormDescription>
+                        <FormDescription>Email Subject</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -189,12 +194,12 @@ const SendEmail = ({ clientData }: Props) => {
                         <FormLabel>Message</FormLabel>
                         <FormControl>
                           <Textarea
-                            className="min-h-[250px]"
-                            placeholder="Message..."
+                            className="min-h-[250px] pt-3 dark:bg-slate-900"
+                            placeholder="Your message here"
                             {...field}
                           />
                         </FormControl>
-                        <FormDescription>this is the time</FormDescription>
+                        <FormDescription>Email Message</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
