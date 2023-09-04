@@ -1,25 +1,22 @@
+import SearchAppointments from "@/components/SearchAppointments";
 import AppointmentCard from "@/components/dashboard/components/AppointmentCard";
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
+import { Appointment } from "@prisma/client";
 import { add } from "date-fns";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 
 type Props = {
-  name: string;
-  address: string;
-  type: string;
-  date: number;
-  time: number;
-  completed: boolean;
-};
+
+}
 
 export const metadata = {
   title: "Appointments",
 };
 
-const page = async ({ name, address, type, date, time, completed }: Props) => {
+const page = async (props: Props) => {
   const session = await getAuthSession();
 
   if (!session?.user) {
@@ -30,23 +27,19 @@ const page = async ({ name, address, type, date, time, completed }: Props) => {
     where: {
       userId: session.user.id,
     },
+  
   });
+
   return (
-    <div className="mt-[30px]">
-      <h1>
+    <div className="pt-5" >
+      <h1 className="text-4xl font-semibold">Appointments</h1>
+      <div className="">
         {getAppointments.length <= 0 ? (
           <h2>No Appointments Found</h2>
         ) : (
-          getAppointments.map((appointment) => (
-            <div key={appointment.id}>
-              <AppointmentCard
-                appointmentData={appointment}
-                key={appointment.id}
-              />
-            </div>
-          ))
+         <SearchAppointments appointmentData={getAppointments}/>
         )}
-      </h1>
+      </div>
     </div>
   );
 };

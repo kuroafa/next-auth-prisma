@@ -113,7 +113,7 @@ const AnalyticsSection = ({
         </div>
 
         <div className="flex">
-          <Card className="flex-1 overflow-hidden">
+          <Card className="flex-1  overflow-hidden">
             <CardHeader>
               <CardTitle>Closing Rate</CardTitle>
             </CardHeader>

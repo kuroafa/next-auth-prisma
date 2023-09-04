@@ -6,6 +6,8 @@ import { useTheme } from "next-themes";
 
 type Props = {};
 
+
+
 const ClosingsChart = (props: Props) => {
   const theme = useTheme();
 

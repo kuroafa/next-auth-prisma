@@ -20,7 +20,6 @@ const page = async (props: Props) => {
       userId: session.user.id,
     },
   });
-
   return (
     <>
       <SearchClient clientData={fetchClients} />

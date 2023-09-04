@@ -47,12 +47,16 @@ const AppointmentCard = async ({
           </div>
 
           <CardDescription>
-            <h2 className="text-[16px] text-primary font-semibold -mb-[10px]">
+            <h2 className="text-[16px] text-primary font-semibold ">
               {appointmentData?.name}
             </h2>
+            <div className="pt-2 flex flex-col gap-1">
+              <p>Date: {appointmentData.date}</p>
+              <p>Time: {appointmentData.time}</p>
+            </div>
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="-mt-5">
           <div className="flex items-center gap-2">
             <h2 className="font-semibold">View Appointment details</h2>
             <Link href={`/Appointment-Profile/${appointmentData?.id}`}>

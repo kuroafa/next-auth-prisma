@@ -27,6 +27,7 @@ const page = async (props: Props) => {
   });
   return (
     <>
+      <h1 className="text-3xl font-medium pt-3">Email Clients</h1>
       <SendEmail clientData={fetchClientEmails} />
     </>
   );

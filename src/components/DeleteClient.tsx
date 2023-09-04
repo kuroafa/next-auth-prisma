@@ -18,6 +18,13 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 type Props = {
   id: string;
 };
+const refreshPage = () => {
+  const currentUrl = window.location.href;
+  const newUrl = currentUrl.includes("?")
+    ? `${currentUrl}&refresh=${Date.now()}`
+    : `${currentUrl}?refresh=${Date.now()}`;
+  window.location.href = newUrl;
+};
 
 const DeleteClient = ({ id }: Props) => {
   const router = useRouter();
@@ -31,8 +38,7 @@ const DeleteClient = ({ id }: Props) => {
         id: ClientId,
       }),
     });
-    router.replace("/");
-    router.refresh();
+    refreshPage();
     toast.warning("Deleted Client");
   };
 
@@ -45,7 +51,7 @@ const DeleteClient = ({ id }: Props) => {
         <DialogContent className="flex flex-col items-start">
           <DialogTitle>Are you sure?</DialogTitle>
           <DialogDescription>
-            You are deleting this user forever!
+            You are deleting this client forever
           </DialogDescription>
           <Button
             onClick={() => deleteClient(id)}

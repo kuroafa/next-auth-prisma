@@ -25,20 +25,20 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
   const hasNewAppointments = appointmentData.length > 0;
 
   return (
-    <div className="flex rounded-xl overflow-hidden">
+    <div className="flex rounded-xl  overflow-hidden">
       <div className="flex flex-col justify-start items-start w-full">
         <div>
           <div className="flex items-center mb-2 gap-3">
             <h3 className="light:text-black text-3xl font-semibold  ">
               Appointments
             </h3>
-            <span
+            {/* <span
               className={` w-7 h-7 ${
                 appointmentData.length === 0 ? "hidden" : null
               } flex rounded-full -top-4 -right-4 bg-red-600 text-white text-[16px] items-center font-bold justify-center`}
             >
               {appointmentData.length}
-            </span>
+            </span> */}
             <Link href="/Appointments-Page">
               <ArrowUpRight size={35} strokeWidth={1} />
             </Link>

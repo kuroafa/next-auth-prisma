@@ -70,7 +70,7 @@ const DashboardPage = async (props: Props) => {
   });
 
   return (
-    <div className="grid grid-col-1 xl:grid-cols-4 gap-8 pt-8 ">
+    <div className="grid grid-col-1 xl:grid-cols-4 gap-4 pt-8 ">
       {/* Graphs/Data */}
       <div className="col-span-3">
         <AnalyticsSection
