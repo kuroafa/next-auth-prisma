@@ -21,17 +21,6 @@ type Props = {
 };
 
 const UserAccountNav = ({ user }: Props) => {
-  const handleDemoData = async () => {
-    try {
-      const response = await fetch("/api/mock", { method: "POST" });
-      return await response.json();
-    } catch (error) {
-      console.log(error, "Error adding data");
-    } finally {
-      redirect("/");
-    }
-  };
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -71,11 +60,7 @@ const UserAccountNav = ({ user }: Props) => {
           Sign Out
           <LogOut className="w-4 h-4 ml-2" />
         </DropdownMenuItem>
-        <DropdownMenuItem className="mt-2">
-          <Button onClick={handleDemoData} variant="secondary">
-            Add Demo Data
-          </Button>
-        </DropdownMenuItem>
+      
       </DropdownMenuContent>
     </DropdownMenu>
   );
