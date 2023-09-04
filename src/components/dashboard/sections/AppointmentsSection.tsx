@@ -32,13 +32,13 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
             <h3 className="light:text-black text-3xl font-semibold  ">
               Appointments
             </h3>
-            <span
+            {/* <span
               className={` w-7 h-7 ${
                 appointmentData.length === 0 ? "hidden" : null
               } flex rounded-full -top-4 -right-4 bg-red-600 text-white text-[16px] items-center font-bold justify-center`}
             >
               {appointmentData.length}
-            </span>
+            </span> */}
             <Link href="/Appointments-Page">
               <ArrowUpRight size={35} strokeWidth={1} />
             </Link>

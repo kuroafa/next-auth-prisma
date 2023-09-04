@@ -7,10 +7,14 @@ import { CalendarPlus, UserPlus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import QuickActions from "./QuickActions";
+import { Client } from "@prisma/client";
 
-type Props = {};
 
-const Navbar = async (props: Props) => {
+type Props = {
+  clientData: Client;
+};
+
+const Navbar = async ({clientData}: Props) => {
   const session = await getAuthSession();
 
   return (
@@ -21,7 +25,7 @@ const Navbar = async (props: Props) => {
         </h2>
       </div>
       <div className="flex items-center gap-3">
-        {session?.user ? <QuickActions /> : null}
+        {session?.user ? <QuickActions clientData={clientData} /> : null}
 
         <ThemeToggle className="relative" />
         {session?.user ? (

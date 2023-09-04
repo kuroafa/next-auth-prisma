@@ -44,9 +44,9 @@ const Sidebar: React.FC = () => {
               </div>
             </Disclosure.Button>
             <div
-              className={`pt-6 w-[200px] h-screen z-20 lg:relative absolute top-0 overflow-x-hidden ${
+              className={`pt-6 w-[250px] h-screen z-20 lg:relative absolute top-0 overflow-x-hidden ${
                 isSidebarOpen
-                  ? "absolute left-0 peer-focus:left-0 peer:transition lg:transparent  dark:bg-black bg-gray-600 bg-opacity-95 ease-out delay-150 duration-200 w-60 lg:w-60 md:w-60  lg:left-0"
+                  ? "absolute left-0 peer-focus:left-0 peer:transition lg:transparent  dark:bg-black bg-black text-white bg-opacity-95 ease-out delay-150 duration-200 w-60 lg:w-60 md:w-60  lg:left-0"
                   : "-left-96 lg:w-60 lg:left-0"
               }`}
             >
