@@ -45,6 +45,8 @@ type Props = {};
 
 const ClientForm = (props: Props) => {
   const [value, setValue] = useState(false);
+  const [formattedBudget, setFormattedBudget] = useState("");
+  const [numericBudget, setNumericBudget] = useState("0");
 
   const router = useRouter();
   const {
@@ -88,7 +90,7 @@ const ClientForm = (props: Props) => {
       preApproved: false,
       occupation: "",
       children: "3",
-      maritalStatus: "",
+      maritalStatus: undefined,
       notes: "",
       notesPriority: true,
     },
@@ -105,6 +107,19 @@ const ClientForm = (props: Props) => {
     reset();
     router.refresh();
     toast.success("Successfully Created Client");
+  };
+
+  const formatBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const numericValue = parseFloat(value.replace(/[^0-9]/g, "")) || 0;
+
+    // Update the numeric value for sending to the backend
+    setNumericBudget(numericValue.toString());
+    form.setValue("budget", numericBudget);
+
+    // Format and display the value with thousands separators
+    const formattedValue = numericValue.toLocaleString();
+    setFormattedBudget(formattedValue);
   };
 
   watch();
@@ -311,9 +326,9 @@ const ClientForm = (props: Props) => {
                               className="py-5 px-4 pl-8"
                               placeholder="ex. 350,000"
                               inputMode="numeric"
-                              type="number"
-                              pattern="0-9"
                               {...field}
+                              value={formattedBudget}
+                              onChange={formatBudget}
                             />
                             <DollarSign
                               className="absolute top-3 left-3"

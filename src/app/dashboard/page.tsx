@@ -36,7 +36,6 @@ import { prisma } from "@/lib/db";
 import AppointmentForm from "@/components/forms/AppointmentForm";
 import AppointmentsSection from "@/components/dashboard/sections/AppointmentsSection";
 
-
 type Props = {};
 
 export const metadata = {
@@ -61,6 +60,15 @@ const DashboardPage = async (props: Props) => {
     },
   });
 
+  const getPipeline = await prisma.client.findMany({
+    where: {
+      userId: session.user.id,
+    },
+    select: {
+      budget: true,
+    },
+  });
+
   return (
     <div className="grid grid-col-1 xl:grid-cols-4 gap-8 pt-8 ">
       {/* Graphs/Data */}
@@ -68,6 +76,7 @@ const DashboardPage = async (props: Props) => {
         <AnalyticsSection
           appointmentCount={countAppointments}
           clientCount={countClients}
+          pipeline={getPipeline}
         />
       </div>
       <div className="col-span-3 xl:col-span-1">

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
 import Link from "next/link";
@@ -10,7 +12,7 @@ const QuickActions = (props: Props) => {
   return (
     <Popover>
       <PopoverTrigger>
-        <Button>Quick Actions</Button>
+        <Button>Actions</Button>
       </PopoverTrigger>
       <PopoverContent className="w-fit">
         <div className="flex flex-col gap-4">

@@ -72,16 +72,25 @@ model Client {
   Appointment   Appointment[]
 }
 
+enum AppointmentType {
+  SHOWING
+  APPRASIAL
+  INSPECTION
+  WALK_THROUGH
+  PHOTOGRAPHY
+  AGENT_PREVIEW
+}
+
 model Appointment {
-  id        String  @id @default(cuid())
+  id        String          @id @default(cuid())
   userId    String
   name      String
   address   String
-  type      String
+  type      AppointmentType
   time      String
   date      String
-  completed Boolean
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Client    Client? @relation(fields: [clientId], references: [id])
+  completed Boolean         @default(false)
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Client    Client?         @relation(fields: [clientId], references: [id])
   clientId  String?
 }

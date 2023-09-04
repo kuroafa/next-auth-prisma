@@ -36,34 +36,32 @@ const AppointmentCard = async ({
   dashboardMode,
 }: AppointmentCardProps) => {
   return (
-    <div className="mt-4">
-      <Card className="w-full min-w-[290px]">
-        <div className="flex flex-col">
-          <CardHeader>
-            <div className="flex justify-between">
-              <CardTitle className="text-xl font-bold">
-                {appointmentData?.type}
-              </CardTitle>
-              {!dashboardMode ? <DeleteButton id={appointmentData.id} /> : null}
-            </div>
+    <Card className="min-w-[240px]">
+      <div className="flex flex-col">
+        <CardHeader>
+          <div className="flex justify-between">
+            <CardTitle className="text-xl font-bold">
+              {appointmentData?.type}
+            </CardTitle>
+            {!dashboardMode ? <DeleteButton id={appointmentData.id} /> : null}
+          </div>
 
-            <CardDescription>
-              <h2 className="text-[16px] text-primary font-semibold -mb-[10px]">
-                {appointmentData?.name}
-              </h2>
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-2">
-              <h2 className="font-semibold">View Appointment details</h2>
-              <Link href={`/Appointment-Profile/${appointmentData?.id}`}>
-                <ArrowUpRight size={35} strokeWidth={1} />
-              </Link>
-            </div>
-          </CardContent>
-        </div>
-      </Card>
-    </div>
+          <CardDescription>
+            <h2 className="text-[16px] text-primary font-semibold -mb-[10px]">
+              {appointmentData?.name}
+            </h2>
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-2">
+            <h2 className="font-semibold">View Appointment details</h2>
+            <Link href={`/Appointment-Profile/${appointmentData?.id}`}>
+              <ArrowUpRight size={35} strokeWidth={1} />
+            </Link>
+          </div>
+        </CardContent>
+      </div>
+    </Card>
   );
 };
 

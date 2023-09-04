@@ -12,13 +12,29 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import ClosingsChart from "../components/ClosingsChart";
 import { MdOutlineAnalytics } from "react-icons/md";
+import { Client } from "@prisma/client";
 
 type Props = {
   clientCount: number;
   appointmentCount: number;
+  pipeline: Pick<Client, "budget">[];
 };
 
-const AnalyticsSection = ({ clientCount, appointmentCount }: Props) => {
+const AnalyticsSection = ({
+  clientCount,
+  appointmentCount,
+  pipeline,
+}: Props) => {
+  const totalBudgets = pipeline.reduce(
+    (acc, client) => acc + (client.budget || 0),
+    0
+  );
+  console.log(totalBudgets);
+
+  const inPipline = totalBudgets * 0.03;
+
+  console.log(inPipline);
+
   return (
     <>
       <h2 className="light:text-black text-3xl font-semibold flex items-center gap-1">
@@ -35,7 +51,7 @@ const AnalyticsSection = ({ clientCount, appointmentCount }: Props) => {
               <CardTitle className="text-xl font-light">In Pipeline</CardTitle>
             </CardHeader>
             <CardContent className="text-3xl -mt-2 font-semibold">
-              $132,000
+              ${inPipline.toLocaleString()}
             </CardContent>
           </Card>
           <Card className="flex-1 h-fit pr-10 flex items-center justify-between">

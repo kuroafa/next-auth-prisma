@@ -1,7 +1,7 @@
 import { Client } from "@prisma/client";
-import { Card, CardContent, CardHeader } from "./ui/card";
+import { Card } from "./ui/card";
 import Link from "next/link";
-import { ArrowUpRight, Frown, StickyNote, Smile } from "lucide-react";
+import { ArrowUpRight, Frown, Smile } from "lucide-react";
 import { Book } from "lucide-react";
 
 type Props = {
@@ -11,6 +11,8 @@ type Props = {
 const NotesCard = ({ clientData }: Props) => {
   const checkColor = clientData.preApproved ? "bg-green-600" : "bg-red-600";
   const checkText = clientData.preApproved ? <Smile /> : <Frown />;
+
+  console.log(clientData.preApproved);
 
   return (
     <Card className="flex flex-col  rounded-xl  ">

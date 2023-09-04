@@ -53,6 +53,14 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { revalidatePath } from "next/cache";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectValue,
+  SelectTrigger,
+} from "../ui/select";
 
 type Props = {
   clientData: Client[];
@@ -67,6 +75,15 @@ const AppointmentForm = ({ clientData }: Props) => {
     formState: { errors, isLoading },
   } = useForm();
 
+  const typeValues = [
+    { title: "Showing", value: "SHOWING" },
+    { title: "Apprasial", value: "APPRASIAL" },
+    { title: "Inspection", value: "INSPECTION" },
+    { title: "Walk Through", value: "WALK_THROUGH" },
+    { title: "Photography", value: "PHOTOGRAPHY" },
+    { title: "Agent Preview", value: "AGENT_PREVIEW" },
+  ];
+
   const form = useForm<AppointmentCreation>({
     resolver: zodResolver(appointmentCreationSchema),
     defaultValues: {
@@ -75,7 +92,7 @@ const AppointmentForm = ({ clientData }: Props) => {
       time: "",
       completed: true,
       date: "",
-      type: "",
+      type: undefined,
       clientId: "",
     },
   });
@@ -98,7 +115,7 @@ const AppointmentForm = ({ clientData }: Props) => {
       console.error("Could not create appointment:", error);
     }
 
-    router.push("/");
+    router.replace("/");
   };
 
   dayjs.extend(customParseFormat);
@@ -192,19 +209,17 @@ const AppointmentForm = ({ clientData }: Props) => {
                       <FormItem>
                         <FormLabel>Time</FormLabel>
                         <FormControl>
-                          <div {...field}>
-                            <TimePicker
-                              placeholder="Start Time"
-                              format="HH:mm"
-                              onOk={(date) => {
-                                if (date) {
-                                  const formattedDate = date.valueOf(); // Convert the date to a localized string
-                                  field.onChange(formattedDate.toString()); // Update the field value with the formatted date string
-                                }
-                              }}
-                              onChange={() => console.log(field.value)}
-                            />
-                          </div>
+                          <TimePicker
+                            placeholder="Start Time"
+                            format="HH:mm"
+                            onOk={(date) => {
+                              if (date) {
+                                const formattedDate = date.valueOf();
+                                field.onChange(formattedDate.toString());
+                              }
+                            }}
+                            onChange={() => console.log(field.value)}
+                          />
                         </FormControl>
                         <FormDescription>this is the time</FormDescription>
                         <FormMessage />
@@ -268,13 +283,20 @@ const AppointmentForm = ({ clientData }: Props) => {
                     name="type"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Purpose of appointment</FormLabel>
+                        <FormLabel>Purpose of Appointment</FormLabel>
                         <FormControl>
-                          <Input
-                            className="w-[350px] "
-                            placeholder="type..."
-                            {...field}
-                          />
+                          <Select onValueChange={field.onChange}>
+                            <SelectTrigger className="capitalize">
+                              <SelectValue placeholder="Status" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {typeValues.map(({ title, value }, idx) => (
+                                <SelectItem key={idx} value={value}>
+                                  {title}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                         </FormControl>
                         <FormDescription>
                           what&apos;s the goal of this appointment?

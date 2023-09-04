@@ -19,13 +19,14 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
     where: {
       userId: session?.user.id,
     },
+    take: 4,
   });
 
   const hasNewAppointments = appointmentData.length > 0;
 
   return (
     <div className="flex rounded-xl overflow-hidden">
-      <div className="flex flex-col justify-start items-start  overflow-hidden">
+      <div className="flex flex-col justify-start items-start w-full">
         <div>
           <div className="flex items-center mb-2 gap-3">
             <h3 className="light:text-black text-3xl font-semibold  ">
@@ -43,7 +44,7 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
             </Link>
           </div>
         </div>
-        <div className="flex flex-wrap gap-4 ">
+        <div className="grid grid-cols-1 gap-4 w-full mt-2 lg:grid-cols-2 xl:grid-cols-4">
           {hasNewAppointments ? (
             appointmentData.map((data, idx) => (
               <AppointmentCard

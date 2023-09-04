@@ -7,7 +7,7 @@ import { Search } from "lucide-react";
 import NotesCard from "./NotesCard";
 
 interface Props {
-  clientData: Pick<Client, "name" | "notes" | "id">;
+  clientData: Pick<Client, "name" | "notes" | "id" | "preApproved">;
 }
 
 const SearchedNotes: React.FC<Props> = ({ clientData }) => {
@@ -15,13 +15,9 @@ const SearchedNotes: React.FC<Props> = ({ clientData }) => {
   const [filteredClients, setFilteredClients] = useState<Client[]>([]);
   const [priorities, setPriorities] = useState<boolean>(false);
 
-  console.log(clientData);
-
   useEffect(() => {
     const filteredData = clientData.filter((client: Client) => {
       const name = client.name;
-
-      console.log(name);
       return name.toLowerCase().includes(searchQuery.toLowerCase());
     });
 
@@ -38,10 +34,11 @@ const SearchedNotes: React.FC<Props> = ({ clientData }) => {
         <div className="relative h-fit">
           <Input
             type="search"
+            placeholder="Client name"
             onChange={(e) => {
               setSearchQuery(e.target.value);
             }}
-            className="pl-9 text-lg py-5 w-full"
+            className="pl-10  py-5 w-full"
           />
           <Search className="absolute top-2 left-2 " />
         </div>

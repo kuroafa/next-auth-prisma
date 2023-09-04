@@ -15,7 +15,7 @@ export async function POST(req: Request, res: Response) {
       to: email,
       from: "meetlyrealestate@gmail.com",
       subject: subject,
-      html: emailTemplate.replace("{name}", name).replace("{message}", name),
+      html: emailTemplate.replace("{name}", name).replace("{message}", message),
     };
 
     sendgrid

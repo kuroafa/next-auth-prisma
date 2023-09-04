@@ -20,7 +20,7 @@ const EmailCard = ({ clientData, handleAutoFill }: Props) => {
   };
 
   return (
-    <Card className="md:max-w-[400px] dark:bg-slate-800">
+    <Card className="md:max-w-[400px] dark:bg-slate-800 ">
       <CardHeader>
         <CardTitle>{clientData?.name}</CardTitle>
         <CardDescription title={clientData.notes as string}>
@@ -28,10 +28,7 @@ const EmailCard = ({ clientData, handleAutoFill }: Props) => {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex gap-4 items-center justify-end">
-        <Button
-          className="w-fit p-2 rounded font-semibold "
-          onClick={handleEmailClick}
-        >
+        <Button className="w-fit p-2 rounded font-semibold ">
           View Profile
         </Button>
         <Button

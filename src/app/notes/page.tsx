@@ -27,6 +27,7 @@ const pages = async ({ notes, name }: Props) => {
       name: true,
       notes: true,
       id: true,
+      preApproved: true,
     },
   });
 

@@ -43,7 +43,7 @@ const ClientDropdown: React.FC<Props> = ({ clientData, handleAutoFill }) => {
         <PopoverContent className="w-full p-0">
           <Command>
             <CommandInput placeholder="Search client..." className="h-9 " />
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No client found.</CommandEmpty>
             <CommandGroup>
               {clientData.map((client: Client) => (
                 <CommandItem

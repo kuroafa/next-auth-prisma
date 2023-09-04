@@ -13,12 +13,25 @@ import React from "react";
 import { Button } from "../ui/button";
 import { LogOut } from "lucide-react";
 import UserAvatar from "../UserAvatar";
+import { GrAdd } from "react-icons/gr";
+import { redirect } from "next/navigation";
 
 type Props = {
   user: Pick<User, "name" | "image" | "email">;
 };
 
 const UserAccountNav = ({ user }: Props) => {
+  const handleDemoData = async () => {
+    try {
+      const response = await fetch("/api/mock", { method: "POST" });
+      return await response.json();
+    } catch (error) {
+      console.log(error, "Error adding data");
+    } finally {
+      redirect("/");
+    }
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -28,9 +41,12 @@ const UserAccountNav = ({ user }: Props) => {
         className="bg-white z-[20] rounded-xl mt-2 flex flex-col items-start justify-start p-3 border-2 "
         align="end"
       >
-          <DropdownMenuItem className="p-2" asChild>
+        <DropdownMenuItem className="p-2" asChild>
           <div>
-            <h1 className="text-black"> <span className="text-3xl font-bold italic ">Meetly</span> </h1>
+            <h1 className="text-black">
+              {" "}
+              <span className="text-3xl font-bold italic ">Meetly</span>{" "}
+            </h1>
           </div>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -54,6 +70,11 @@ const UserAccountNav = ({ user }: Props) => {
         >
           Sign Out
           <LogOut className="w-4 h-4 ml-2" />
+        </DropdownMenuItem>
+        <DropdownMenuItem className="mt-2">
+          <Button onClick={handleDemoData} variant="secondary">
+            Add Demo Data
+          </Button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

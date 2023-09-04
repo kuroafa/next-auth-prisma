@@ -1,15 +1,17 @@
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
-import { DeletionSchema, clientCreationSchema } from "@/lib/type";
+import {
+  DeletionSchema,
+  clientCreationSchema,
+  clientUpdateSchema,
+} from "@/lib/type";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
+import { ZodError, z } from "zod";
 
 type Data = {
   input: string;
   name: string;
 };
-
 
 export async function POST(req: Request, res: Response) {
   try {
@@ -34,7 +36,7 @@ export async function POST(req: Request, res: Response) {
       notes,
       children,
       occupation,
-      notesPriority
+      notesPriority,
     } = clientCreationSchema.parse(body);
 
     const intBudget = parseInt(budget);
@@ -52,7 +54,7 @@ export async function POST(req: Request, res: Response) {
         children: intChildren,
         occupation: occupation,
         userId: session.user.id,
-        notesPriority: notesPriority
+        notesPriority: notesPriority,
       },
     });
 
@@ -84,4 +86,60 @@ export async function DELETE(req: Request, res: Response) {
   }
 }
 
+export async function PUT(req: Request, res: Response) {
+  try {
+    const session = await getAuthSession();
+    if (!session?.user) {
+      return NextResponse.json(
+        { error: "User not authenticated" },
+        { status: 401 }
+      );
+    }
 
+    const body = await req.json();
+    console.log(body);
+    const {
+      id,
+      budget,
+      preApproved,
+      occupation,
+      maritalStatus,
+      children,
+      notes,
+    } = await clientUpdateSchema.parse(body);
+
+    const budgetInt = await parseInt(budget);
+    const childrenInt = await parseInt(children);
+
+    const updatedClient = await prisma.client.update({
+      where: {
+        userId: session.user.id,
+        id: id,
+      },
+      data: {
+        budget: budgetInt,
+        preApproved: preApproved,
+        occupation: occupation,
+        maritalStatus: maritalStatus,
+        children: childrenInt,
+        notes: notes,
+      },
+    });
+
+    return NextResponse.json({ message: "Success" }, { status: 200 });
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        {
+          error: error.errors,
+        },
+        { status: 404 }
+      );
+    }
+    console.log("Error updating client", error);
+    return NextResponse.json(
+      { error: "Internal Error Updating Client" },
+      { status: 500 }
+    );
+  }
+}

@@ -34,16 +34,18 @@ const page = async ({ name, address, type, date, time, completed }: Props) => {
   return (
     <div className="mt-[30px]">
       <h1>
-        {getAppointments.map((appointment) => {
-          return (
+        {getAppointments.length <= 0 ? (
+          <h2>No Appointments Found</h2>
+        ) : (
+          getAppointments.map((appointment) => (
             <div key={appointment.id}>
               <AppointmentCard
                 appointmentData={appointment}
                 key={appointment.id}
               />
             </div>
-          );
-        })}
+          ))
+        )}
       </h1>
     </div>
   );
