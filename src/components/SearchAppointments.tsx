@@ -9,7 +9,7 @@ interface Props {
   appointmentData: Appointment[];
 }
 
-const SearchClient: React.FC<Props> = ({ appointmentData }) => {
+const SearchAppointment: React.FC<Props> = ({ appointmentData }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredAppointments, setFilteredAppointments] = useState<Appointment[]>([]);
 
@@ -18,17 +18,17 @@ const SearchClient: React.FC<Props> = ({ appointmentData }) => {
       const name = appointment.name;
       return name.toLowerCase().includes(searchQuery.toLowerCase());
     });
-
-    const timer = setTimeout(() => {
-      setFilteredAppointments(filteredData);
-    }, 300);
-    return () => clearTimeout(timer);
+    setFilteredAppointments(filteredData);
+    // const timer = setTimeout(() => {
+    //   setFilteredAppointments(filteredData);
+    // }, 300);
+    // return () => clearTimeout(timer);
   }, [searchQuery, appointmentData]);
 
   return (
     <div className="mt-4">
       <div className="w-full min-w-[150px] lg:max-w-[400px]">
-        <h2 className="font-semibold mb-1">Search Client</h2>
+        <h2 className="font-semibold mb-1">Search appointments</h2>
         <div className="relative h-fit">
           <Input
             type="search"
@@ -42,14 +42,14 @@ const SearchClient: React.FC<Props> = ({ appointmentData }) => {
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-[30px]">
         {filteredAppointments.map((appointment) => (
-          <AppointmentCard  appointmentData={appointment} key={appointment.id} />
+          <AppointmentCard dashboardMode={false} appointmentData={appointment} key={appointment.id} />
         ))}
       </div>
     </div>
   );
 };
 
-export default SearchClient;
+export default SearchAppointment;
 
 
 

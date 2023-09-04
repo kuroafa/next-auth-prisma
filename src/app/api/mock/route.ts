@@ -15,9 +15,8 @@ export async function POST(res: Response, req: Request) {
         { status: 401 }
       );
     }
-   
 
-    const demoUsers =  [
+    const demoUsers = [
       {
         userId: session.user.id,
         name: "John Doe",
@@ -158,7 +157,7 @@ export async function POST(res: Response, req: Request) {
           "Suggested arranging a second showing for the client to view the property during daylight hours.",
         notesPriority: false,
       },
-    ]
+    ];
 
     for (const demoUser of demoUsers) {
       const createdClient = await prisma.client.create({
@@ -167,14 +166,32 @@ export async function POST(res: Response, req: Request) {
         },
       });
 
+      const randomDate = new Date(
+        Date.now() + Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000
+      );
+
+      const randomTime = `${Math.floor(Math.random() * 12) + 1}:${Math.floor(Math.random() * 60)} ${Math.random() < 0.5 ? 'AM': 'PM'}`;
+
+      const appointmentTypes =   [
+        "SHOWING",
+        "APPRASIAL",
+        "INSPECTION",
+        "WALK_THROUGH",
+        "PHOTOGRAPHY",
+        "AGENT_PREVIEW",
+      ];
+      const randomAppointmentType = appointmentTypes[Math.floor(Math.random() * appointmentTypes.length)]
+
+      
+
       const appointmentData = {
         userId: session.user.id,
         name: `Appointment for ${createdClient.name}`,
         address: `Address for ${createdClient.name}`,
-        type: 'SHOWING',
-        time: '10:00 AM',
-        date: '2023-09-10', 
-        clientId: createdClient.id, 
+        type: randomAppointmentType,
+        time: randomTime,
+        date: randomDate.toISOString().slice(0,10),
+        clientId: createdClient.id,
       };
 
       await prisma.appointment.create({
@@ -182,7 +199,7 @@ export async function POST(res: Response, req: Request) {
       });
     }
 
-    console.log('Demo users and appointments created successfully');
+    console.log("Demo users and appointments created successfully");
 
     return NextResponse.json(
       {
@@ -202,3 +219,14 @@ export async function POST(res: Response, req: Request) {
   }
 }
 
+export async function DELETE(req: Request, res: Response) {
+  try {
+    await prisma.appointment.deleteMany({});
+    await prisma.client.deleteMany({});
+    console.log('All data cleared successfully')
+    return NextResponse.json({message: 'Data cleared successfully'}, {status: 200})
+  } catch (error) {
+    console.log('Error clearing data', error)
+    return NextResponse.json({error: 'Internal error while clearing data'}, {status: 500})
+  }
+}

@@ -3,6 +3,7 @@ import { getAuthSession } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import SearchedNotes from "@/components/SearchedNotes";
+import NotesTable from "@/components/NotesTable";
 
 type Props = {
   notes: string;
@@ -33,9 +34,7 @@ const pages = async ({ notes, name }: Props) => {
 
   return (
     <>
-      <div>
-        <SearchedNotes clientData={fetchClientNotes} />
-      </div>
+      <div><NotesTable clientData={fetchClientNotes}/></div>
     </>
   );
 };

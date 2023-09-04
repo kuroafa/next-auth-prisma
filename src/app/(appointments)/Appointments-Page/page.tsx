@@ -9,14 +9,14 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 type Props = {
-appointmentData: Pick<Appointment, 'address'|'clientId'|'completed'|'date'|'id'|
-'name'|'time'|'type'|'userId'>};
+
+}
 
 export const metadata = {
   title: "Appointments",
 };
 
-const page = async ({ appointmentData}: Props) => {
+const page = async (props: Props) => {
   const session = await getAuthSession();
 
   if (!session?.user) {
@@ -31,7 +31,7 @@ const page = async ({ appointmentData}: Props) => {
   });
 
   return (
-    <div >
+    <div className="pt-5" >
       <h1 className="text-4xl font-semibold">Appointments</h1>
       <div className="">
         {getAppointments.length <= 0 ? (

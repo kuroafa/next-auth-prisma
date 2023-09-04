@@ -7,7 +7,7 @@ import { Search } from "lucide-react";
 import NotesCard from "./NotesCard";
 
 interface Props {
-  clientData: Pick<Client, "name" | "notes" | "id" | "preApproved">;
+  clientData: Client[];
 }
 
 const SearchedNotes: React.FC<Props> = ({ clientData }) => {

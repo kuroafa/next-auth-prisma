@@ -21,6 +21,13 @@ type Props = {
 
 const DeleteButton = ({ id }: Props) => {
   const router = useRouter();
+  const refreshPage = () => {
+    const currentUrl = window.location.href;
+    const newUrl = currentUrl.includes("?")
+      ? `${currentUrl}&refresh=${Date.now()}`
+      : `${currentUrl}?refresh=${Date.now()}`;
+    window.location.href = newUrl;
+  };
   const deleteAppointment = (AppointmentId: string) => {
     try {
       const response = fetch("/api/appointment", {
@@ -32,8 +39,7 @@ const DeleteButton = ({ id }: Props) => {
           id: AppointmentId,
         }),
       });
-      router.replace("/dashboard");
-      router.refresh();
+      refreshPage();
       toast.warning("Deleted Appointment");
     } catch (error) {
       console.log(`${error} deleting appointment`);
@@ -50,7 +56,7 @@ const DeleteButton = ({ id }: Props) => {
         <DialogContent className="flex flex-col items-start">
           <DialogTitle>Are you sure?</DialogTitle>
           <DialogDescription>
-            You are deleting this user forever!
+            You are deleting this appointment forever
           </DialogDescription>
           <Button
             onClick={() => deleteAppointment(id)}

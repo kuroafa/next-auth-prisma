@@ -25,7 +25,7 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
   const hasNewAppointments = appointmentData.length > 0;
 
   return (
-    <div className="flex rounded-xl overflow-hidden">
+    <div className="flex rounded-xl  overflow-hidden">
       <div className="flex flex-col justify-start items-start w-full">
         <div>
           <div className="flex items-center mb-2 gap-3">

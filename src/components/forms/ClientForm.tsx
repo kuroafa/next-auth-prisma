@@ -95,6 +95,13 @@ const ClientForm = (props: Props) => {
       notesPriority: true,
     },
   });
+  const refreshPage = () => {
+    const currentUrl = window.location.href;
+    const newUrl = currentUrl.includes("?")
+      ? `${currentUrl}&refresh=${Date.now()}`
+      : `${currentUrl}?refresh=${Date.now()}`;
+    window.location.href = newUrl;
+  };
 
   const onSubmit = async (data: ClientCreation) => {
     try {
@@ -103,9 +110,10 @@ const ClientForm = (props: Props) => {
     } catch (error) {
       console.log("could not create client");
     }
-    router.push("/");
-    reset();
-    router.refresh();
+    // router.push("/");
+    // reset();
+    // router.refresh();
+    refreshPage();
     toast.success("Successfully Created Client");
   };
 
