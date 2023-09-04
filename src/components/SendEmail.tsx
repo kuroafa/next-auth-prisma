@@ -44,7 +44,6 @@ const SendEmail = ({ clientData }: Props) => {
   });
 
   const {
-    setValue,
     getValues,
     formState: { isLoading },
     handleSubmit,

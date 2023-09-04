@@ -28,7 +28,6 @@ const page = async (props: Props) => {
   return (
     <>
       <SendEmail clientData={fetchClientEmails} />
-      {/* <SearchEmail clientData={fetchClientEmails} /> */}
     </>
   );
 };
