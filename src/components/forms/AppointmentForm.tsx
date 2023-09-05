@@ -1,11 +1,4 @@
 "use client";
-import { useForm } from "react-hook-form";
-import {
-  AppointmentCreation,
-  appointmentCreationSchema,
-  clientCreationSchema,
-} from "@/lib/type";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -15,15 +8,17 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "../ui/input";
+import { AppointmentCreation, appointmentCreationSchema } from "@/lib/type";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import "reactjs-popup/dist/index.css";
+import { Input } from "../ui/input";
 
-import * as React from "react";
 import { CalendarIcon, CaretSortIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
+import * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -31,21 +26,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { cn } from "@/lib/utils";
+import { Client } from "@prisma/client";
 import { TimePicker } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "../ui/command";
 import { CheckIcon } from "lucide-react";
-import { Client } from "@prisma/client";
 import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Card,
   CardContent,
@@ -53,13 +42,19 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { revalidatePath } from "next/cache";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "../ui/command";
 import {
   Select,
   SelectContent,
   SelectItem,
-  SelectValue,
   SelectTrigger,
+  SelectValue,
 } from "../ui/select";
 
 type Props = {
@@ -148,7 +143,6 @@ const AppointmentForm = ({ clientData }: Props) => {
             </li>
           </ul>
         </div>
-       
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2  gap-5 pt-10 w-full ">
         <Card>
@@ -242,8 +236,8 @@ const AppointmentForm = ({ clientData }: Props) => {
                       name="clientId"
                       render={({ field }) => (
                         <FormItem className="">
-                           <FormLabel className="whitespace-nowrap">
-                           Appointment with
+                          <FormLabel className="whitespace-nowrap">
+                            Appointment with
                           </FormLabel>
                           <FormControl>
                             <Popover
@@ -418,7 +412,6 @@ const AppointmentForm = ({ clientData }: Props) => {
               to schedule an Appointment!
             </span>
           </p>
-          
         </div>
       </div>
     </div>

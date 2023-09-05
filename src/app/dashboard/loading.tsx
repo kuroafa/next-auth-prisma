@@ -1,4 +1,3 @@
-import Loading from "@/components/Loading";
 import DashboardSkeleton from "@/components/skeletons/DashboardSkeleton";
 import React from "react";
 

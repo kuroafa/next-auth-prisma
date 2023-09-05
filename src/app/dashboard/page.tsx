@@ -1,40 +1,11 @@
-import React from "react";
-import { CgProfile } from "react-icons/cg";
-import { TfiArrowRight } from "react-icons/tfi";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { getAuthSession } from "@/lib/next-auth";
-import { ThemeToggle } from "@/components/navbar/ThemeToggle";
-import DashboardHeader from "@/components/DashboardHeader";
-import Sidebar from "@/components/navbar/Sidebar";
-import SignInButton from "@/components/navbar/SignInButton";
-import UserAccountNav from "@/components/navbar/UserAccountNav";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card";
-import DemoPage from "@/components/payments/DemoPage";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import ClientCard from "@/components/dashboard/components/ClientCard";
-import ClientsSection from "@/components/dashboard/sections/ClientsSection";
 import AnalyticsSection from "@/components/dashboard/sections/AnalyticsSection";
-
-import axios from "axios";
-import { DeleteSchema } from "@/lib/type";
-import { prisma } from "@/lib/db";
-import AppointmentForm from "@/components/forms/AppointmentForm";
+import ClientsSection from "@/components/dashboard/sections/ClientsSection";
+import { getAuthSession } from "@/lib/next-auth";
+import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import Loading from "@/components/Loading";
 import AppointmentsSection from "@/components/dashboard/sections/AppointmentsSection";
+import { prisma } from "@/lib/db";
 
 type Props = {};
 
@@ -60,12 +31,24 @@ const DashboardPage = async (props: Props) => {
     },
   });
 
-  const getPipeline = await prisma.client.findMany({
+  const getPipeline = await prisma.client.aggregate({
+    _sum: {
+      budget: true,
+    },
+    where: {
+      userId: session.user.id,
+    },
+  });
+
+  const getChartData = await prisma.client.findMany({
     where: {
       userId: session.user.id,
     },
     select: {
       budget: true,
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 
@@ -77,13 +60,18 @@ const DashboardPage = async (props: Props) => {
           appointmentCount={countAppointments}
           clientCount={countClients}
           pipeline={getPipeline}
+          chartData={getChartData}
         />
       </div>
       <div className="col-span-3 xl:col-span-1">
-        <ClientsSection dashboardMode />
+        <Suspense fallback={<Loading />}>
+          <ClientsSection dashboardMode />
+        </Suspense>
       </div>
       <div className="col-span-3 xl:col-span-4 h-fit">
-        <AppointmentsSection dashboardMode />
+        <Suspense fallback={<Loading />}>
+          <AppointmentsSection dashboardMode />
+        </Suspense>
       </div>
     </div>
   );

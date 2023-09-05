@@ -1,5 +1,20 @@
 "use client";
-import React from "react";
+import { EmailSchema, emailSendSchema } from "@/lib/type";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Client } from "@prisma/client";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ClientDropdown from "./ClientDropdown";
+import EmailClients from "./EmailClients";
+import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import {
   Form,
   FormControl,
@@ -10,23 +25,7 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
-import { useForm } from "react-hook-form";
-import { EmailSchema, emailSendSchema } from "@/lib/type";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "./ui/button";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Client } from "@prisma/client";
 import { Textarea } from "./ui/textarea";
-import ClientDropdown from "./ClientDropdown";
-import EmailClients from "./EmailClients";
 
 type Props = {
   clientData: Client[];

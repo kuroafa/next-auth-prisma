@@ -1,19 +1,14 @@
 "use client";
-import React from "react";
-import { Button } from "./ui/button";
-import axios from "axios";
-import { DeleteSchema } from "@/lib/type";
+import { DialogTitle } from "@radix-ui/react-dialog";
 import { useRouter } from "next/navigation"; // Import the useRouter hook from the correct path
-import { GrClose } from "react-icons/gr";
 import { toast } from "react-toastify";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogTrigger,
 } from "./ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
 
 type Props = {
   id: string;

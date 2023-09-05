@@ -2,7 +2,6 @@ import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
 import { DeletionSchema, appointmentCreationSchema } from "@/lib/type";
 import { NextResponse } from "next/server";
-import { type } from "os";
 import { z } from "zod";
 
 export async function POST(req: Request, res: Response) {

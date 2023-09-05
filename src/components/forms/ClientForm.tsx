@@ -1,9 +1,4 @@
 "use client";
-import { useForm } from "react-hook-form";
-import { clientCreationSchema } from "@/lib/type";
-import React from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -13,14 +8,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { useRouter } from "next/navigation";
-import { ClientCreation } from "@/lib/type";
+import { ClientCreation, clientCreationSchema } from "@/lib/type";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SelectValue } from "@radix-ui/react-select";
 import axios from "axios";
-import { Checkbox } from "@/components/ui/checkbox";
-import { ToastContainer, toast } from "react-toastify";
+import { DollarSign } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Button } from "../ui/button";
 import {
   Card,
   CardContent,
@@ -28,18 +27,9 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { useState } from "react";
-import { ChevronDown, ChevronRight, DollarSign } from "lucide-react";
+import { Input } from "../ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
-import { SelectValue } from "@radix-ui/react-select";
 import { Textarea } from "../ui/textarea";
-import Image from "next/image";
 
 type Props = {};
 

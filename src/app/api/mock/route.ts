@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 
@@ -148,7 +149,7 @@ export async function POST(res: Response, req: Request) {
         name: "Ava Martinez",
         phoneNumber: "2221119999",
         email: "ava.m@example.com",
-        budget: 1600000,
+        budget: 160000,
         preApproved: false,
         occupation: "Web Developer",
         maritalStatus: "MARRIED",
@@ -158,6 +159,7 @@ export async function POST(res: Response, req: Request) {
         notesPriority: false,
       },
     ];
+    revalidatePath("/");
 
     for (const demoUser of demoUsers) {
       const createdClient = await prisma.client.create({
@@ -170,9 +172,11 @@ export async function POST(res: Response, req: Request) {
         Date.now() + Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000
       );
 
-      const randomTime = `${Math.floor(Math.random() * 12) + 1}:${Math.floor(Math.random() * 60)} ${Math.random() < 0.5 ? 'AM': 'PM'}`;
+      const randomTime = `${Math.floor(Math.random() * 12) + 1}:${Math.floor(
+        Math.random() * 60
+      )} ${Math.random() < 0.5 ? "AM" : "PM"}`;
 
-      const appointmentTypes =   [
+      const appointmentTypes = [
         "SHOWING",
         "APPRASIAL",
         "INSPECTION",
@@ -180,9 +184,8 @@ export async function POST(res: Response, req: Request) {
         "PHOTOGRAPHY",
         "AGENT_PREVIEW",
       ];
-      const randomAppointmentType = appointmentTypes[Math.floor(Math.random() * appointmentTypes.length)]
-
-      
+      const randomAppointmentType =
+        appointmentTypes[Math.floor(Math.random() * appointmentTypes.length)];
 
       const appointmentData = {
         userId: session.user.id,
@@ -190,13 +193,14 @@ export async function POST(res: Response, req: Request) {
         address: `Address for ${createdClient.name}`,
         type: randomAppointmentType,
         time: randomTime,
-        date: randomDate.toISOString().slice(0,10),
+        date: randomDate.toISOString().slice(0, 10),
         clientId: createdClient.id,
       };
 
       await prisma.appointment.create({
         data: appointmentData,
       });
+      revalidateTag("/");
     }
 
     console.log("Demo users and appointments created successfully");
@@ -223,10 +227,16 @@ export async function DELETE(req: Request, res: Response) {
   try {
     await prisma.appointment.deleteMany({});
     await prisma.client.deleteMany({});
-    console.log('All data cleared successfully')
-    return NextResponse.json({message: 'Data cleared successfully'}, {status: 200})
+    revalidateTag("/");
+    return NextResponse.json(
+      { message: "Data cleared successfully" },
+      { status: 200 }
+    );
   } catch (error) {
-    console.log('Error clearing data', error)
-    return NextResponse.json({error: 'Internal error while clearing data'}, {status: 500})
+    console.log("Error clearing data", error);
+    return NextResponse.json(
+      { error: "Internal error while clearing data" },
+      { status: 500 }
+    );
   }
 }

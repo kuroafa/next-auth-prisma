@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { Appointment } from "@prisma/client";
@@ -11,7 +11,9 @@ interface Props {
 
 const SearchAppointment: React.FC<Props> = ({ appointmentData }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredAppointments, setFilteredAppointments] = useState<Appointment[]>([]);
+  const [filteredAppointments, setFilteredAppointments] = useState<
+    Appointment[]
+  >([]);
 
   useEffect(() => {
     const filteredData = appointmentData.filter((appointment: Appointment) => {
@@ -19,10 +21,10 @@ const SearchAppointment: React.FC<Props> = ({ appointmentData }) => {
       return name.toLowerCase().includes(searchQuery.toLowerCase());
     });
     setFilteredAppointments(filteredData);
-    // const timer = setTimeout(() => {
-    //   setFilteredAppointments(filteredData);
-    // }, 300);
-    // return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      setFilteredAppointments(filteredData);
+    }, 300);
+    return () => clearTimeout(timer);
   }, [searchQuery, appointmentData]);
 
   return (
@@ -42,7 +44,11 @@ const SearchAppointment: React.FC<Props> = ({ appointmentData }) => {
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-[30px]">
         {filteredAppointments.map((appointment) => (
-          <AppointmentCard dashboardMode={false} appointmentData={appointment} key={appointment.id} />
+          <AppointmentCard
+            dashboardMode={false}
+            appointmentData={appointment}
+            key={appointment.id}
+          />
         ))}
       </div>
     </div>
@@ -50,10 +56,6 @@ const SearchAppointment: React.FC<Props> = ({ appointmentData }) => {
 };
 
 export default SearchAppointment;
-
-
-
-
 
 // 'use client'
 // import React, { useEffect, useState } from "react";

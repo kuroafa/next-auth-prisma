@@ -17,23 +17,19 @@ import { Client } from "@prisma/client";
 type Props = {
   clientCount: number;
   appointmentCount: number;
-  pipeline: Pick<Client, "budget">[];
+  pipeline: { _sum: { budget: number } };
+  chartData: Pick<Client, "budget">[];
 };
 
 const AnalyticsSection = ({
   clientCount,
   appointmentCount,
   pipeline,
+  chartData,
 }: Props) => {
-  const totalBudgets = pipeline.reduce(
-    (acc, client) => acc + (client.budget || 0),
-    0
-  );
-  console.log(totalBudgets);
+  const { budget } = pipeline._sum; //pipeline._sum.budget
 
-  const inPipline = totalBudgets * 0.03;
-
-  console.log(inPipline);
+  const inPipline = budget * 0.03;
 
   return (
     <>
@@ -51,7 +47,7 @@ const AnalyticsSection = ({
               <CardTitle className="text-xl font-light">In Pipeline</CardTitle>
             </CardHeader>
             <CardContent className="text-3xl -mt-2 font-semibold">
-              ${inPipline.toLocaleString()}
+              ${inPipline ? inPipline.toLocaleString() : 0}
             </CardContent>
           </Card>
           <Card className="flex-1 h-fit pr-10 flex items-center justify-between">
@@ -113,14 +109,7 @@ const AnalyticsSection = ({
         </div>
 
         <div className="flex">
-          <Card className="flex-1  overflow-hidden">
-            <CardHeader>
-              <CardTitle>Closing Rate</CardTitle>
-            </CardHeader>
-            <CardContent className="overflow-hidden">
-              <ClosingsChart />
-            </CardContent>
-          </Card>
+          <ClosingsChart chartData={chartData} />
         </div>
       </div>
     </>

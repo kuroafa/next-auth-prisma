@@ -1,12 +1,8 @@
 "use client";
 
-import { DeleteSchema } from "@/lib/type";
 import { useRouter } from "next/navigation";
-import { GrClose } from "react-icons/gr";
 import { toast } from "react-toastify";
-import React from "react";
 import { Button } from "./ui/button";
-import axios from "axios";
 import {
   Dialog,
   DialogContent,

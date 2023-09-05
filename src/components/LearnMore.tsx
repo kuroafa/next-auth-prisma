@@ -1,3 +1,4 @@
+"usse client";
 import React from "react";
 import Link from "next/link";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";

@@ -3,7 +3,14 @@ import React, { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
 import Link from "next/link";
-import { CalendarPlus, ListPlus, Trash2, UserPlus } from "lucide-react";
+import {
+  CalendarPlus,
+  ListPlus,
+  Mail,
+  Send,
+  Trash2,
+  UserPlus,
+} from "lucide-react";
 import { ClientCreation } from "@/lib/type";
 import { toast } from "react-toastify";
 import { Client } from "@prisma/client";
@@ -30,9 +37,9 @@ const QuickActions = ({ clientData }: Props) => {
         method: "POST",
         body: JSON.stringify(data),
       });
-      refreshPage();
       const result = await response.json();
-      if (result) {
+
+      if (result === "Data Added Successfully") {
         toast.success(`Successfully generated mock users`);
       }
     } catch (error) {
@@ -47,9 +54,8 @@ const QuickActions = ({ clientData }: Props) => {
       const response = await fetch("api/mock", {
         method: "DELETE",
       });
-      refreshPage();
       const clearResult = await response.json();
-      if (clearResult) {
+      if (clearResult.message === "Data cleared successfully") {
         toast.success("Successfully cleared data");
       }
     } catch (error) {
@@ -67,15 +73,21 @@ const QuickActions = ({ clientData }: Props) => {
       <PopoverContent className="w-fit">
         <div className="flex flex-col gap-4">
           <Link href={"/add-client"}>
-            <Button className="w-full gap-2" variant="secondary">
+            <Button className="w-full gap-2" variant="outline">
               New Client
               <UserPlus size={20} />
             </Button>
           </Link>
           <Link href={"/Appointment-Creation"}>
-            <Button className="w-full gap-2" variant="secondary">
+            <Button className="w-full gap-2" variant="outline">
               New Appointment
               <CalendarPlus size={20} />
+            </Button>
+          </Link>
+          <Link href={"/email"}>
+            <Button className="w-full gap-2" variant="outline">
+              Send Email
+              <Send size={20} />
             </Button>
           </Link>
 

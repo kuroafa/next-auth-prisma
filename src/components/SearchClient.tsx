@@ -7,12 +7,12 @@ import ClientCard from "./dashboard/components/ClientCard";
 import { Search } from "lucide-react";
 
 type Props = {
-  clientData: Client[{}];
+  clientData: Client[];
 };
 
 const SearchClient = ({ clientData }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredClients, setFilteredClients] = useState<[]>([]);
+  const [filteredClients, setFilteredClients] = useState<Client[]>([]);
 
   useEffect(() => {
     const filteredData = clientData.filter((client: any) => {

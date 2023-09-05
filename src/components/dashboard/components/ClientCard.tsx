@@ -21,7 +21,7 @@ import DeleteClient from "@/components/DeleteClient";
 
 type Props = {
   clientData: Pick<Client, "name" | "email" | "phoneNumber" | "id">;
-  dashboardMode: boolean;
+  dashboardMode?: boolean;
 };
 
 const ClientCard = ({ clientData, dashboardMode }: Props) => {
@@ -65,12 +65,14 @@ const ClientCard = ({ clientData, dashboardMode }: Props) => {
       </CardHeader>
       <CardContent className="self-end flex-1">
         <div className="flex flex-wrap gap-2 justify-end">
-          <Button
-            variant="secondary"
-            className="hover:bg-slate-500 hover:text-white transition-all duration-200"
-          >
-            Contact
-          </Button>
+          <Link href={"/email"}>
+            <Button
+              variant="secondary"
+              className="hover:bg-slate-500 hover:text-white transition-all duration-200"
+            >
+              Contact
+            </Button>
+          </Link>
           {!dashboardMode ? <DeleteClient id={clientData.id} /> : null}
         </div>
       </CardContent>

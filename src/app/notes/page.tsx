@@ -2,7 +2,6 @@ import React from "react";
 import { getAuthSession } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
-import SearchedNotes from "@/components/SearchedNotes";
 import NotesTable from "@/components/NotesTable";
 
 type Props = {
@@ -24,6 +23,9 @@ const pages = async ({ notes, name }: Props) => {
     where: {
       userId: session.user.id,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
     select: {
       name: true,
       notes: true,
@@ -34,7 +36,9 @@ const pages = async ({ notes, name }: Props) => {
 
   return (
     <>
-      <div><NotesTable clientData={fetchClientNotes}/></div>
+      <div>
+        <NotesTable clientData={fetchClientNotes} />
+      </div>
     </>
   );
 };

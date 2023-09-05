@@ -1,12 +1,7 @@
-import React from "react";
+import SendEmail from "@/components/SendEmail";
+import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
-import SignInButton from "@/components/navbar/SignInButton";
-import { ThemeToggle } from "@/components/navbar/ThemeToggle";
-import UserAccountNav from "@/components/navbar/UserAccountNav";
-import SearchEmail from "@/components/SearchEmail";
-import { prisma } from "@/lib/db";
-import SendEmail from "@/components/SendEmail";
 
 type Props = {};
 

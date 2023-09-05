@@ -17,6 +17,9 @@ const ClientsSection = async ({ dashboardMode }: Props) => {
     where: {
       userId: session?.user.id,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
     take: 3,
   });
   return (
@@ -28,27 +31,33 @@ const ClientsSection = async ({ dashboardMode }: Props) => {
           </h2>
         </div>
         <div className="flex flex-col gap-4 items-start w-full">
-          {fetchClients.map(
-            (clients, idx) =>
-              idx < 3 && (
-                <ClientCard
-                  dashboardMode={dashboardMode}
-                  key={clients.id}
-                  clientData={clients}
-                />
-              )
+          {fetchClients.length > 0 ? (
+            fetchClients.map(
+              (clients, idx) =>
+                idx < 3 && (
+                  <ClientCard
+                    dashboardMode={dashboardMode}
+                    key={clients.id}
+                    clientData={clients}
+                  />
+                )
+            )
+          ) : (
+            <h2>No Clients Found</h2>
           )}
         </div>
-        <Link href="/Clients">
-          <div className="flex ml-2 -mt-3 flex-row-reverse items-center  gap-2 cursor-pointer ">
-            <MoveRight
-              size={30}
-              strokeWidth={1}
-              className="hover:text-gray-700"
-            />
-            <p className="hover:text-gray-700">View More</p>
-          </div>
-        </Link>
+        {fetchClients.length > 0 ? (
+          <Link href="/Clients">
+            <div className="flex ml-2 -mt-3 flex-row-reverse items-center  gap-2 cursor-pointer ">
+              <MoveRight
+                size={30}
+                strokeWidth={1}
+                className="hover:text-gray-700"
+              />
+              <p className="hover:text-gray-700">View More</p>
+            </div>
+          </Link>
+        ) : null}
       </div>
     </div>
   );

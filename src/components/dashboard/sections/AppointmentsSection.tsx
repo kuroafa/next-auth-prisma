@@ -1,12 +1,8 @@
-import React from "react";
-import AppointmentCard from "../components/AppointmentCard";
-import AppointmentForm from "@/components/forms/AppointmentForm";
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
-import { type } from "os";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { ArrowUpRight, MoveRight } from "lucide-react";
+import AppointmentCard from "../components/AppointmentCard";
 
 type Props = {
   dashboardMode: boolean;
@@ -19,7 +15,9 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
     where: {
       userId: session?.user.id,
     },
-    take: 4,
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   const hasNewAppointments = appointmentData.length > 0;
@@ -32,13 +30,13 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
             <h3 className="light:text-black text-3xl font-semibold  ">
               Appointments
             </h3>
-            {/* <span
-              className={` w-7 h-7 ${
-                appointmentData.length === 0 ? "hidden" : null
-              } flex rounded-full -top-4 -right-4 bg-red-600 text-white text-[16px] items-center font-bold justify-center`}
-            >
-              {appointmentData.length}
-            </span> */}
+            {appointmentData.length > 0 ? (
+              <span
+                className={` w-14 h-7 flex rounded-full -top-4 -right-4 bg-red-400 text-white dark:bg-red-500 items-center font-bold justify-center`}
+              >
+                {appointmentData.length}
+              </span>
+            ) : null}
             <Link href="/Appointments-Page">
               <ArrowUpRight size={35} strokeWidth={1} />
             </Link>
@@ -46,13 +44,16 @@ const AppointmentsSection = async ({ dashboardMode }: Props) => {
         </div>
         <div className="grid grid-cols-1 gap-4 w-full mt-2 lg:grid-cols-2 xl:grid-cols-4">
           {hasNewAppointments ? (
-            appointmentData.map((data, idx) => (
-              <AppointmentCard
-                dashboardMode={dashboardMode}
-                appointmentData={data}
-                key={data.id}
-              />
-            ))
+            appointmentData.map(
+              (data, idx) =>
+                idx < 4 && (
+                  <AppointmentCard
+                    dashboardMode={dashboardMode}
+                    appointmentData={data}
+                    key={data.id}
+                  />
+                )
+            )
           ) : (
             <h2>No Appointments Found</h2>
           )}

@@ -1,5 +1,6 @@
+"use client";
+
 import { Client } from "@prisma/client";
-import Link from "next/link";
 import { Button } from "./ui/button";
 import {
   Card,

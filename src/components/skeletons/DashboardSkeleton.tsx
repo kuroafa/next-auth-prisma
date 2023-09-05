@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Skeleton } from "../ui/skeleton";
 import { MdOutlineAnalytics } from "react-icons/md";

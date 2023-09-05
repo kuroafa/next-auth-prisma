@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { Client } from "@prisma/client";
@@ -9,7 +9,7 @@ import Link from "next/link";
 import { Divider, Space, Tag } from "antd";
 
 interface Props {
-  clientData: Pick<Client, "name" | "notes" | "id" | "preApproved">;
+  clientData: Client[];
 }
 
 const NotesTable: React.FC<Props> = ({ clientData }) => {
@@ -22,8 +22,10 @@ const NotesTable: React.FC<Props> = ({ clientData }) => {
       const name = client.name.toLowerCase();
       const notes = client.notes.toLowerCase();
       return (
-        (name.includes(searchQuery.toLowerCase()) || notes.includes(searchQuery.toLowerCase())) &&
-        (filterValue === null || client.preApproved === (filterValue === "approved"))
+        (name.includes(searchQuery.toLowerCase()) ||
+          notes.includes(searchQuery.toLowerCase())) &&
+        (filterValue === null ||
+          client.preApproved === (filterValue === "approved"))
       );
     });
 
@@ -52,14 +54,18 @@ const NotesTable: React.FC<Props> = ({ clientData }) => {
           <Tag
             color="red"
             onClick={() => setFilterValue("notApproved")}
-            className={`cursor-pointer ${filterValue === "notApproved" ? "selected" : ""}`}
+            className={`cursor-pointer ${
+              filterValue === "notApproved" ? "selected" : ""
+            }`}
           >
             Not Approved
           </Tag>
           <Tag
             color="green"
             onClick={() => setFilterValue("approved")}
-            className={`cursor-pointer ${filterValue === "approved" ? "selected" : ""}`}
+            className={`cursor-pointer ${
+              filterValue === "approved" ? "selected" : ""
+            }`}
           >
             Approved
           </Tag>
@@ -79,36 +85,36 @@ const NotesTable: React.FC<Props> = ({ clientData }) => {
           dataSource={filteredClients}
           renderItem={(item) => (
             <List.Item>
-            <List.Item.Meta
-              avatar={
-                <div
-                  className={` rounded-full   text-white p-2 ${
-                    item.preApproved ? "bg-green-600" : "bg-red-600"
-                  } `}
-                >
-                  {item.preApproved ? <Smile /> : <Frown />}
-                </div>
-              }
-              title={
-                <Link
-                  className="flex items-center gap-1 p-4 w-fit"
-                  href={`Client-Profile/${item.id}`}
-                >
-                  <h1 className="text-xl ">
-                    <span className="font-semibold">
-                      {item.name ? item.name : "No Client Name"}
-                    </span>
-                  </h1>
-                  <ArrowUpRight size={25} strokeWidth={1} />
-                </Link>
-              }
-              description={
-                <p className="text-[16px] text-gray-700 font-medium">
-                  <span className="font-bold">NOTE:</span> {item.notes}
-                </p>
-              }
-            />
-          </List.Item>
+              <List.Item.Meta
+                avatar={
+                  <div
+                    className={` rounded-full   text-white p-2 ${
+                      item.preApproved ? "bg-green-600" : "bg-red-600"
+                    } `}
+                  >
+                    {item.preApproved ? <Smile /> : <Frown />}
+                  </div>
+                }
+                title={
+                  <Link
+                    className="flex items-center gap-1 p-4 w-fit"
+                    href={`Client-Profile/${item.id}`}
+                  >
+                    <h1 className="text-xl ">
+                      <span className="font-semibold">
+                        {item.name ? item.name : "No Client Name"}
+                      </span>
+                    </h1>
+                    <ArrowUpRight size={25} strokeWidth={1} />
+                  </Link>
+                }
+                description={
+                  <p className="text-[16px] text-gray-700 font-medium">
+                    <span className="font-bold">NOTE:</span> {item.notes}
+                  </p>
+                }
+              />
+            </List.Item>
           )}
         />
       </div>

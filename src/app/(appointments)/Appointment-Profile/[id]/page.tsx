@@ -1,8 +1,6 @@
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
-import dayjs from "dayjs";
 import { redirect } from "next/navigation";
-import React from "react";
 
 type Props = {
   params: {
@@ -28,7 +26,7 @@ const page = async ({ params: { id } }: Props) => {
 
   const getClient = await prisma.client.findUnique({
     where: {
-      id: getAppointment?.clientId,
+      id: getAppointment?.clientId || undefined,
     },
   });
 
