@@ -38,14 +38,13 @@ const Sidebar: React.FC = () => {
     setIsHamburgerActive(false);
   };
 
-
   return (
     <div className="">
-    <Disclosure className="" as="nav">
+      <Disclosure className="" as="nav">
         {({ open }) => (
           <>
             <Disclosure.Button
-              className="absolute top-5 right-5 inline-flex items-center peer justify-center rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group"
+              className="absolute top-6 right-5 inline-flex items-center peer justify-center rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group"
               onClick={toggleSidebar}
             >
               <div className="block lg:hidden " aria-hidden="true">
@@ -65,8 +64,8 @@ const Sidebar: React.FC = () => {
                   className="flex flex-col gap-1 items-center justify-center"
                 >
                   <button onClick={closeSidebar}>
-                    <p className="text-lg">Clients & Appointments</p>
-                    <h1 className="text-5xl font-bold italic ">Meetly</h1>
+                    <p className="text-md">Clients & Appointments</p>
+                    <h1 className="text-4xl font-bold italic ">Meetly</h1>
                   </button>
                 </Link>
                 <div className="my-4  border-gray-100 pb-4">
@@ -79,7 +78,7 @@ const Sidebar: React.FC = () => {
                     </div>
                   </Link>
                   <Link onClick={closeSidebar} href="/Clients">
-                    <div  className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
+                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
                       <CgProfile className="text-2xl light:text-gray-900 group:hover:text-white" />
                       <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
                         Clients
@@ -87,7 +86,7 @@ const Sidebar: React.FC = () => {
                     </div>
                   </Link>
                   <Link onClick={closeSidebar} href="/notes">
-                    <div  className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
+                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
                       <FaRegComments className="text-2xl light:text-gray-900 group:hover:text-white" />
                       <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
                         Notes
@@ -103,7 +102,7 @@ const Sidebar: React.FC = () => {
                     </div>
                   </Link>
                   <Link onClick={closeSidebar} href="/email">
-                    <div  className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
+                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
                       <MdOutlineIntegrationInstructions className="text-2xl light:text-gray-900 group:hover:text-white" />
                       <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
                         Email

@@ -9,12 +9,11 @@ import Image from "next/image";
 import QuickActions from "./QuickActions";
 import { Client } from "@prisma/client";
 
-
 type Props = {
-  clientData: Client;
+  clientData?: Client;
 };
 
-const Navbar = async ({clientData}: Props) => {
+const Navbar = async ({ clientData }: Props) => {
   const session = await getAuthSession();
 
   return (

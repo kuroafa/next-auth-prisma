@@ -24,7 +24,7 @@ const ClosingsChart = ({ chartData }: Props) => {
     labels: [1, 2, 3, 4, 5, 6],
     datasets: [
       {
-        label: "Closings each month",
+        label: "Client Budget",
         data: formattedChartData,
         backgroundColor: "white",
         borderColor: theme.theme === "light" ? "black" : "white",

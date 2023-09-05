@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
 import Link from "next/link";
@@ -22,26 +22,22 @@ type Props = {
 
 const QuickActions = ({ clientData }: Props) => {
   const router = useRouter();
-
-  const refreshPage = () => {
-    const currentUrl = window.location.href;
-    const newUrl = currentUrl.includes("?")
-      ? `${currentUrl}&refresh=${Date.now()}`
-      : `${currentUrl}?refresh=${Date.now()}`;
-    window.location.href = newUrl;
-  };
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const getUsers = async (data: ClientCreation) => {
     try {
+      setIsGenerating(true);
       const response = await fetch("/api/mock", {
         method: "POST",
         body: JSON.stringify(data),
       });
       const result = await response.json();
-
+      router.refresh();
       if (result === "Data Added Successfully") {
         toast.success(`Successfully generated mock users`);
       }
+      setIsGenerating(false);
     } catch (error) {
       if (error) {
         toast.error(`Error generating mock users: ${error}`);
@@ -51,10 +47,13 @@ const QuickActions = ({ clientData }: Props) => {
 
   const clearUsers = async () => {
     try {
+      setIsDeleting(true);
       const response = await fetch("api/mock", {
         method: "DELETE",
       });
       const clearResult = await response.json();
+      router.refresh();
+      setIsDeleting(false);
       if (clearResult.message === "Data cleared successfully") {
         toast.success("Successfully cleared data");
       }
@@ -97,18 +96,20 @@ const QuickActions = ({ clientData }: Props) => {
             }}
             className="w-full gap-2"
             variant="secondary"
+            disabled={isGenerating}
           >
-            Generate Mock Data
+            {isGenerating ? "Generating..." : "Generate Mock Data"}
             <ListPlus size={20} />
           </Button>
           <Button
             onClick={() => {
               clearUsers();
             }}
+            disabled={isDeleting}
             className="w-full gap-2"
             variant="secondary"
           >
-            Clear Dashboard
+            {isDeleting ? "Deleting..." : "Clear Dashboard"}
             <Trash2 size={20} />
           </Button>
         </div>
