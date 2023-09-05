@@ -193,7 +193,7 @@ export async function POST(res: Response, req: Request) {
         address: `Address for ${createdClient.name}`,
         type: randomAppointmentType,
         time: randomTime,
-        date: randomDate.toISOString().slice(0, 10),
+        date: new Date().valueOf().toString(),
         clientId: createdClient.id,
       };
 
@@ -225,8 +225,27 @@ export async function POST(res: Response, req: Request) {
 
 export async function DELETE(req: Request, res: Response) {
   try {
-    await prisma.appointment.deleteMany({});
-    await prisma.client.deleteMany({});
+    const session = await getAuthSession();
+    if (!session?.user) {
+      console.log("User not authenticated");
+      return NextResponse.json(
+        {
+          error: "User not authenticated",
+        },
+        { status: 401 }
+      );
+    }
+
+    await prisma.appointment.deleteMany({
+      where: {
+        userId: session.user.id,
+      },
+    });
+    await prisma.client.deleteMany({
+      where: {
+        userId: session.user.id,
+      },
+    });
     revalidateTag("/");
     return NextResponse.json(
       { message: "Data cleared successfully" },
