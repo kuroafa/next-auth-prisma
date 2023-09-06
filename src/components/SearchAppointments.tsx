@@ -10,7 +10,7 @@ interface Props {
   clientData: Client[];
 }
 
-function SearchAppointment({ appointmentData, clientData }: Props) {
+const SearchAppointment: React.FC<Props> = ({ appointmentData, clientData }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredAppointments, setFilteredAppointments] = useState<Appointment[]>(
     []
@@ -92,6 +92,6 @@ function SearchAppointment({ appointmentData, clientData }: Props) {
       </div>
     </div>
   );
-}
+};
 
 export default SearchAppointment;
