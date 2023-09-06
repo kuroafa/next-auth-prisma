@@ -66,7 +66,7 @@ const Hero = (props: Props) => {
                 <Github className="ml-2" />
               </Button>
             </div>
-            <h2 className="text-xl self-center md:self-start">
+            <h2 className="text-xl self-center md:self-start hidden">
               <span className="font-bold text-red-600 text-2xl border-b-2 border-black dark:border-white">
                 {clientNum}
               </span>{" "}
