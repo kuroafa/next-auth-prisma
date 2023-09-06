@@ -76,7 +76,7 @@ const SearchAppointment: React.FC<Props> = ({ appointmentData, clientData }) => 
               filterValue === null ? "selected" : ""
             }`}
           >
-            All Notes
+            All Appointments
           </Tag>
         </Space>
       </div>

@@ -74,7 +74,7 @@ const SearchClient = ({ clientData }: Props) => {
             onClick={() => setFilterValue(null)}
             className={`cursor-pointer `}
           >
-            All Notes
+            All Clients
           </Tag>
         </Space>
       </div>
