@@ -12,9 +12,9 @@ export default async function Home() {
     return redirect("/dashboard");
   }
   return (
-    <div className="flex h-full flex-col ">
+    <div className="flex h-full w-full flex-col md:p-10">
       <Hero />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

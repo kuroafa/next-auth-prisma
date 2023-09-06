@@ -55,7 +55,7 @@ const DashboardPage = async (props: Props) => {
   return (
     <div className="grid grid-col-1 xl:grid-cols-4 gap-4 pt-8 ">
       {/* Graphs/Data */}
-      <div className="col-span-3">
+      {/* <div className="col-span-3">
         <AnalyticsSection
           appointmentCount={countAppointments}
           clientCount={countClients}
@@ -72,7 +72,8 @@ const DashboardPage = async (props: Props) => {
         <Suspense fallback={<Loading />}>
           <AppointmentsSection dashboardMode />
         </Suspense>
-      </div>
+      </div> */}
+      hi
     </div>
   );
 };

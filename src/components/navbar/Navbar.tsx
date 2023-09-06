@@ -17,7 +17,7 @@ const Navbar = async ({ clientData }: Props) => {
   const session = await getAuthSession();
 
   return (
-    <div className="flex items-center justify-between w-[calc(100%-50px)] gap-4 absolute xl:right-5 lg:right-5 md:right-20 right-20 top-6 h-fit  ">
+    <div className="flex items-center justify-between w-[calc(100%-50px)] gap-4 absolute right-5 top-6 h-fit  ">
       <div className="lg:ml-[220px] ml-[100px]">
         <h2 className="font-semibold text-base hidden lg:block">
           {session?.user ? `Welcome, ${session?.user.name}` : null}

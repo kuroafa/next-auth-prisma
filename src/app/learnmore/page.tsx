@@ -17,7 +17,6 @@ const page = async (props: Props) => {
   return (
     <div>
       <LearnMore />
-      <Footer />
     </div>
   );
 };
