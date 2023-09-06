@@ -1,31 +1,40 @@
-"use client";
 import React, { useEffect, useState } from "react";
-import { Input } from "./ui/input";
-import { Appointment } from "@prisma/client";
-import { Search } from "lucide-react";
+import { Input, Space, Tag } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { Appointment, Client } from "@prisma/client";
 import AppointmentCard from "./dashboard/components/AppointmentCard";
 
 interface Props {
   appointmentData: Appointment[];
+  clientData: Client[];
 }
 
-const SearchAppointment: React.FC<Props> = ({ appointmentData }) => {
+const SearchAppointment: React.FC<Props> = ({ appointmentData, clientData }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredAppointments, setFilteredAppointments] = useState<
-    Appointment[]
-  >([]);
+  const [filteredAppointments, setFilteredAppointments] = useState<Appointment[]>(
+    []
+  );
+  const [filterValue, setFilterValue] = useState<string | null>(null);
 
   useEffect(() => {
-    const filteredData = appointmentData.filter((appointment: Appointment) => {
-      const name = appointment.name;
-      return name.toLowerCase().includes(searchQuery.toLowerCase());
+    const filteredClients = clientData.filter((client: Client) => {
+      const name = client.name.toLowerCase();
+
+      return (
+        (name.includes(searchQuery.toLowerCase()) ||
+          (client.name?.toLowerCase().includes(searchQuery.toLowerCase()))) &&
+        (filterValue === null ||
+          client.preApproved === (filterValue === "approved"))
+      );
     });
+
+    const filteredData = appointmentData.filter((appointment: Appointment) => {
+      const name = appointment.name.toLowerCase();
+      return name.includes(searchQuery.toLowerCase());
+    });
+
     setFilteredAppointments(filteredData);
-    const timer = setTimeout(() => {
-      setFilteredAppointments(filteredData);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [searchQuery, appointmentData]);
+  }, [searchQuery, clientData, filterValue, appointmentData]);
 
   return (
     <div className="mt-4">
@@ -33,14 +42,43 @@ const SearchAppointment: React.FC<Props> = ({ appointmentData }) => {
         <h2 className="font-semibold mb-1">Search appointments</h2>
         <div className="relative h-fit">
           <Input
-            type="search"
+            placeholder="Search"
+            prefix={<SearchOutlined />}
             onChange={(e) => {
               setSearchQuery(e.target.value);
             }}
             className="pl-9 text-lg py-5 w-full"
           />
-          <Search className="absolute top-2 left-2 " />
         </div>
+        <Space className="pt-3" size={[0, 8]} wrap>
+          <Tag
+            color="red"
+            onClick={() => setFilterValue("notApproved")}
+            className={`cursor-pointer ${
+              filterValue === "notApproved" ? "selected" : ""
+            }`}
+          >
+            Not Approved
+          </Tag>
+          <Tag
+            color="green"
+            onClick={() => setFilterValue("approved")}
+            className={`cursor-pointer ${
+              filterValue === "approved" ? "selected" : ""
+            }`}
+          >
+            Approved
+          </Tag>
+          <Tag
+            color="geekblue"
+            onClick={() => setFilterValue(null)}
+            className={`cursor-pointer ${
+              filterValue === null ? "selected" : ""
+            }`}
+          >
+            All Notes
+          </Tag>
+        </Space>
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-[30px]">
         {filteredAppointments.map((appointment) => (
@@ -56,56 +94,3 @@ const SearchAppointment: React.FC<Props> = ({ appointmentData }) => {
 };
 
 export default SearchAppointment;
-
-// 'use client'
-// import React, { useEffect, useState } from "react";
-// import { Input } from "./ui/input";
-// import { Appointment } from "@prisma/client";
-// import { Search } from "lucide-react";
-// import AppointmentCard from "./dashboard/components/AppointmentCard";
-
-// interface Props {
-//     appointmentData: Appointment[{}]
-// }
-// const SearchAppointments: React.FC<Props> = ({ appointmentData }) => {
-//   const [searchQuery, setSearchQuery] = useState<string>("");
-//   const [filteredAppointments, setFilteredAppointments] = useState<Appointment[]>([]);
-
-//   useEffect(() => {
-//     const filteredData = appointmentData.filter((appointment: Appointment) => {
-//       const name = appointment.name;
-//       return name.toLowerCase().includes(searchQuery.toLowerCase());
-//     });
-
-//     const timer = setTimeout(() => {
-//       setFilteredAppointments(filteredData);
-//     }, 10000);
-//     return () => clearTimeout(timer);
-//   }, [searchQuery, appointmentData]);
-
-//   return (
-//     <div className="mt-4">
-//       <div className="w-full min-w-[150px] lg:max-w-[400px]">
-//         <h2 className="font-semibold mb-1">Search Appointments</h2>
-//         <div className="relative h-fit">
-//           <Input
-//             type="search"
-//             placeholder="Appointment name"
-//             onChange={(e) => {
-//               setSearchQuery(e.target.value);
-//             }}
-//             className="pl-10 py-5 w-full"
-//           />
-//           <Search className="absolute top-2 left-2" />
-//         </div>
-//       </div>
-//       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-[30px]">
-//         {filteredAppointments.map((appointment) => (
-//           <AppointmentCard dashboardMode appointmentData={appointment} key={appointment.id} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SearchAppointments;
