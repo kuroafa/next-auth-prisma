@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from "react";
 import { Input, Space, Tag } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
@@ -76,7 +77,7 @@ const SearchAppointment: React.FC<Props> = ({ appointmentData, clientData }) => 
               filterValue === null ? "selected" : ""
             }`}
           >
-            All Notes
+            All Appointments
           </Tag>
         </Space>
       </div>
