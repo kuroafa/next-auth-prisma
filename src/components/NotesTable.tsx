@@ -20,10 +20,10 @@ const NotesTable: React.FC<Props> = ({ clientData }) => {
   useEffect(() => {
     const filteredData = clientData.filter((client: Client) => {
       const name = client.name.toLowerCase();
-      const notes = client.notes.toLowerCase();
+      const notes = client.notes?.toLowerCase();
       return (
         (name.includes(searchQuery.toLowerCase()) ||
-          notes.includes(searchQuery.toLowerCase())) &&
+          notes?.includes(searchQuery.toLowerCase())) &&
         (filterValue === null ||
           client.preApproved === (filterValue === "approved"))
       );
