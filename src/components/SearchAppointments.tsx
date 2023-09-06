@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from "react";
 import { Input, Space, Tag } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
