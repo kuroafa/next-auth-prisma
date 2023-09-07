@@ -33,7 +33,7 @@ export default async function RootLayout({
             className={cn(
               inter.className,
               `antialiased flex flex-col gap-2 px-4 lg:px-0  ${
-                session?.user ? "xl:flex-row" : ""
+                session?.user ? "md:flex-row" : ""
               }`
             )}
           >

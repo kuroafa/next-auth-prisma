@@ -100,7 +100,7 @@ const NotesTable: React.FC<Props> = ({ clientData }) => {
                     className="flex items-center gap-1 p-4 w-fit"
                     href={`Client-Profile/${item.id}`}
                   >
-                    <h1 className="text-xl ">
+                    <h1 className="text-xl dark:text-gray-400 ">
                       <span className="font-semibold">
                         {item.name ? item.name : "No Client Name"}
                       </span>
@@ -109,7 +109,7 @@ const NotesTable: React.FC<Props> = ({ clientData }) => {
                   </Link>
                 }
                 description={
-                  <p className="text-[16px] text-gray-700 font-medium">
+                  <p className="text-[16px] dark:text-gray-200 text-gray-700 font-medium">
                     <span className="font-bold">NOTE:</span> {item.notes}
                   </p>
                 }
