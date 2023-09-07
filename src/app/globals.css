@@ -74,10 +74,12 @@
   body {
     @apply dark:text-foreground;
     overflow-x: hidden;
+   
   }
 }
 * {
   font-family: "Oxanium", cursive;
+  
 }
 .modal {
   @apply fixed z-[20000] left-0 right-0 top-0 bottom-0 mx-auto bg-black/70;
@@ -111,4 +113,9 @@
       scrollbar-width: none; /* Firefox */
     }
   }
+}
+.heroBg{
+  background: repeating-linear-gradient(45deg, #726bf8 0, #726bf8 10%, transparent 0, transparent 50%);
+  background-size: 2em 2em;
+  opacity: 1
 }

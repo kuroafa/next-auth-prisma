@@ -105,7 +105,7 @@ const NotesTable: React.FC<Props> = ({ clientData }) => {
                         {item.name ? item.name : "No Client Name"}
                       </span>
                     </h1>
-                    <ArrowUpRight size={25} strokeWidth={1} />
+                    <ArrowUpRight className="dark:text-gray-400" size={25} strokeWidth={1} />
                   </Link>
                 }
                 description={

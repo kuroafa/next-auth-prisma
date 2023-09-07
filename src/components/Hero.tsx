@@ -22,20 +22,24 @@ const Hero = (props: Props) => {
 
   return (
     <>
-      <div className="px-0 mt-8 xl:mt-0 xl:p-10 w-full">
+      <div className=" px-0 mt-8 xl:mt-0 xl:p-10 w-full">
         <div className="flex flex-col xl:flex-row items-center justify-center gap-8 md:gap-24">
           <div className="flex flex-col gap-6 md:gap-8 max-w-3xl">
-            <div className="self-center md:self-start text-center md:text-start">
-              <h1 className="flex flex-col md:hidden">
+            <div>
+              {" "}
+              <p className="text-md">Clients & Appointments</p>
+              <h1 className="text-4xl font-bold italic ">Meetly</h1>
+            </div>
+            <div className=" md:self-start  md:text-start">
+              {/* <h1 className="flex flex-col md:hidden">
                 <span className="text-2xl font-thin">Welcome to</span>
                 <span className="font-extrabold italic text-8xl md:text-4xl">
                   Meetly
                 </span>
-              </h1>
+              </h1> */}
               <h1 className="text-4xl md:text-6xl font-semibold ">
-                <span className="hidden md:block">
-                  <span className="italic font-extrabold">Meetly:</span> Your
-                  Path to Real Estate Success Begins
+                <span className="">
+                  <span className="italic font-extrabold md:block hidden">Meetly:</span> Your Path to Real Estate Success Begins
                 </span>
               </h1>
             </div>
@@ -74,9 +78,9 @@ const Hero = (props: Props) => {
               <span className="font-semibold italic">Meetly</span>
             </h2>
             <div>
-              <p className="font-semibold text-sm mb-1">Created By:</p>
+              <p className="font-semibold text-sm mb-2">Created By:</p>
               <div className="flex gap-2">
-                <span className="flex gap-2 border-2 border-black rounded-xl p-1 dark:border-white items-center justify-center">
+                <span className="flex gap-2 border-2 border-black rounded-xl p-2 dark:border-white items-center justify-center">
                   <p>Mustafa R.</p>
                   <Link
                     href={"https://www.linkedin.com/in/mustafa-rajeh/"}
@@ -85,7 +89,7 @@ const Hero = (props: Props) => {
                     <Linkedin size={20} />
                   </Link>
                 </span>
-                <span className="flex gap-2 border-2 border-black rounded-xl p-1 dark:border-white items-center justify-center">
+                <span className="flex gap-2 border-2 border-black rounded-xl p-2 dark:border-white items-center justify-center">
                   <p>Nader A.</p>
                   <Link
                     href={
@@ -99,12 +103,12 @@ const Hero = (props: Props) => {
             </div>
           </div>
           <div className="self-center xl:self-end">
-            <div className=" bg-gray-200 w-fit dark:bg-gray-600 hidden md:block md:flex relative rounded-tl-full rounded-tr-full rounded-br-3xl rounded-bl-3xl pt-[7rem] px-[7rem]  items-center justify-start">
+            <div className=" heroBg w-fit  hidden md:block md:flex relative rounded-tl-full rounded-br-3xl rounded-bl-3xl pt-[7rem] px-[7rem]  items-center justify-start">
               <div className="relative min-w-[250px] ">
                 <Image src={iPhone} alt="iphone" width={300} />
               </div>
             </div>
-            <div className="block md:hidden w-full max-w-[500px]">
+            <div className=" rounded-tl-full block md:hidden w-full max-w-[500px]">
               <Image src={iPhone} alt="iphone" width={500} />
             </div>
           </div>

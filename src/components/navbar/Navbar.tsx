@@ -22,6 +22,7 @@ const Navbar = async ({ clientData }: Props) => {
         session?.user ? "right-20" : "right-5"
       } top-7 h-fit`}
     >
+    
       <div className="lg:ml-[220px] ml-[100px]">
         <h2 className="font-semibold text-base hidden lg:block">
           {session?.user ? `Welcome, ${session?.user.name}` : null}

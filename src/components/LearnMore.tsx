@@ -12,7 +12,7 @@ type Props = {};
 const LearnMore = (props: Props) => {
   return (
     <div>
-      <div className="pl-10 pt-20 ">
+      <div className="pl-3  ">
         <Link href="/">
           <MdOutlineArrowBackIosNew size={40} />
         </Link>
@@ -65,18 +65,30 @@ const LearnMore = (props: Props) => {
           </div>
         </div>
         <div className="xl:p-20 lg:p-20 p-10">
-          <Card className=" dark:bg-gray-900 p-3 w-[350px] h-[200px] ">
-            <CardTitle className="p-4 text-[20px]">
-              Give Realtor.io a Try!
-            </CardTitle>
-            <CardDescription className="p-4 dark:text-gray-500 -mt-5 text-[18px]">
-              Utilize the power of Ai in your Dashboard
-            </CardDescription>
-            <CardContent className="-ml-2">
-              <SignInButton text="Sign In" />
-            </CardContent>
-          </Card>
+          <h2 className="logo text-5xl font-light pb-1 ">Features</h2>
+          <div className="flex flex-col gap-10 pt-2">
+            <div>
+              <h2 className="logo text-2xl font-semibold border-b w-fit pb-1 border-gray-400">
+                Dashboard
+              </h2>
+              <p className="text-xl pt-2">
+                Providing you with the latest industry tools to SUCCESSED.
+                <br /> A Dashboard made specifically for Real Estate Agents.
+              </p>
+            </div>
+            <div>
+              <h2 className="logo text-2xl font-semibold border-b w-fit pb-1 border-gray-400">
+                Analyzed Data{" "}
+              </h2>
+              <p className="text-xl pt-2">
+                Focus on finding leads, Leave all the DATA to US.
+                <br />
+                Our goal is to make sure you know what&apos;s really going on.
+              </p>
+            </div>
+          </div>
         </div>
+  
       </div>
     </div>
   );
