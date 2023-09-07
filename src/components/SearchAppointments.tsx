@@ -10,19 +10,22 @@ interface Props {
 }
 
 const SearchAppointment: React.FC<Props> = ({ appointmentData }) => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredAppointments, setFilteredAppointments] = useState<
     Appointment[]
   >([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
+    setIsSearching(true);
     const filteredData = appointmentData.filter((appointment: Appointment) => {
-      const name = appointment.name;
-      return name.toLowerCase().includes(searchQuery.toLowerCase());
+      const name = appointment.type.toLowerCase();
+      return name.includes(searchQuery.toLowerCase());
     });
-    setFilteredAppointments(filteredData);
     const timer = setTimeout(() => {
       setFilteredAppointments(filteredData);
+      setIsSearching(false);
+      console.log(filteredAppointments);
     }, 300);
     return () => clearTimeout(timer);
   }, [searchQuery, appointmentData]);

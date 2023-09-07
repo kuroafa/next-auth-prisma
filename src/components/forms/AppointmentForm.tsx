@@ -33,7 +33,7 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { CheckIcon } from "lucide-react";
 import Image from "next/image";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Card,
@@ -391,7 +391,6 @@ const AppointmentForm = ({ clientData }: Props) => {
                   </div>
                 </div>
                 <Button type="submit">Submit</Button>
-                <ToastContainer />
               </form>
             </Form>
           </CardContent>

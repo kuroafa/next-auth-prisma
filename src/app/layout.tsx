@@ -32,7 +32,9 @@ export default async function RootLayout({
           <body
             className={cn(
               inter.className,
-              "antialiased flex flex-col gap-2 px-4 lg:px-0 lg:flex-row "
+              `antialiased flex flex-col gap-2 px-4 lg:px-0  ${
+                session?.user ? "xl:flex-row" : ""
+              }`
             )}
           >
             {!!session?.user && (
@@ -42,8 +44,8 @@ export default async function RootLayout({
             )}
             <div
               className={`${
-                !!session?.user ? "flex-[.9]" : "flex-1"
-              } mt-16 lg:pr-8 `}
+                !!session?.user ? "flex-[.9] lg:pr-8" : "flex-1"
+              } mt-16  `}
             >
               {children}
               <ToastContainer

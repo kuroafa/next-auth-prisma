@@ -12,11 +12,13 @@ type Props = {
 };
 
 const SearchClient = ({ clientData }: Props) => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredClients, setFilteredClients] = useState<Client[]>([]);
   const [filterValue, setFilterValue] = useState<string | null>(null);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
+    setIsSearching(true);
     const filteredData = clientData.filter((client: Client) => {
       const name = client.name.toLowerCase();
 
