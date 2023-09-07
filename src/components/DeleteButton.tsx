@@ -10,36 +10,40 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
+import { useState } from "react";
 
 type Props = {
   id: string;
 };
 
 const DeleteButton = ({ id }: Props) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const router = useRouter();
-  const refreshPage = () => {
-    const currentUrl = window.location.href;
-    const newUrl = currentUrl.includes("?")
-      ? `${currentUrl}&refresh=${Date.now()}`
-      : `${currentUrl}?refresh=${Date.now()}`;
-    window.location.href = newUrl;
-  };
-  const deleteAppointment = (AppointmentId: string) => {
+  const deleteAppointment = async (ClientId: string) => {
     try {
-      const response = fetch("/api/appointment", {
+      setIsDeleting(true);
+      const response = await fetch("/api/appointment", {
         method: "DELETE",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          id: AppointmentId,
+          id: ClientId,
         }),
       });
-      refreshPage();
-      toast.warning("Deleted Appointment");
+
+      const result = await response.json();
+      if (result.message === "Success") {
+        toast.warning("Deleted Appointment!");
+        router.replace("/");
+      }
     } catch (error) {
-      console.log(`${error} deleting appointment`);
-      toast.error("Failed to delete appointment");
+      if (error) {
+        toast.error("Failed to delete appointment!");
+      }
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -58,8 +62,9 @@ const DeleteButton = ({ id }: Props) => {
             onClick={() => deleteAppointment(id)}
             variant="destructive"
             className="self-end"
+            disabled={isDeleting}
           >
-            Delete
+            {isDeleting ? "Deleting..." : "Delete"}
           </Button>
         </DialogContent>
       </Dialog>

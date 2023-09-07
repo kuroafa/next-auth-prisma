@@ -9,6 +9,7 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "./ui/dialog";
+import { useState } from "react";
 
 type Props = {
   id: string;
@@ -22,26 +23,43 @@ const refreshPage = () => {
 };
 
 const DeleteClient = ({ id }: Props) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const router = useRouter();
-  const deleteClient = (ClientId: string) => {
-    fetch("/api/client", {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        id: ClientId,
-      }),
-    });
-    refreshPage();
-    toast.warning("Deleted Client");
+  const deleteClient = async (ClientId: string) => {
+    try {
+      setIsDeleting(true);
+      const response = await fetch("/api/client", {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          id: ClientId,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.message === "Success") {
+        toast.warning("Deleted Client!");
+        router.replace("/");
+      }
+    } catch (error) {
+      if (error) {
+        toast.error("Failed to delete client!");
+      }
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   return (
     <>
       <Dialog>
-        <DialogTrigger>
-          <Button>Delete</Button>
+        <DialogTrigger className="w-full">
+          <Button variant="destructive" className="w-full">
+            Delete
+          </Button>
         </DialogTrigger>
         <DialogContent className="flex flex-col items-start">
           <DialogTitle>Are you sure?</DialogTitle>
@@ -52,8 +70,9 @@ const DeleteClient = ({ id }: Props) => {
             onClick={() => deleteClient(id)}
             variant="destructive"
             className="self-end"
+            disabled={isDeleting}
           >
-            Delete
+            {isDeleting ? "Deleting..." : "Delete"}
           </Button>
         </DialogContent>
       </Dialog>

@@ -30,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import DeleteClient from "./DeleteClient";
 type ClientProfileProps = { clientData: Client };
 
 const ClientProfile = ({ clientData }: ClientProfileProps) => {
@@ -89,27 +90,40 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
 
   return (
     <div className="flex flex-col gap-8 md:grid-4 mt-8">
-      <div className="flex flex-col gap-4 items-center md:flex-row">
-        <div>
-          <Image alt="profile image" src="/user.png" width={150} height={150} />
-        </div>
-        <div className="flex flex-col gap-2 items-center md:items-start">
-          <h2 className="text-4xl font-semibold">
-            {clientData?.name ? clientData?.name : "No Name Found"}
-          </h2>
-          <div className="flex flex-col gap-1 items-center md:items-start">
-            <h2 className="uppercase font-medium">Contact Info:</h2>
-            <div className="flex flex-col gap-2">
-              <h3 className="flex gap-2">
-                <Mail size={20} />{" "}
-                {clientData?.email ? clientData?.email : "No Email Found"}
-              </h3>
-              <h3 className="flex gap-2">
-                <Phone size={20} />
-                {formattedPhone ? formattedPhone : "No Phone Number"}
-              </h3>
+      <div className="flex flex-col items-center md:items-start justify-between md:flex-row">
+        <div className="flex flex-col gap-4 items-center md:flex-row">
+          <div>
+            <Image
+              alt="profile image"
+              src="/user.png"
+              width={150}
+              height={150}
+            />
+          </div>
+          <div className="flex flex-col gap-2 items-center md:items-start">
+            <h2 className="text-4xl font-semibold text-center">
+              {clientData?.name ? clientData?.name : "No Name Found"}
+            </h2>
+            <div className="flex flex-col gap-1 items-center md:items-start">
+              <h2 className="uppercase font-medium">Contact Info:</h2>
+              <div className="flex flex-col gap-2">
+                <h3 className="flex gap-2">
+                  <Mail size={20} />{" "}
+                  {clientData?.email ? clientData?.email : "No Email Found"}
+                </h3>
+                <h3 className="flex gap-2">
+                  <Phone size={20} />
+                  {formattedPhone ? formattedPhone : "No Phone Number"}
+                </h3>
+              </div>
             </div>
           </div>
+        </div>
+        <div className="flex flex-row md:flex-col gap-4 mt-2 items-end w-full max-w-[300px] md:w-auto md:max-w-none">
+          <Button title="Send an email to this client" className="w-full">
+            Send Email
+          </Button>
+          <DeleteClient id={clientData.id} />
         </div>
       </div>
 
@@ -118,7 +132,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
           onSubmit={form.handleSubmit(onUpdate)}
         >
-          <div className="grid grid-cols-3 gap-6 col-span-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 col-span-3">
             <FormField
               control={form.control}
               name="budget"
@@ -131,7 +145,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
                       type="currency"
                       placeholder={
                         clientData?.budget
-                          ? `$${clientData.budget}`
+                          ? `$${clientData.budget.toLocaleString()}`
                           : "No Budget"
                       }
                       className={cn(placeholderStyles, "")}

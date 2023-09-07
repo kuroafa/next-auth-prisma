@@ -22,7 +22,10 @@ const page = async (props: Props) => {
   });
   return (
     <>
-      <SearchClient clientData={fetchClients} />
+      <div className="mt-10">
+        <h1 className="text-3xl font-semibold">My Clients</h1>
+        <SearchClient clientData={fetchClients} />
+      </div>
     </>
   );
 };

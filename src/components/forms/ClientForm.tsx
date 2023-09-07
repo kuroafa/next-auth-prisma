@@ -29,6 +29,7 @@ import {
 } from "../ui/card";
 import { Input } from "../ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
+import { martialValues, clientBenefits } from "../../data/data";
 import { Textarea } from "../ui/textarea";
 
 type Props = {};
@@ -39,36 +40,6 @@ const ClientForm = (props: Props) => {
   const [numericBudget, setNumericBudget] = useState("0");
 
   const router = useRouter();
-  const {
-    reset,
-    watch,
-    formState: { errors, isLoading },
-  } = useForm();
-
-  const martialValues = [
-    "MARRIED",
-    "DIVORCED",
-    "SEPARATED",
-    "WIDOWED",
-    "SINGLE",
-  ];
-  const clientBenefits = [
-    {
-      id: 1,
-      title: "Client Loyalty:",
-      text: " Creating a client profile fosters a sense of loyalty and connection between the client and the service provider, potentially leading to repeat business and referrals.",
-    },
-    {
-      id: 2,
-      title: "Streamlined Transactions:",
-      text: " For real estate professionals, client profiles streamline the transaction process, making it easier to manage client needs, preferences, and paperwork.",
-    },
-    {
-      id: 3,
-      title: "Faster Assistance:",
-      text: " Service providers can quickly access client information, making it easier to provide support, answer inquiries, and address issues promptly.",
-    },
-  ];
 
   const form = useForm<ClientCreation>({
     resolver: zodResolver(clientCreationSchema),
@@ -85,37 +56,41 @@ const ClientForm = (props: Props) => {
       notesPriority: true,
     },
   });
-  const refreshPage = () => {
-    const currentUrl = window.location.href;
-    const newUrl = currentUrl.includes("?")
-      ? `${currentUrl}&refresh=${Date.now()}`
-      : `${currentUrl}?refresh=${Date.now()}`;
-    window.location.href = newUrl;
-  };
+
+  const {
+    reset,
+    watch,
+    formState: { errors, isSubmitting },
+  } = form;
 
   const onSubmit = async (data: ClientCreation) => {
     try {
-      const response = await axios.post("/api/client", data);
-      console.log(response.data);
+      const response = await fetch("/api/client", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log(result);
+      if (result.message === "Success") {
+        toast.success("Successfully Created Client!");
+        router.replace("/dashboard");
+      }
     } catch (error) {
-      console.log("could not create client");
+      if (error) {
+        toast.error("Failed to create client!");
+      }
+    } finally {
+      reset();
     }
-    // router.push("/");
-    // reset();
-    // router.refresh();
-    refreshPage();
-    toast.success("Successfully Created Client");
   };
 
   const formatBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const numericValue = parseFloat(value.replace(/[^0-9]/g, "")) || 0;
 
-    // Update the numeric value for sending to the backend
     setNumericBudget(numericValue.toString());
     form.setValue("budget", numericBudget);
 
-    // Format and display the value with thousands separators
     const formattedValue = numericValue.toLocaleString();
     setFormattedBudget(formattedValue);
   };
@@ -342,8 +317,12 @@ const ClientForm = (props: Props) => {
                   />
                 </div>
               </div>
-              <Button className="p-5 text-1xl" type="submit">
-                Submit
+              <Button
+                className="p-5 text-1xl"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Adding Client..." : "Create"}
               </Button>
             </form>
           </Form>

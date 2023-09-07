@@ -58,70 +58,60 @@ const Sidebar: React.FC = () => {
                   : "-left-96 lg:w-60 lg:left-0"
               }`}
             >
-              <div className="flex flex-col justify-start items-center w-full">
-                <Link
-                  href="/dashboard"
-                  className="flex flex-col gap-1 items-center justify-center"
-                >
-                  <button onClick={closeSidebar}>
-                    <p className="text-md">Clients & Appointments</p>
-                    <h1 className="text-4xl font-bold italic ">Meetly</h1>
-                  </button>
-                </Link>
-                <div className="my-4  border-gray-100 pb-4">
-                  <Link onClick={closeSidebar} href="/dashboard">
-                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                      <MdOutlineSpaceDashboard className="text-2xl light:text-gray-900 group:hover:text-white" />
-                      <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
+              <div className="flex flex-col justify-between h-full items-center w-full">
+                <div>
+                  <Link
+                    href="/dashboard"
+                    className="flex flex-col gap-1 items-center justify-center"
+                  >
+                    <button onClick={closeSidebar}>
+                      <p className="text-md">Clients & Appointments</p>
+                      <h1 className="text-4xl font-bold italic ">Meetly</h1>
+                    </button>
+                  </Link>
+                  <div className="my-4  border-gray-100 flex flex-col gap-4 mt-8">
+                    <Link onClick={closeSidebar} href="/dashboard">
+                      <Button variant="ghost">
+                        <MdOutlineSpaceDashboard className="text-2xl light:text-gray-900 group:hover:text-white mr-4" />
                         Dashboard
-                      </h3>
-                    </div>
-                  </Link>
-                  <Link onClick={closeSidebar} href="/Clients">
-                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                      <CgProfile className="text-2xl light:text-gray-900 group:hover:text-white" />
-                      <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
+                      </Button>
+                    </Link>
+                    <Link onClick={closeSidebar} href="/Clients">
+                      <Button variant="ghost">
+                        <CgProfile className="text-2xl light:text-gray-900 group:hover:text- mr-4" />
                         Clients
-                      </h3>
-                    </div>
-                  </Link>
-                  <Link onClick={closeSidebar} href="/notes">
-                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                      <FaRegComments className="text-2xl light:text-gray-900 group:hover:text-white" />
-                      <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
+                      </Button>
+                    </Link>
+                    <Link onClick={closeSidebar} href="/notes">
+                      <Button variant="ghost">
+                        <FaRegComments className="text-2xl light:text-gray-900 group:hover:text-white mr-4" />
                         Notes
-                      </h3>
-                    </div>
-                  </Link>
-                  <Link onClick={closeSidebar} href="/Appointments-Page">
-                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                      <MdOutlineAnalytics className="text-2xl light:text-gray-900 group:hover:text-white" />
-                      <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
+                      </Button>
+                    </Link>
+                    <Link onClick={closeSidebar} href="/Appointments-Page">
+                      <Button variant="ghost">
+                        <MdOutlineAnalytics className="text-2xl light:text-gray-900 group:hover:text-white mr-4" />
                         Appointments
-                      </h3>
-                    </div>
-                  </Link>
-                  <Link onClick={closeSidebar} href="/email">
-                    <div className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500  m-auto ">
-                      <MdOutlineIntegrationInstructions className="text-2xl light:text-gray-900 group:hover:text-white" />
-                      <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
+                      </Button>
+                    </Link>
+                    <Link onClick={closeSidebar} href="/email">
+                      <Button variant="ghost">
+                        <MdOutlineIntegrationInstructions className="text-2xl light:text-gray-900 group:hover:text-white mr-5" />
                         Email
-                      </h3>
-                    </div>
-                  </Link>
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-                <div className="my-4 -ml-[40px] border-gray-100 pb-4">
-                  <button
+                <div className=" border-gray-100 -ml-10 mb-14">
+                  <Button
+                    variant="ghost"
                     onClick={() => {
                       signOut().catch(console.error);
                     }}
-                    className="flex mb-2 justify-start items-center gap-4 pl-5  p-2 rounded-md group cursor-pointer hover:text-gray-500 m-auto "
                   >
-                    <MdOutlineLogout className="text-2xl light:text-gray-900 group:hover:text-white" />
-                    <h3 className="text-base light:text-gray-800 pt-1  font-semibold">
-                      Logout
-                    </h3>
-                  </button>
+                    <MdOutlineLogout className="text-2xl light:text-gray-900 group:hover:text-white mr-4" />
+                    Logout
+                  </Button>
                 </div>
               </div>
             </div>

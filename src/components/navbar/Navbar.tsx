@@ -8,7 +8,6 @@ import Link from "next/link";
 import Image from "next/image";
 import QuickActions from "./QuickActions";
 import { Client } from "@prisma/client";
-import { headers } from "next/headers";
 
 type Props = {
   clientData?: Client;
@@ -17,14 +16,12 @@ type Props = {
 const Navbar = async ({ clientData }: Props) => {
   const session = await getAuthSession();
 
-  const headersList = headers();
-  const domain = headersList.get("host") || "";
-  const fullUrl = headersList.get("referer") || "";
-
-  console.log(fullUrl);
-
   return (
-    <div className="flex items-center justify-between w-[calc(100%-50px)] gap-4 absolute xl:right-5 lg:right-5 md:right-20 right-20 top-6 h-fit  ">
+    <div
+      className={`flex items-center justify-between w-[calc(100%-50px)] gap-4 absolute xl:right-5 lg:right-5 md:right-20 ${
+        session?.user ? "right-20" : "right-5"
+      } top-7 h-fit`}
+    >
       <div className="lg:ml-[220px] ml-[100px]">
         <h2 className="font-semibold text-base hidden lg:block">
           {session?.user ? `Welcome, ${session?.user.name}` : null}

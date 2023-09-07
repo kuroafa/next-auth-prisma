@@ -8,11 +8,6 @@ import {
 import { NextResponse } from "next/server";
 import { ZodError, z } from "zod";
 
-type Data = {
-  input: string;
-  name: string;
-};
-
 export async function POST(req: Request, res: Response) {
   try {
     const session = await getAuthSession();
@@ -58,7 +53,12 @@ export async function POST(req: Request, res: Response) {
       },
     });
 
-    console.log("client record created:", client);
+    return NextResponse.json(
+      {
+        message: "Success",
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Error creating a client:", error);
     if (error instanceof z.ZodError) {
@@ -69,10 +69,24 @@ export async function POST(req: Request, res: Response) {
         }
       );
     }
+    return NextResponse.json(
+      {
+        error: "Internal Error Creating Client",
+      },
+      { status: 500 }
+    );
   }
 }
 export async function DELETE(req: Request, res: Response) {
   try {
+    const session = await getAuthSession();
+    if (!session?.user) {
+      return NextResponse.json(
+        { error: "User not authenticated" },
+        { status: 401 }
+      );
+    }
+
     const body = await req.json();
     const { id } = DeletionSchema.parse(body);
     const deleteClient = await prisma.client.delete({
@@ -80,9 +94,22 @@ export async function DELETE(req: Request, res: Response) {
         id: id,
       },
     });
-    console.log("client deleted: ", deleteClient);
+
+    return NextResponse.json({ message: "Success" }, { status: 200 });
   } catch (error) {
-    console.log("error deleting client", error);
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        {
+          error: error.errors,
+        },
+        { status: 404 }
+      );
+    }
+    console.log("Error deleting client", error);
+    return NextResponse.json(
+      { error: "Internal Error Deleting Client" },
+      { status: 500 }
+    );
   }
 }
 

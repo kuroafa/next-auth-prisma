@@ -12,7 +12,7 @@ import { Appointment } from "@prisma/client";
 import { ArrowUpRight } from "lucide-react";
 
 type AppointmentCardProps = {
-  dashboardMode: boolean;
+  dashboardMode?: boolean;
   appointmentData: Appointment;
 };
 

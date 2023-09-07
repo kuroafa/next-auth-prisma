@@ -25,14 +25,21 @@ type Props = {
 };
 
 const ClientCard = ({ clientData, dashboardMode }: Props) => {
+  const nameShortner =
+    clientData?.name.slice(0, 10) +
+    (clientData.name.length > 10 ? "..." : null);
+
   return (
     <Card className="flex justify-between w-full">
       <CardHeader className="flex-1">
         <CardTitle className="flex gap-2 items-center ">
           <UserCircle size={50} />
-          <Link href={`Client-Profile/${clientData.id}`} className="w-full">
-            {clientData?.name.slice(0, 10)}
-            {clientData.name.length > 10 ? "..." : null}
+          <Link
+            href={`Client-Profile/${clientData.id}`}
+            className="w-full"
+            title={clientData.name}
+          >
+            {dashboardMode ? nameShortner : clientData.name}
           </Link>
         </CardTitle>
         <CardDescription className="flex gap-2 ">
@@ -63,8 +70,8 @@ const ClientCard = ({ clientData, dashboardMode }: Props) => {
           </HoverCard>
         </CardDescription>
       </CardHeader>
-      <CardContent className="self-end flex-1">
-        <div className="flex flex-wrap gap-2 justify-end">
+      <CardContent className="self-end flex-1 max-w-[133px]">
+        <div className="flex flex-wrap gap-2 justify-between ">
           <Link href={"/email"}>
             <Button
               variant="secondary"

@@ -2,7 +2,7 @@ import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/next-auth";
 import { DeletionSchema, appointmentCreationSchema } from "@/lib/type";
 import { NextResponse } from "next/server";
-import { z } from "zod";
+import { ZodError, z } from "zod";
 
 export async function POST(req: Request, res: Response) {
   try {
@@ -46,8 +46,17 @@ export async function POST(req: Request, res: Response) {
     }
   }
 }
+
 export async function DELETE(req: Request, res: Response) {
   try {
+    const session = await getAuthSession();
+    if (!session?.user) {
+      return NextResponse.json(
+        { error: "User not authenticated" },
+        { status: 401 }
+      );
+    }
+
     const body = await req.json();
     const { id } = DeletionSchema.parse(body);
     const deleteAppointment = await prisma.appointment.delete({
@@ -55,8 +64,21 @@ export async function DELETE(req: Request, res: Response) {
         id: id,
       },
     });
-    console.log("appointment deleted: ", deleteAppointment);
+
+    return NextResponse.json({ message: "Success" }, { status: 200 });
   } catch (error) {
-    console.log("error deleting appointment", error);
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        {
+          error: error.errors,
+        },
+        { status: 404 }
+      );
+    }
+    console.log("Error deleting appointment", error);
+    return NextResponse.json(
+      { error: "Internal Error Deleting Appointment" },
+      { status: 500 }
+    );
   }
 }
