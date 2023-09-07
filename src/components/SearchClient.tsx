@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { Client } from "@prisma/client";
 import ClientCard from "./dashboard/components/ClientCard";
 import { Search } from "lucide-react";
-import { type } from "os";
+import { Divider, Space, Tag } from "antd";
 
 type Props = {
   clientData: Client[];
@@ -14,13 +14,18 @@ type Props = {
 const SearchClient = ({ clientData }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredClients, setFilteredClients] = useState<Client[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
+  const [filterValue, setFilterValue] = useState<string | null>(null);
 
   useEffect(() => {
-    setIsSearching(true);
-    const filteredData = clientData.filter((client: any) => {
-      const name = client.name;
-      return name.toLowerCase().includes(searchQuery.toLowerCase());
+    const filteredData = clientData.filter((client: Client) => {
+      const name = client.name.toLowerCase();
+
+      return (
+        (name.includes(searchQuery.toLowerCase()) ||
+          name?.includes(searchQuery.toLowerCase())) &&
+        (filterValue === null ||
+          client.preApproved === (filterValue === "approved"))
+      );
     });
 
     const timer = setTimeout(() => {
@@ -28,7 +33,7 @@ const SearchClient = ({ clientData }: Props) => {
       setIsSearching(false);
     }, 300);
     return () => clearTimeout(timer);
-  }, [searchQuery, clientData]);
+  }, [searchQuery, clientData, filterValue]);
 
   return (
     <div className="mt-4">
@@ -44,6 +49,33 @@ const SearchClient = ({ clientData }: Props) => {
           />
           <Search className="absolute top-2 left-2 " />
         </div>
+        <Space className=" pt-3" size={[0, 8]} wrap>
+          <Tag
+            color="red"
+            onClick={() => setFilterValue("notApproved")}
+            className={`cursor-pointer ${
+              filterValue === "notApproved" ? "selected" : ""
+            }`}
+          >
+            Not Approved
+          </Tag>
+          <Tag
+            color="green"
+            onClick={() => setFilterValue("approved")}
+            className={`cursor-pointer ${
+              filterValue === "approved" ? "selected" : ""
+            }`}
+          >
+            Approved
+          </Tag>
+          <Tag
+            color="geekblue"
+            onClick={() => setFilterValue(null)}
+            className={`cursor-pointer `}
+          >
+            All Clients
+          </Tag>
+        </Space>
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-[30px] max-h-[calc(100dvh-300px)] overflow-auto md:overflow-visible md:h-auto">
         {isSearching ? (

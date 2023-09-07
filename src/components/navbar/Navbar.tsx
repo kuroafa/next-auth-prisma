@@ -27,7 +27,7 @@ const Navbar = async ({ clientData }: Props) => {
           {session?.user ? `Welcome, ${session?.user.name}` : null}
         </h2>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 ">
         {session?.user ? <QuickActions clientData={clientData} /> : null}
 
         <ThemeToggle className="relative" />
