@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import Link from "next/link";
 
 type Props = {
   clientData: Pick<Client, "email" | "name" | "id" | "notes">;
@@ -29,9 +30,11 @@ const EmailCard = ({ clientData, handleAutoFill }: Props) => {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex gap-4 items-center justify-end">
-        <Button className="w-fit p-2 rounded font-semibold ">
-          View Profile
-        </Button>
+        <Link href={`/Client-Profile/${clientData.id}`}>
+          <Button className="w-fit p-2 rounded font-semibold ">
+            View Profile
+          </Button>
+        </Link>
         <Button
           variant={"secondary"}
           className="w-fit p-2 rounded font-semibold dark:bg-slate-900"

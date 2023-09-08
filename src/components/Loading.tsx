@@ -1,21 +1,12 @@
 "use client";
 
 import React from "react";
-import { SpinnerCircular } from "spinners-react";
-import "spinners-react/lib/SpinnerCircular.css";
-import { useTheme } from "next-themes";
+import { Loader2 } from "lucide-react";
 
 type Props = {};
 
 const Loading = (props: Props) => {
-  const { theme } = useTheme();
-
-  const themeCheck =
-    theme === "light" ? "black" : theme === "dark" ? "white" : "gray";
-
-  return (
-    <SpinnerCircular enabled color={themeCheck} size="100px" speed={200} />
-  );
+  return <Loader2 className="animate-spin" size={100} />;
 };
 
 export default Loading;

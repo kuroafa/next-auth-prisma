@@ -148,7 +148,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
                           ? `$${clientData.budget.toLocaleString()}`
                           : "No Budget"
                       }
-                      className={cn(placeholderStyles, "")}
+                      className={cn(placeholderStyles, "dark:text-white")}
                       {...field}
                     />
                   </FormControl>
@@ -168,7 +168,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
                       <SelectTrigger
                         className={cn(
                           placeholderStyles,
-                          "w-full focus:ring-0 px-1"
+                          "w-full focus:ring-0 px-1 dark:text-white"
                         )}
                       >
                         <SelectValue
@@ -216,7 +216,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
                           ? clientData.occupation
                           : "No Data on Record"
                       }
-                      className={placeholderStyles}
+                      className={cn(placeholderStyles, "dark:text-white")}
                       {...field}
                     />
                   </FormControl>
@@ -238,7 +238,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
                       <SelectTrigger
                         className={cn(
                           placeholderStyles,
-                          "w-full focus:ring-0 px-1"
+                          "w-full focus:ring-0 px-1 dark:text-white"
                         )}
                       >
                         <SelectValue placeholder={clientData.maritalStatus} />
@@ -278,7 +278,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
                           : "No Data on Record"
                       }
                       {...field}
-                      className={placeholderStyles}
+                      className={cn(placeholderStyles, "dark:text-white")}
                     />
                   </FormControl>
                   <FormDescription>
@@ -302,7 +302,7 @@ const ClientProfile = ({ clientData }: ClientProfileProps) => {
                       placeholder={
                         clientData?.notes ? clientData.notes : "No Notes"
                       }
-                      className="placeholder:text-black h-[125px]"
+                      className="placeholder:text-black h-[125px] dark:text-white"
                       {...field}
                     />
                   </FormControl>

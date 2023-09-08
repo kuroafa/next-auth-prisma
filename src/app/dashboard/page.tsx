@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import AppointmentsSection from "@/components/dashboard/sections/AppointmentsSection";
 import { prisma } from "@/lib/db";
-
+import { Loader2 } from "lucide-react";
 type Props = {};
 
 export const metadata = {
@@ -64,14 +64,10 @@ const DashboardPage = async (props: Props) => {
         />
       </div>
       <div className="col-span-3 xl:col-span-1">
-        <Suspense fallback={<Loading />}>
-          <ClientsSection dashboardMode />
-        </Suspense>
+        <ClientsSection dashboardMode />
       </div>
       <div className="col-span-3 xl:col-span-4 h-fit">
-        <Suspense fallback={<Loading />}>
-          <AppointmentsSection dashboardMode />
-        </Suspense>
+        <AppointmentsSection dashboardMode />
       </div>
     </div>
   );
